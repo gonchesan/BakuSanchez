@@ -7,8 +7,8 @@ export const Nav = styled.nav`
   align-items: center;
   position: sticky;
   top: 0;
-  height: 65px;
-  background-color: #fdfcfd;
+  height: ${({ secondary }) => (secondary ? "48px" : "65px")};
+  background-color: ${({ secondary }) => (secondary ? "#e54050" : "#fdfcfd")};
   box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px,
     rgb(209, 213, 219) 0px 0px 0px 1px inset;
   z-index: 999;
@@ -16,7 +16,8 @@ export const Nav = styled.nav`
 
 export const NavbarContainer = styled(Container)`
   display: flex;
-  justify-content: space-between;
+  justify-content: ${({ secondary }) =>
+    secondary ? "flex-end" : "space-between"};
   align-items: center;
   height: 65px;
 
@@ -24,7 +25,7 @@ export const NavbarContainer = styled(Container)`
 `;
 
 export const NavLogo = styled.img`
-  height: 64px;
+  height: 56px;
   cursor: pointer;
   justify-self: flex-start;
 `;
@@ -77,14 +78,36 @@ export const NavItemBtn = styled.button`
   opacity: ${({ active }) => (active ? "1" : "0.7")};
   outline: none;
   border: none;
-  background-color: transparent;
-  color: ${({ active }) => (active ? "#DB394A" : "#595F6A")};
-  border-bottom: 2px solid
-    ${({ active }) => (active ? "#DB394A" : "transparent")};
-  transition: 0.4s;
+  border-radius: 16px;
+  background-color: ${({ active }) => (active ? "#DB394A" : "transparent")};
+  color: #fdfcfd;
 
   &:hover {
     opacity: 1;
+  }
+`;
+
+export const WidgetItemBtn = styled(NavItemBtn)`
+  ${NavItemBtn}
+
+  position: relative;
+  color: #595f6a;
+  opacity: 1;
+
+  & span {
+    position: absolute;
+    top: 10%;
+    display: inline-block;
+    background: linear-gradient(45deg, #df253b -12.57%, #f1404e 118.13%);
+    color: #fff;
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    padding-top: 1px;
+  }
+
+  &:hover {
+    opacity: 0.7;
   }
 `;
 
@@ -99,22 +122,6 @@ export const ButtonLogin = styled(Button)`
     background-color: rgba(253, 243, 244, 0.3);
     color: #df253b;
   }
-
-  &:before {
-    display: block;
-    content: "";
-    top: 0;
-    left: -10px;
-    position: absolute;
-    height: 100%;
-    border-left: 4px solid #df253b;
-  }
-
-  @media screen and (max-width: 960px) {
-    &:before {
-      display: none;
-    }
-  }
 `;
 
 export const ButtonSignUp = styled(Button)`
@@ -125,9 +132,12 @@ export const ButtonSignUp = styled(Button)`
   text-transform: uppercase;
   font-size: 0.9rem;
   border: 1px solid transparent;
+  padding: 10px 8px;
+
   &:hover {
     background: linear-gradient(to bottom, #df253b 5%, #f1404e 100%);
   }
+
   &:active {
     position: relative;
     top: 1px;
