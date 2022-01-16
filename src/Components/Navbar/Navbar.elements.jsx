@@ -107,7 +107,7 @@ export const WidgetItemBtn = styled(NavItemBtn)`
   }
 
   &:hover {
-    opacity: 0.7;
+    opacity: 0.87;
   }
 `;
 
