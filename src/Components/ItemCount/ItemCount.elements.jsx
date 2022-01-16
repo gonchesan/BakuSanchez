@@ -17,8 +17,8 @@ export const Wrapper = styled.div`
 export const CartButton = styled.button`
   cursor: pointer;
   position: relative;
-  background-color: #f1f1f1;
-  color: #f54457;
+  background-color: #f54457;
+  color: #f8f8f8;
   font-size: 20px;
   outline: none;
   width: 40px;
@@ -29,7 +29,14 @@ export const CartButton = styled.button`
 
   &:hover {
     transition: 0.3s all;
+    background-color: #db394a;
     transform: scale(1.1);
+  }
+  &:disabled {
+    background-color: #f8979e;
+    border: 1px solid #ccc8c8;
+    color: #e7e7e7d3;
+    transform: scale(1);
   }
 `;
 

@@ -28,7 +28,7 @@ const ItemCount = ({ initial, stock, onAdd }) => {
   };
 
   useEffect(() => {
-    setCount(parseInt(initial));
+    setCount(initial);
   }, []);
 
   return (
@@ -51,7 +51,7 @@ const ItemCount = ({ initial, stock, onAdd }) => {
           +
         </CountButton>
       </Wrapper>
-      <CartButton onClick={() => onAdd(count)}>
+      <CartButton onClick={() => onAdd(count)} disabled={stock === 0}>
         <AiOutlineShoppingCart />
       </CartButton>
     </ItemCountContainer>

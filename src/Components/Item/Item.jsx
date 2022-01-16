@@ -11,7 +11,7 @@ const Item = () => {
     <ItemContainer>
       {/* ItemBody */}
       <ItemFooter>
-        <ItemCount stock="5" initial="1" onAdd={onAdd} />
+        <ItemCount stock={5} initial={1} onAdd={onAdd} />
       </ItemFooter>
     </ItemContainer>
   );
