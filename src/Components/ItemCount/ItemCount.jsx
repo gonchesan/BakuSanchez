@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 //Icons
 import { AiOutlineShoppingCart } from "react-icons/ai";
@@ -13,7 +13,7 @@ import {
 } from "./ItemCount.elements";
 
 const ItemCount = ({ initial, stock, onAdd }) => {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(initial);
 
   const handleCountingClick = (event) => {
     if (event.target.name === "add") {
@@ -21,15 +21,11 @@ const ItemCount = ({ initial, stock, onAdd }) => {
         setCount(count + 1);
       }
     } else {
-      if (count > 0) {
+      if (count > initial) {
         setCount(count - 1);
       }
     }
   };
-
-  useEffect(() => {
-    setCount(initial);
-  }, []);
 
   return (
     <ItemCountContainer>
