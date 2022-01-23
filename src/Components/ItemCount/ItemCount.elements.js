@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
 export const ItemCountContainer = styled.div`
-  width: 90%;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 0 auto;
+  margin: 8px auto;
 `;
 
 export const Wrapper = styled.div`
@@ -15,28 +15,33 @@ export const Wrapper = styled.div`
 `;
 
 export const CartButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
   position: relative;
   background-color: #f54457;
   color: #f8f8f8;
   font-size: 20px;
   outline: none;
-  width: 40px;
-  height: 40px;
-  padding: 0;
-  border-radius: 50%;
+  padding: 6px;
+  white-space: nowrap;
+  border-radius: 8px;
   border: 1px solid #a39595;
+
+  & span {
+    margin: 0 8px;
+    font-size: 15px;
+  }
 
   &:hover {
     transition: 0.3s all;
     background-color: #db394a;
-    transform: scale(1.1);
   }
   &:disabled {
     background-color: #f8979e;
     border: 1px solid #ccc8c8;
     color: #e7e7e7d3;
-    transform: scale(1);
   }
 `;
 
@@ -44,16 +49,16 @@ export const CounterNumber = styled.span`
   background-color: #fdfcfd;
   border-top: 1px solid #f54457;
   border-bottom: 1px solid #f54457;
-  padding: 6px 24px;
+  padding: 4px 14px;
   color: #595f6a;
 `;
 
 export const CountButton = styled.button`
   background-color: #f54457;
   color: #f8f8f8;
-  padding: 4px 12px;
+  padding: 2px 12px;
   text-align: center;
-  border-radius: ${({ left }) => (left ? "12px 0 0 12px" : "0 12px 12px 0")};
+  border-radius: ${({ left }) => (left ? "6px 0 0 6px" : "0 6px 6px 0")};
   outline: none;
   border: none;
   font-size: 1.3rem;

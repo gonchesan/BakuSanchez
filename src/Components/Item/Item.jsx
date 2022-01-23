@@ -1,17 +1,38 @@
 import ItemCount from "../ItemCount/ItemCount";
 
-import { ItemContainer, ItemFooter } from "./Item.elements";
+import { FaRegHeart } from "react-icons/fa";
 
-const Item = () => {
+import {
+  BadgeCard,
+  CardDetail,
+  ItemBody,
+  ItemContainer,
+  ItemFooter,
+  LikeButton,
+  PriceDetail,
+  Tittle,
+} from "./Item.elements";
+
+const Item = ({ pictures, title, price, itsOnSale, initial, stock }) => {
   const onAdd = (valueToAdd) => {
     console.log(valueToAdd);
   };
 
   return (
     <ItemContainer>
-      {/* ItemBody */}
+      <ItemBody>
+        <img src={pictures[0]} />
+        <BadgeCard isVisible={itsOnSale}>-22%</BadgeCard>
+        <LikeButton>
+          <FaRegHeart />
+        </LikeButton>
+      </ItemBody>
       <ItemFooter>
-        <ItemCount stock={5} initial={1} onAdd={onAdd} />
+        <CardDetail>
+          <Tittle>{title}</Tittle>
+          <PriceDetail>$ {price}</PriceDetail>
+        </CardDetail>
+        <ItemCount stock={stock} initial={initial} onAdd={onAdd} />
       </ItemFooter>
     </ItemContainer>
   );

@@ -1,11 +1,12 @@
-import Item from "../Item/Item";
+import ItemList from "../ItemList/ItemList";
 
-const ItemListContainer = ({ greeting }) => {
+import { Container } from "../../globalStyle";
+
+const ItemListContainer = () => {
   return (
-    <>
-      <h2 style={{ textAlign: "center" }}>{greeting}</h2>
-      <Item />
-    </>
+    <Container>
+      <ItemList />
+    </Container>
   );
 };
 

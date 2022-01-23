@@ -49,6 +49,7 @@ const ItemCount = ({ initial, stock, onAdd }) => {
       </Wrapper>
       <CartButton onClick={() => onAdd(count)} disabled={stock === 0}>
         <AiOutlineShoppingCart />
+        <span>Add to cart</span>
       </CartButton>
     </ItemCountContainer>
   );
