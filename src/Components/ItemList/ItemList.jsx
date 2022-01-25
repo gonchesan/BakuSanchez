@@ -1,36 +1,42 @@
 import { useEffect, useState } from "react";
+import { useOutletContext } from "react-router-dom";
 
 //Fetch products
-import { getProducts } from "../../Services/getProducts";
+import { getAllProducts } from "../../utils/products";
 
+//Components
 import Item from "../Item/Item";
-import Spinner from "../Spinner/Spinner";
+
+//Styled Components
 import { ListWrapper } from "./ItemList.elements";
 
 const ItemList = () => {
   const [dataProducts, setDataProducts] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading, isMounted, setIsMounted] = useOutletContext();
 
   useEffect(() => {
+    setIsMounted(false);
+    setIsLoading(true);
+
     setTimeout(() => {
-      getProducts()
+      getAllProducts()
         .then((products) => {
           setIsLoading(false);
+          setIsMounted(true);
           setDataProducts(products);
         })
         .catch((err) => console.log("Something is wrong: ", err));
     }, 2000);
   }, []);
 
-  if (isLoading) {
-    return <Spinner />;
-  } else {
-    return (
-      <ListWrapper>
-        {dataProducts.map((info) => {
+  return (
+    <ListWrapper>
+      {dataProducts.map((info) => {
+        if (isMounted) {
           return (
             <Item
               key={info.id}
+              id={info.id}
               pictures={info.pictures}
               title={info.title}
               price={info.price}
@@ -39,10 +45,12 @@ const ItemList = () => {
               initial={info.initial}
             />
           );
-        })}
-      </ListWrapper>
-    );
-  }
+        } else {
+          return null;
+        }
+      })}
+    </ListWrapper>
+  );
 };
 
 export default ItemList;

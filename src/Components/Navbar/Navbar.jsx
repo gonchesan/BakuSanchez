@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 //Source and Icons
-import Logo from "../../Assets/Images/logo-Baku.svg";
+import Logo from "../../assets/images/logo-Baku.svg";
 import { FaBars, FaTimes } from "react-icons/fa";
 
 //Widgets and others components

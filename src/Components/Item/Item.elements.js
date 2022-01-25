@@ -26,7 +26,6 @@ export const ItemContainer = styled.div`
 
 export const ItemBody = styled.div`
   position: relative;
-  background-color: lightgoldenrodyellow;
   width: 100%;
   height: 73%;
   overflow: hidden;
@@ -67,7 +66,6 @@ export const BadgeCard = styled.div`
 
 export const ItemFooter = styled.div`
   width: 100%;
-  /* background-color: #f1f1f1; */
   background-color: #fff;
   padding: 8px 12px;
   border-top: 1px solid #d7d1d4;

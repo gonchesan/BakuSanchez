@@ -1,4 +1,4 @@
-import ItemList from "../ItemList/ItemList";
+import ItemList from "../../components/ItemList/ItemList";
 
 import { Container } from "../../globalStyle";
 

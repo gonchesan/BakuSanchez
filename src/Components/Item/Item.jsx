@@ -12,14 +12,22 @@ import {
   PriceDetail,
   Tittle,
 } from "./Item.elements";
+import { getProductDetail } from "../../utils/products";
+import { useNavigate } from "react-router-dom";
 
-const Item = ({ pictures, title, price, itsOnSale, initial, stock }) => {
+const Item = ({ id, pictures, title, price, itsOnSale, initial, stock }) => {
+  let navigate = useNavigate();
+
   const onAdd = (valueToAdd) => {
     console.log(valueToAdd);
   };
 
+  const goToProductDetailPage = () => {
+    navigate(`products/${id}`);
+  };
+
   return (
-    <ItemContainer>
+    <ItemContainer onClick={goToProductDetailPage}>
       <ItemBody>
         <img src={pictures[0]} />
         <BadgeCard isVisible={itsOnSale}>-22%</BadgeCard>

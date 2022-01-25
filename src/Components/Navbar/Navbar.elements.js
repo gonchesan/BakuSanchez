@@ -6,7 +6,7 @@ export const Nav = styled.nav`
   justify-content: center;
   align-items: center;
   position: sticky;
-  top: 0;
+  top: ${({ secondary }) => (secondary ? "65px" : "0")};
   height: ${({ secondary }) => (secondary ? "48px" : "65px")};
   background-color: ${({ secondary }) => (secondary ? "#e54050" : "#fdfcfd")};
   box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px,
