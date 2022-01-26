@@ -12,6 +12,14 @@ export const ItemContainer = styled.div`
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
   position: relative;
   overflow: hidden;
+  transition: all 0.3s;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.1);
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+      rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+  }
 
   & img {
     position: absolute;
