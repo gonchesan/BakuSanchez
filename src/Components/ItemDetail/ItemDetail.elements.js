@@ -8,7 +8,6 @@ export const DetailContainer = styled.div`
 `;
 export const SliderWrapper = styled.div`
   position: relative;
-
   overflow: hidden;
 `;
 export const InfoWrapper = styled.div`
@@ -20,13 +19,15 @@ export const TittleDetail = styled.p`
   font-size: 1.3rem;
   letter-spacing: 0.5px;
   margin-bottom: 0.5rem;
-  color: #595f6a;
+  font-weight: 500;
+  color: ${({ theme }) => theme.gray};
 `;
 
 export const PriceDetail = styled.p`
-  font-size: 1.2rem;
-  font-weight: 800;
-  color: #db394a;
+  font-family: "Oswald", sans-serif;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: ${({ theme }) => theme.red};
   letter-spacing: 0.2px;
   margin-bottom: 0.2rem;
 
@@ -41,13 +42,14 @@ export const StockDetail = styled.div`
   background-color: #f54457;
   color: #fdfcfd;
   font-size: 0.8rem;
-  padding: 4px 16px;
+  font-weight: 600;
+  padding: 2px 14px;
   border-radius: 14px;
 `;
 
 export const Paragraph = styled.p`
   font-size: 0.9rem;
-  line-height: 20px;
+  line-height: 24px;
   margin: 0.25rem 0;
-  color: #595f6a;
+  color: ${({ theme }) => theme.textGray};
 `;

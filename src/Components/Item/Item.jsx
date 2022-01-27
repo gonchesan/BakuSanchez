@@ -1,7 +1,9 @@
+//Components
 import ItemCount from "../ItemCount/ItemCount";
 
 import { FaRegHeart } from "react-icons/fa";
 
+//Styled Components
 import {
   BadgeCard,
   CardDetail,
@@ -10,9 +12,9 @@ import {
   ItemFooter,
   LikeButton,
   PriceDetail,
+  SelectItem,
   Tittle,
 } from "./Item.elements";
-import { getProductDetail } from "../../utils/products";
 import { useNavigate } from "react-router-dom";
 
 const Item = ({ id, pictures, title, price, itsOnSale, initial, stock }) => {
@@ -22,12 +24,14 @@ const Item = ({ id, pictures, title, price, itsOnSale, initial, stock }) => {
     console.log(valueToAdd);
   };
 
-  const goToProductDetailPage = () => {
-    navigate(`products/${id}`);
+  const goToProductDetailPage = (event) => {
+    event.stopPropagation();
+    navigate(`item/${id}`);
   };
 
   return (
-    <ItemContainer onClick={goToProductDetailPage}>
+    <ItemContainer>
+      <SelectItem onClick={goToProductDetailPage} />
       <ItemBody>
         <img src={pictures[0]} />
         <BadgeCard isVisible={itsOnSale}>-22%</BadgeCard>

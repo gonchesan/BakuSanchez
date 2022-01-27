@@ -9,16 +9,16 @@ export const ItemContainer = styled.div`
   position: relative;
   border-radius: 6px;
   margin: 10px;
-  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+    rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
   position: relative;
   overflow: hidden;
   transition: all 0.3s;
   cursor: pointer;
 
   &:hover {
-    transform: scale(1.1);
-    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
-      rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+    transform: scale(1.05);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
   }
 
   & img {
@@ -30,6 +30,15 @@ export const ItemContainer = styled.div`
     object-fit: cover;
     object-position: center;
   }
+`;
+
+export const SelectItem = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 15;
 `;
 
 export const ItemBody = styled.div`
@@ -44,8 +53,8 @@ export const LikeButton = styled.button`
   right: 0;
   top: 0;
   transform: translate(-35%, 35%);
-  background-color: #eeeeee;
-  color: #cbcbcb;
+  background-color: ${({ theme }) => theme.grayWhite};
+  color: ${({ theme }) => theme.gray};
   border: none;
   outline: none;
   height: 36px;
@@ -64,7 +73,7 @@ export const BadgeCard = styled.div`
   top: 0;
   visibility: ${({ isVisible }) => (isVisible ? "visible" : "hidden")};
   transform: translate(25%, 75%);
-  background-color: #f54457;
+  background-color: #e30014;
   padding: 4px 12px;
   z-index: 99;
   color: #fdfcfd;
@@ -81,6 +90,7 @@ export const ItemFooter = styled.div`
 
 export const CardDetail = styled.div`
   display: flex;
+  align-items: flex-end;
   width: 100%;
 `;
 
@@ -93,7 +103,7 @@ export const Tittle = styled.p`
   width: 60%;
   display: -webkit-box;
   line-height: 18px;
-  max-height: 48px;
+  max-height: 40px;
   color: #3a3a3a;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -101,8 +111,11 @@ export const Tittle = styled.p`
 
 export const PriceDetail = styled.p`
   display: inline-block;
+  font-family: "Oswald", sans-serif;
+  line-height: 1.6rem;
+  font-size: 1.5rem;
   white-space: nowrap;
-  color: #db394a;
+  color: ${({ theme }) => theme.red};
   width: 40%;
   font-weight: 800;
   padding-top: 12px;

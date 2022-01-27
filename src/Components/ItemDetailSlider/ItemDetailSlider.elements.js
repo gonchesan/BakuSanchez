@@ -7,6 +7,19 @@ export const SliderContainer = styled.div`
 export const ImageSelected = styled.img`
   float: right;
   width: calc(100% - 100px);
+  animation: 1s fadeIn;
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0.4;
+    }
+    50% {
+      opacity: 0.7;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
 `;
 
 export const Carrousel = styled.div`

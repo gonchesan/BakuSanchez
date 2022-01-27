@@ -15,6 +15,7 @@ const ItemDetailContainer = () => {
   const [isLoading, setIsLoading, isMounted, setIsMounted] = useOutletContext();
   const [product, setProduct] = useState({});
 
+  console.log(id);
   useEffect(() => {
     setIsLoading(true);
     setIsMounted(false);

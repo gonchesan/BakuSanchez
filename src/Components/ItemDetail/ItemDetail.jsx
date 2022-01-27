@@ -29,18 +29,51 @@ const ItemDetail = ({ product }) => {
         <Paragraph>
           <b>Product name:</b> {product.title}
         </Paragraph>
-        <Paragraph>
-          <b>Series:</b> {product.series}
-        </Paragraph>
-        <Paragraph>
-          <b>Manufacturer:</b> {product.manufacturer}
-        </Paragraph>
-        <Paragraph>
-          <b>Specifications:</b> {product.specifications}
-        </Paragraph>
-        <Paragraph>
-          <b>Dimensions:</b> {product.size}
-        </Paragraph>
+        {product.series && (
+          <Paragraph>
+            <b>Series:</b> {product.series}
+          </Paragraph>
+        )}
+        {product.manufacturer && (
+          <Paragraph>
+            <b>Manufacturer:</b> {product.manufacturer}
+          </Paragraph>
+        )}
+        {product.specifications && (
+          <Paragraph>
+            <b>Specifications:</b> {product.specifications}
+          </Paragraph>
+        )}
+        {product.size && (
+          <Paragraph>
+            <b>Dimensions:</b> {product.size}
+          </Paragraph>
+        )}
+        {product.materials && (
+          <Paragraph>
+            <b>Materials:</b> {product.materials}
+          </Paragraph>
+        )}
+        {product.author_illustrator && (
+          <Paragraph>
+            <b>Author/Illustrator:</b> {product.author_illustrator}
+          </Paragraph>
+        )}
+        {product.publisher && (
+          <Paragraph>
+            <b>Publisher:</b> {product.publisher}
+          </Paragraph>
+        )}
+        {product.pages && (
+          <Paragraph>
+            <b>Pages:</b> {product.pages}
+          </Paragraph>
+        )}
+        {product.language && (
+          <Paragraph>
+            <b>Language:</b> {product.language}
+          </Paragraph>
+        )}
         <Paragraph>
           <b>Description:</b> {product.description}
         </Paragraph>

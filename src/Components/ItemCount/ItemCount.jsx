@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 //Icons
-import { AiOutlineShoppingCart } from "react-icons/ai";
+import { FaCartPlus } from "react-icons/fa";
 
 //Styled Components
 import {
@@ -48,7 +48,7 @@ const ItemCount = ({ initial, stock, onAdd }) => {
         </CountButton>
       </Wrapper>
       <CartButton onClick={() => onAdd(count)} disabled={stock === 0}>
-        <AiOutlineShoppingCart />
+        <FaCartPlus />
         <span>Add to cart</span>
       </CartButton>
     </ItemCountContainer>

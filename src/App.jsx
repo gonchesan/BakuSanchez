@@ -2,8 +2,10 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 //Views
 import Layout from "./layouts/Layout";
-import ItemDetailContainer from "./modules/ItemDetailContainer/ItemDetailContainer";
 import Home from "./views/Home";
+import Shop from "./views/Shop";
+import ItemDetailContainer from "./modules/ItemDetailContainer/ItemDetailContainer";
+import CategoryContainer from "./modules/CategoryContainer/CategoryContainer";
 
 const App = () => {
   return (
@@ -12,7 +14,16 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
-            <Route path="/products/:id" element={<ItemDetailContainer />} />
+            <Route path="/shop" element={<Shop />} />
+            <Route
+              path="/shop/category/:category"
+              element={<CategoryContainer />}
+            />
+            <Route path="/shop/item/:id" element={<ItemDetailContainer />} />
+            <Route
+              path="/shop/category/:category/item/:id"
+              element={<ItemDetailContainer />}
+            />
           </Route>
         </Routes>
       </BrowserRouter>

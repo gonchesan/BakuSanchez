@@ -12,7 +12,7 @@ export const SpinnerWrapper = styled.div`
     text-transform: uppercase;
     position: absolute;
     top: 75px;
-    font-family: "Courier New", Courier, monospace;
+    font-family: "Oswald", sans-serif;
     font-size: 16px;
     font-weight: 600;
     letter-spacing: 9px;
@@ -28,7 +28,7 @@ export const Circle = styled.div`
   border-radius: 50%;
   transform-origin: 50%;
   left: 50%;
-  background-color: #db394a;
+  background-color: ${({ theme }) => theme.crimson};
   animation: circle 0.5s alternate infinite ease;
 
   @keyframes circle {

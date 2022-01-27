@@ -1,14 +1,15 @@
 import styled from "styled-components";
-import { Button, Container } from "../../globalStyle";
+import { Container } from "../../globalStyle";
 
 export const Nav = styled.nav`
   display: flex;
   justify-content: center;
   align-items: center;
   position: sticky;
-  top: ${({ secondary }) => (secondary ? "65px" : "0")};
-  height: ${({ secondary }) => (secondary ? "48px" : "65px")};
-  background-color: ${({ secondary }) => (secondary ? "#e54050" : "#fdfcfd")};
+  top: ${({ secondary }) => (secondary ? "60px" : "0")};
+  height: ${({ secondary }) => (secondary ? "40px" : "60px")};
+  background-color: ${({ secondary, theme }) =>
+    secondary ? theme.darkSlategray : theme.white};
   box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px,
     rgb(209, 213, 219) 0px 0px 0px 1px inset;
   z-index: 999;
@@ -63,23 +64,81 @@ export const NavMenu = styled.ul`
 `;
 
 export const NavItem = styled.li`
+  position: relative;
+  height: 100%;
+  padding: 0 20px;
+  background-color: ${({ active, theme }) =>
+    active ? theme.red : "transparent"};
   margin: 0px 8px;
+  border-bottom: 2px solid transparent;
+  transition: all 0.3s;
+
+  &:hover {
+    border-bottom: 2px solid ${({ theme }) => theme.red};
+  }
+
   @media screen and (max-width: 960px) {
     margin: 18px 0;
   }
 `;
 
+export const DropdownMenu = styled.ul`
+  visibility: ${({ isHovered }) => (isHovered ? "visible" : "hidden")};
+  background-color: ${({ theme }) => theme.white};
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 2px solid ${({ theme }) => theme.black};
+  transition: all 0.5s ease;
+  position: absolute;
+  top: 40px;
+  left: 0;
+`;
+
+export const DropdownItem = styled.li`
+  position: relative;
+  height: 100%;
+
+  width: 100%;
+  padding: 8px 20px;
+  background-color: ${({ theme }) => theme.red};
+  margin: 0px 8px;
+  border-bottom: 2px solid transparent;
+  transition: all 0.3s;
+
+  &:hover {
+    background-color: ${({ theme }) => theme.white};
+    color: ${({ theme }) => theme.red};
+  }
+`;
+
+export const DropdownItemBtn = styled.button`
+  cursor: pointer;
+  white-space: nowrap;
+  font-size: inherit;
+  text-transform: inherit;
+  outline: none;
+  border: none;
+  font-family: "Oswald", sans-serif;
+  font-weight: 300;
+  background-color: inherit;
+  color: inherit;
+`;
+
 export const NavItemBtn = styled.button`
   cursor: pointer;
   white-space: nowrap;
-  padding: 10px 8px;
+  font-family: "Oswald", sans-serif;
+  font-weight: 300;
+  padding: 7px 8px;
   font-size: 0.9rem;
   text-transform: uppercase;
   opacity: ${({ active }) => (active ? "1" : "0.7")};
   outline: none;
   border: none;
-  border-radius: 16px;
-  background-color: ${({ active }) => (active ? "#DB394A" : "transparent")};
+  background-color: transparent;
   color: #fdfcfd;
 
   &:hover {
@@ -87,59 +146,44 @@ export const NavItemBtn = styled.button`
   }
 `;
 
+export const WidgetContainer = styled.li`
+  position: relative;
+  width: 48px;
+  height: 48px;
+  margin: 0px 8px;
+
+  @media screen and (max-width: 960px) {
+    margin: 18px 0;
+  }
+`;
+
 export const WidgetItemBtn = styled(NavItemBtn)`
   ${NavItemBtn}
+  width: 100%;
+  height: 100%;
 
   position: relative;
-  color: #595f6a;
+  color: ${({ theme }) => theme.gray};
   opacity: 1;
-
+  & svg {
+    width: 100%;
+    height: 100%;
+    padding: 4px;
+  }
   & span {
     position: absolute;
     top: 10%;
     display: inline-block;
-    background: linear-gradient(45deg, #df253b -12.57%, #f1404e 118.13%);
-    color: #fff;
+    background-color: ${({ theme }) => theme.red};
+    color: ${({ theme }) => theme.white};
+    font-size: 0.8rem;
     width: 20px;
     height: 20px;
     border-radius: 4px;
-    padding-top: 1px;
+    padding-top: 3px;
   }
 
   &:hover {
     opacity: 0.87;
-  }
-`;
-
-export const ButtonLogin = styled(Button)`
-  position: relative;
-  background: transpartent;
-  text-transform: uppercase;
-  color: #f54457;
-  font-size: 0.9rem;
-
-  &:hover {
-    background-color: rgba(253, 243, 244, 0.3);
-    color: #df253b;
-  }
-`;
-
-export const ButtonSignUp = styled(Button)`
-  background-color: #f54457;
-  background: linear-gradient(to bottom, #f1404e 5%, #df253b 100%);
-  box-shadow: inset 0px 1px 0px 0px #cf866c;
-  color: #f8f8f8;
-  text-transform: uppercase;
-  font-size: 0.9rem;
-  border: 1px solid transparent;
-  padding: 10px 8px;
-
-  &:hover {
-    background: linear-gradient(to bottom, #df253b 5%, #f1404e 100%);
-  }
-
-  &:active {
-    position: relative;
-    top: 1px;
   }
 `;
