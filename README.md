@@ -1,4 +1,4 @@
-![Demo](https://drive.google.com/file/d/1yR1dotRPSU6wE4D-ECG-ewj9Bac_rM9Q/view?usp=sharing)
+![GIF DEMO](blank:#https://drive.google.com/file/d/1yR1dotRPSU6wE4D-ECG-ewj9Bac_rM9Q/view?usp=sharing)
 
 ## ⛩ Baku Ecommerce
 
