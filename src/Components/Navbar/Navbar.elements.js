@@ -1,3 +1,4 @@
+import { Link, NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { Container } from "../../globalStyle";
 
@@ -84,6 +85,7 @@ export const NavItem = styled.li`
 
 export const DropdownMenu = styled.ul`
   visibility: ${({ isHovered }) => (isHovered ? "visible" : "hidden")};
+  opacity: ${({ isHovered }) => (isHovered ? "1" : "0")};
   background-color: ${({ theme }) => theme.white};
   list-style: none;
   display: flex;
@@ -91,7 +93,7 @@ export const DropdownMenu = styled.ul`
   justify-content: center;
   align-items: center;
   border-bottom: 2px solid ${({ theme }) => theme.black};
-  transition: all 0.5s ease;
+  transition: all 0.3s ease;
   position: absolute;
   top: 40px;
   left: 0;
@@ -114,9 +116,11 @@ export const DropdownItem = styled.li`
   }
 `;
 
-export const DropdownItemBtn = styled.button`
+export const DropdownLink = styled(Link)`
   cursor: pointer;
   white-space: nowrap;
+  display: inline-block;
+  text-decoration: none;
   font-size: inherit;
   text-transform: inherit;
   outline: none;
@@ -125,6 +129,28 @@ export const DropdownItemBtn = styled.button`
   font-weight: 300;
   background-color: inherit;
   color: inherit;
+`;
+
+export const StyledNavLink = styled(NavLink)`
+  cursor: pointer;
+  white-space: nowrap;
+  height: 100%;
+  display: inline-block;
+  text-decoration: none;
+  font-family: "Oswald", sans-serif;
+  font-weight: 300;
+  padding: 7px 8px;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  opacity: ${({ activeClassName }) => (activeClassName ? "1" : "0.7")};
+  outline: none;
+  border: none;
+  background-color: transparent;
+  color: #fdfcfd;
+
+  &:hover {
+    opacity: 1;
+  }
 `;
 
 export const NavItemBtn = styled.button`

@@ -1,37 +1,5 @@
 import styled from "styled-components";
 
-export const ItemContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 350px;
-  background-color: #fff;
-  position: relative;
-  border-radius: 6px;
-  margin: 10px;
-  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
-    rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
-  position: relative;
-  overflow: hidden;
-  transition: all 0.3s;
-  cursor: pointer;
-
-  &:hover {
-    transform: scale(1.05);
-    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
-  }
-
-  & img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-  }
-`;
-
 export const SelectItem = styled.div`
   position: absolute;
   top: 0;
@@ -63,6 +31,8 @@ export const LikeButton = styled.button`
   padding: 10px;
   text-align: center;
   cursor: pointer;
+  transition: all 0.3s;
+  visibility: hidden;
   border-radius: 50%;
   z-index: 99;
 `;
@@ -120,4 +90,39 @@ export const PriceDetail = styled.p`
   font-weight: 800;
   padding-top: 12px;
   text-align: end;
+`;
+
+export const ItemContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 350px;
+  background-color: #fff;
+  position: relative;
+  border-radius: 6px;
+  margin: 10px;
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+    rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+  }
+  &:hover ${LikeButton} {
+    visibility: visible;
+  }
+
+  & img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
 `;

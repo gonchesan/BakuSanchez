@@ -1,10 +1,15 @@
-import ItemListContainer from "../modules/ItemListContainer/ItemListContainer";
+import BannerSlider from "../components/BannerSlider/BannerSlider";
+import BestSeller from "../components/BestSeller/BestSeller";
+import Collections from "../components/Collections/Collections";
+import PaymentData from "../components/PaymentData/PaymentData";
 
 const Home = () => {
   return (
     <>
-      <h2 style={{ textAlign: "center" }}>Home</h2>
-      <ItemListContainer />
+      <BannerSlider />
+      <PaymentData />
+      <Collections />
+      <BestSeller />
     </>
   );
 };

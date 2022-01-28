@@ -2,7 +2,11 @@ import { useEffect, useState } from "react";
 import { useLocation, useOutletContext, useParams } from "react-router-dom";
 
 //Fetch products
-import { getAllProducts, getProductsByCategory } from "../../utils/products";
+import {
+  getAllProducts,
+  getBestSeller,
+  getProductsByCategory,
+} from "../../utils/products";
 
 //Components
 import Item from "../Item/Item";
@@ -39,6 +43,16 @@ const ItemList = () => {
     if (location.pathname === "/shop") {
       setTimeout(() => {
         getAllProducts()
+          .then((products) => {
+            setIsLoading(false);
+            setIsMounted(true);
+            setDataProducts(products);
+          })
+          .catch((err) => console.log("Something is wrong: ", err));
+      }, 2000);
+    } else if (location.pathname === "/") {
+      setTimeout(() => {
+        getBestSeller()
           .then((products) => {
             setIsLoading(false);
             setIsMounted(true);

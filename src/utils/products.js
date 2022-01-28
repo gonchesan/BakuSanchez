@@ -17,3 +17,11 @@ export const getProductsByCategory = (category) => {
       products.filter((product) => product.category === category)
     );
 };
+
+export const getBestSeller = () => {
+  return fetch("https://baku-api.herokuapp.com/products")
+    .then((response) => response.json())
+    .then((products) =>
+      products.filter((product) => product.bestSeller === true)
+    );
+};

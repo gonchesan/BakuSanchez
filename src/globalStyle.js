@@ -47,4 +47,14 @@ export const Button = styled.button`
   }
 `;
 
+export const Header = styled.p`
+  font-family: "Oswald", sans-serif;
+  font-weight: 600;
+  font-size: 1.5rem;
+  line-height: 3rem;
+  border-bottom: 2px solid #595f6a70;
+  position: relative;
+  color: ${({ theme }) => theme.mediumBlack};
+`;
+
 export default GlobalStyle;

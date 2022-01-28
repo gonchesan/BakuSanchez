@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 //Source and Icons
 import Logo from "../../assets/images/logo-Baku.svg";
@@ -15,68 +15,51 @@ import {
   NavMenu,
   NavItem,
   NavItemBtn,
+  StyledNavLink,
   MobileIcon,
   WidgetItemBtn,
   WidgetContainer,
   DropdownMenu,
   DropdownItem,
-  DropdownItemBtn,
+  DropdownLink,
 } from "./Navbar.elements";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [click, setClick] = useState(false);
   const [hover, setHover] = useState(false);
   const [routeActive, setRouteActive] = useState("/");
-  const [category, setCategory] = useState("");
 
-  let navigate = useNavigate();
   const handleClick = () => {
     setClick(!click);
   };
 
   const closeMobileMenu = (event) => {
     setRouteActive(event.target.name);
-    if (routeActive === "shop/figures") {
-      setCategory("figures");
-    } else if (routeActive === "shop/plushies") {
-      setCategory("plushies");
-    } else if (routeActive === "shop/manga") {
-      setCategory("manga");
-    }
+    setHover(false);
 
     setClick(false);
   };
-
-  useEffect(() => {
-    if (category === "figures") {
-      navigate(`shop/category/${category}`);
-    } else if (category === "plushies") {
-      navigate(`shop/category/${category}`);
-    } else if (category === "manga") {
-      navigate(`shop/category/${category}`);
-    } else {
-      navigate(`${routeActive}`);
-    }
-  }, [routeActive]);
 
   return (
     <>
       <Nav>
         <NavbarContainer>
-          <NavLogo src={Logo} alt="image logo" />
+          <Link onClick={closeMobileMenu} name="/" to="/">
+            <NavLogo src={Logo} alt="image logo" />
+          </Link>
           <MobileIcon onClick={handleClick}>
             {click ? <FaTimes /> : <FaBars />}
           </MobileIcon>
           <NavMenu click={click}>
             <WidgetContainer>
               <WidgetItemBtn>
-                <CartWidget />
+                <UserWidget />
               </WidgetItemBtn>
             </WidgetContainer>
             <WidgetContainer>
               <WidgetItemBtn>
-                <UserWidget />
+                <CartWidget />
               </WidgetItemBtn>
             </WidgetContainer>
           </NavMenu>
@@ -86,60 +69,70 @@ const Navbar = () => {
         <NavbarContainer secondary>
           <NavMenu click={click}>
             <NavItem active={routeActive === "/"}>
-              <NavItemBtn
+              <StyledNavLink
+                activeClassName={routeActive === "/" || routeActive === "logo"}
+                to="/"
                 name="/"
-                active={routeActive === "/"}
                 onClick={closeMobileMenu}
               >
                 Home
-              </NavItemBtn>
+              </StyledNavLink>
             </NavItem>
             <NavItem
               active={routeActive === "shop" || routeActive?.includes("shop")}
             >
-              <NavItemBtn
-                active={routeActive === "shop" || routeActive?.includes("shop")}
-                name="shop"
+              <StyledNavLink
+                to="/shop"
                 onClick={closeMobileMenu}
                 onMouseOver={() => setHover(true)}
                 onMouseLeave={() => setHover(false)}
+                name="shop"
+                activeClassName={
+                  routeActive === "shop" || routeActive?.includes("shop")
+                }
               >
                 Shop
                 <DropdownMenu isHovered={hover}>
                   <DropdownItem>
-                    <DropdownItemBtn
+                    <DropdownLink
                       onClick={closeMobileMenu}
                       name="shop/category/figures"
+                      to="shop/category/figures"
                     >
                       Figure & Dolls
-                    </DropdownItemBtn>
+                    </DropdownLink>
                   </DropdownItem>
+
                   <DropdownItem>
-                    <DropdownItemBtn
+                    <DropdownLink
                       onClick={closeMobileMenu}
                       name="shop/category/plushies"
+                      to="shop/category/plushies"
                     >
                       Plushies
-                    </DropdownItemBtn>
+                    </DropdownLink>
                   </DropdownItem>
+
                   <DropdownItem>
-                    <DropdownItemBtn
+                    <DropdownLink
                       onClick={closeMobileMenu}
                       name="shop/category/manga"
+                      to="shop/category/manga"
                     >
                       Mangas
-                    </DropdownItemBtn>
+                    </DropdownLink>
                   </DropdownItem>
                   <DropdownItem>
-                    <DropdownItemBtn
+                    <DropdownLink
                       onClick={closeMobileMenu}
                       name="shop/category/clothing"
+                      to="shop/category/clothing"
                     >
                       Clothing
-                    </DropdownItemBtn>
+                    </DropdownLink>
                   </DropdownItem>
                 </DropdownMenu>
-              </NavItemBtn>
+              </StyledNavLink>
             </NavItem>
             <NavItem active={routeActive === "contact-us"}>
               <NavItemBtn
