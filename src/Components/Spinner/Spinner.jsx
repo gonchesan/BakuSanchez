@@ -1,12 +1,20 @@
-import { SpinnerWrapper, Circle, Shadow } from "./Spiner.elements";
+import {
+  SpinnerWrapper,
+  Circle,
+  Shadow,
+  OverlaySpinner,
+} from "./Spiner.elements";
 
 const Spinner = () => {
   return (
-    <SpinnerWrapper>
-      <Circle />
-      <Shadow />
-      <span>Loading</span>
-    </SpinnerWrapper>
+    <>
+      <OverlaySpinner />
+      <SpinnerWrapper>
+        <Circle />
+        <Shadow />
+        <span>Loading</span>
+      </SpinnerWrapper>
+    </>
   );
 };
 

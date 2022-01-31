@@ -7,11 +7,10 @@ import Navbar from "../components/Navbar/Navbar";
 
 const Layout = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const [isMounted, setIsMounted] = useState(false);
   return (
     <>
       <Navbar />
-      <Outlet context={[isLoading, setIsLoading, isMounted, setIsMounted]} />
+      <Outlet context={[isLoading, setIsLoading]} />
       {isLoading ? <Spinner /> : null}
     </>
   );

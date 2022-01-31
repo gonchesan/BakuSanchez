@@ -15,13 +15,12 @@ import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 const BannerSlider = () => {
   const [banner, setBanner] = useState();
   const [indexPicture, setIndexPicture] = useState(0);
-  const [isLoading, setIsLoading, isMounted, setIsMounted] = useOutletContext();
+  const [isLoading, setIsLoading] = useOutletContext();
 
   useEffect(() => {
     getBanners().then((result) => setBanner(result[indexPicture]));
 
     setIsLoading(false);
-    setIsMounted(true);
   }, [indexPicture]);
 
   const handleSlider = (event) => {

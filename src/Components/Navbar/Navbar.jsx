@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 //Source and Icons
 import Logo from "../../assets/images/logo-Baku.svg";
@@ -23,7 +23,7 @@ import {
   DropdownItem,
   DropdownLink,
 } from "./Navbar.elements";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Navbar = () => {
   const [click, setClick] = useState(false);
@@ -33,6 +33,15 @@ const Navbar = () => {
   const handleClick = () => {
     setClick(!click);
   };
+
+  //To apply active status to "Home"
+  let location = useLocation();
+
+  useEffect(() => {
+    if (location.pathname === "/") {
+      setRouteActive("/");
+    }
+  });
 
   const closeMobileMenu = (event) => {
     setRouteActive(event.target.name);
@@ -45,7 +54,7 @@ const Navbar = () => {
     <>
       <Nav>
         <NavbarContainer>
-          <Link onClick={closeMobileMenu} name="/" to="/">
+          <Link onClick={closeMobileMenu} name="logo" to="/">
             <NavLogo src={Logo} alt="image logo" />
           </Link>
           <MobileIcon onClick={handleClick}>

@@ -1,6 +1,18 @@
 import styled from "styled-components";
 
+export const OverlaySpinner = styled.div`
+  width: 100vw;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-color: #00000080;
+  z-index: 999;
+`;
+
 export const SpinnerWrapper = styled.div`
+  z-index: 999999;
+
   width: 200px;
   height: 60px;
   position: absolute;
@@ -16,8 +28,9 @@ export const SpinnerWrapper = styled.div`
     font-size: 16px;
     font-weight: 600;
     letter-spacing: 9px;
-    color: #3a3a3a;
+    color: ${({ theme }) => theme.white};
     left: 23%;
+    z-index: 999999;
   }
 `;
 

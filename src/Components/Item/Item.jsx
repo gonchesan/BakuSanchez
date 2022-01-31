@@ -26,7 +26,7 @@ const Item = ({ id, pictures, title, price, itsOnSale, initial, stock }) => {
 
   const goToProductDetailPage = (event) => {
     event.stopPropagation();
-    navigate(`item/${id}`);
+    navigate(`/shop/item/${id}`);
   };
 
   return (

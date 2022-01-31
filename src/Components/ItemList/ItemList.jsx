@@ -16,20 +16,18 @@ import { ListWrapper } from "./ItemList.elements";
 
 const ItemList = () => {
   const [dataProducts, setDataProducts] = useState([]);
-  const [isLoading, setIsLoading, isMounted, setIsMounted] = useOutletContext();
+  const [isLoading, setIsLoading] = useOutletContext();
   const { category } = useParams();
 
   let location = useLocation();
 
   useEffect(() => {
-    setIsMounted(false);
     setIsLoading(true);
 
     setTimeout(() => {
       getProductsByCategory(category)
         .then((products) => {
           setIsLoading(false);
-          setIsMounted(true);
           setDataProducts(products);
         })
         .catch((err) => console.log("Something is wrong: ", err));
@@ -37,7 +35,6 @@ const ItemList = () => {
   }, [category]);
 
   useEffect(() => {
-    setIsMounted(false);
     setIsLoading(true);
 
     if (location.pathname === "/shop") {
@@ -45,7 +42,6 @@ const ItemList = () => {
         getAllProducts()
           .then((products) => {
             setIsLoading(false);
-            setIsMounted(true);
             setDataProducts(products);
           })
           .catch((err) => console.log("Something is wrong: ", err));
@@ -55,7 +51,6 @@ const ItemList = () => {
         getBestSeller()
           .then((products) => {
             setIsLoading(false);
-            setIsMounted(true);
             setDataProducts(products);
           })
           .catch((err) => console.log("Something is wrong: ", err));
@@ -65,7 +60,6 @@ const ItemList = () => {
         getProductsByCategory(category)
           .then((products) => {
             setIsLoading(false);
-            setIsMounted(true);
             setDataProducts(products);
           })
           .catch((err) => console.log("Something is wrong: ", err));
@@ -76,7 +70,7 @@ const ItemList = () => {
   return (
     <ListWrapper>
       {dataProducts.map((info) => {
-        if (isMounted) {
+        if (!isLoading) {
           return (
             <Item
               key={info.id}

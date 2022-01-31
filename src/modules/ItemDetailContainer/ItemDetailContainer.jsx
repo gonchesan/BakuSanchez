@@ -12,25 +12,24 @@ import { Container } from "../../globalStyle";
 
 const ItemDetailContainer = () => {
   let { id } = useParams();
-  const [isLoading, setIsLoading, isMounted, setIsMounted] = useOutletContext();
+  const [isLoading, setIsLoading] = useOutletContext();
   const [product, setProduct] = useState({});
 
-  console.log(id);
   useEffect(() => {
     setIsLoading(true);
-    setIsMounted(false);
 
     setTimeout(() => {
       getItem(id).then((data) => {
         setIsLoading(false);
-        setIsMounted(true);
         setProduct(data);
       });
     }, 2000);
   }, [id]);
 
   return (
-    <Container>{isMounted ? <ItemDetail product={product} /> : null}</Container>
+    <Container>
+      {!isLoading ? <ItemDetail product={product} /> : null}
+    </Container>
   );
 };
 
