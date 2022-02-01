@@ -1,6 +1,7 @@
 export const theme = {
   crimson: "#d31726", //(for buttons)
   red: "#E30014", //(for badges/details)
+  lightPink: "#f9aeae", //(for secondary buttons)
   maroon: "#54090f", //(for button cart inside crimson)
   white: "#FDFCFD", //
   black: "#191919", //

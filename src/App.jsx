@@ -6,6 +6,7 @@ import Home from "./views/Home";
 import Shop from "./views/Shop";
 import ItemDetailContainer from "./modules/ItemDetailContainer/ItemDetailContainer";
 import CategoryContainer from "./modules/CategoryContainer/CategoryContainer";
+import Cart from "./views/Cart/Cart";
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
               element={<CategoryContainer />}
             />
             <Route path="/shop/item/:id" element={<ItemDetailContainer />} />
+            <Route path="/cart" element={<Cart />} />
           </Route>
         </Routes>
       </BrowserRouter>

@@ -1,9 +1,12 @@
+import { useNavigate } from "react-router-dom";
+
 //Components
 import { useState } from "react";
 import ItemCount from "../ItemCount/ItemCount";
 import ItemDetailSlider from "../ItemDetailSlider/ItemDetailSlider";
 
 import { MdRemoveShoppingCart } from "react-icons/md";
+import { BsBagCheckFill } from "react-icons/bs";
 
 //Styled Components
 import {
@@ -12,16 +15,26 @@ import {
   Paragraph,
   PriceDetail,
   SliderWrapper,
-  StockDetail,
   TittleDetail,
 } from "./ItemDetail.elements";
-import { CartButton } from "../ItemCount/ItemCount.elements";
+import { Button } from "../../globalStyle";
 
 const ItemDetail = ({ product }) => {
   const [itemsAdded, setItemsAdded] = useState(0);
 
+  let navigate = useNavigate();
+
   const onAdd = (quantityToAdd) => {
     setItemsAdded(quantityToAdd);
+  };
+
+  const shopNow = () => {
+    if (itemsAdded === 0) {
+      setItemsAdded(1);
+    }
+    setTimeout(() => {
+      navigate("/cart");
+    }, 1000);
   };
 
   const returnProducts = () => {
@@ -39,15 +52,15 @@ const ItemDetail = ({ product }) => {
           <span>US</span> ${product.price}
         </PriceDetail>
         <Paragraph>
-          <b>Stock:</b> <StockDetail> {product.stock}</StockDetail>
+          <b>Stock available</b>
         </Paragraph>
         {itemsAdded !== 0 ? (
-          <CartButton isDetailView onClick={returnProducts}>
+          <Button isDetailView secondary onClick={returnProducts}>
             <MdRemoveShoppingCart />
             <span>
               Return <small>({itemsAdded})</small> products
             </span>
-          </CartButton>
+          </Button>
         ) : (
           <ItemCount
             stock={product.stock}
@@ -55,6 +68,10 @@ const ItemDetail = ({ product }) => {
             onAdd={onAdd}
           />
         )}
+        <Button isDetailView onClick={shopNow}>
+          <BsBagCheckFill />
+          <span>Shop now</span>
+        </Button>
         <Paragraph>
           <b>Product name:</b> {product.title}
         </Paragraph>

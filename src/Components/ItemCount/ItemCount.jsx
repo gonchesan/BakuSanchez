@@ -8,10 +8,11 @@ import { useLocation } from "react-router-dom";
 import {
   ItemCountContainer,
   Wrapper,
-  CartButton,
   CountButton,
   CounterNumber,
+  StockDetail,
 } from "./ItemCount.elements";
+import { Button } from "../../globalStyle";
 
 const ItemCount = ({ initial, stock, onAdd }) => {
   const [count, setCount] = useState();
@@ -44,7 +45,11 @@ const ItemCount = ({ initial, stock, onAdd }) => {
   return (
     <ItemCountContainer isDetailView={viewDetail}>
       <Wrapper isDetailView={viewDetail}>
-        {viewDetail && <p>Quantity</p>}
+        {viewDetail && (
+          <p>
+            <b>Quantity: </b>
+          </p>
+        )}
         <CountButton
           onClick={handleCountingClick}
           name="subtract"
@@ -61,15 +66,17 @@ const ItemCount = ({ initial, stock, onAdd }) => {
         >
           +
         </CountButton>
+        {viewDetail && <StockDetail>({stock} available)</StockDetail>}
       </Wrapper>
-      <CartButton
+      <Button
+        secondary
         onClick={() => onAdd(count)}
         disabled={stock === 0}
         isDetailView={viewDetail}
       >
         <FaCartPlus />
         <span>Add to cart</span>
-      </CartButton>
+      </Button>
     </ItemCountContainer>
   );
 };

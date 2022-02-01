@@ -28,25 +28,6 @@ export const Container = styled.div`
   }
 `;
 
-export const Button = styled.button`
-  border-radius: 4px;
-  white-space: nowrap;
-  padding: ${({ big }) => (big ? "12px 64px" : "10px 20px")};
-  background-color: transparent;
-  color: #595f6a;
-  font-size: ${({ fontBig }) => (fontBig ? "20px" : "16px")};
-  outline: none;
-  border: none;
-  cursor: pointer;
-
-  &:hover {
-    transition: 0.3s all;
-  }
-  @media screen and (max-width: 960px) {
-    width: 100%;
-  }
-`;
-
 export const Header = styled.p`
   font-family: "Oswald", sans-serif;
   font-weight: 600;
@@ -55,6 +36,58 @@ export const Header = styled.p`
   border-bottom: 2px solid #595f6a70;
   position: relative;
   color: ${({ theme }) => theme.mediumBlack};
+`;
+
+export const Button = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+  background-color: ${({ theme, secondary, isDetailView }) =>
+    isDetailView && secondary ? theme.lightPink : theme.crimson};
+  width: ${({ isDetailView }) => isDetailView && "100%"};
+  margin: ${({ isDetailView }) => isDetailView && "0 0 8px 0"};
+  color: ${({ theme, secondary, isDetailView }) =>
+    isDetailView && secondary ? theme.red : theme.white};
+  font-size: 20px;
+  outline: none;
+  padding: ${({ isDetailView }) => (isDetailView ? "10px" : "6px")};
+  white-space: nowrap;
+  border-radius: 8px;
+  border: none;
+  z-index: 100;
+
+  & svg {
+    background-color: ${({ isDetailView }) =>
+      isDetailView ? "transparent" : "#a1121e"};
+    height: ${({ isDetailView }) => (isDetailView ? "18px" : "32px")};
+    width: ${({ isDetailView }) => (isDetailView ? "18px" : "32px")};
+    border-radius: ${({ isDetailView }) => (isDetailView ? "0px" : "4px")};
+    padding: ${({ isDetailView }) => (isDetailView ? "0px" : "5px")};
+  }
+
+  & span {
+    margin: 0 8px;
+    font-size: 15px;
+    font-weight: 500;
+  }
+
+  &:hover {
+    transition: 0.3s all;
+    opacity: 0.9;
+  }
+
+  &:disabled {
+    opacity: 0.7;
+    background-color: #a97a80;
+    cursor: default;
+
+    & svg {
+      opacity: 0.4;
+      background-color: #d31726;
+    }
+  }
 `;
 
 export default GlobalStyle;

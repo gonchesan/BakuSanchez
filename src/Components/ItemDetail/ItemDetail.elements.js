@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { CartButton } from "../ItemCount/ItemCount.elements";
 
 export const DetailContainer = styled.div`
   display: flex;
@@ -12,7 +11,7 @@ export const SliderWrapper = styled.div`
   overflow: hidden;
 `;
 export const InfoWrapper = styled.div`
-  width: 35%;
+  width: 30%;
   padding: 0 2rem;
 `;
 
@@ -36,16 +35,6 @@ export const PriceDetail = styled.p`
     font-weight: 600;
     font-size: 0.9rem;
   }
-`;
-
-export const StockDetail = styled.div`
-  display: inline-block;
-  background-color: #f54457;
-  color: #fdfcfd;
-  font-size: 0.8rem;
-  font-weight: 600;
-  padding: 2px 14px;
-  border-radius: 14px;
 `;
 
 export const Paragraph = styled.p`
