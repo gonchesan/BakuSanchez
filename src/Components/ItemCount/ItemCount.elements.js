@@ -5,6 +5,7 @@ export const ItemCountContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-direction: ${({ isDetailView }) => isDetailView && "column"};
   margin: 8px auto;
 `;
 
@@ -12,6 +13,14 @@ export const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: ${({ isDetailView }) => isDetailView && "10px 0"};
+
+  & p {
+    margin: 0px 16px;
+    font-weight: 600;
+    font-size: 0.8rem;
+    color: ${({ theme }) => theme.textGray};
+  }
 `;
 
 export const CartButton = styled.button`
@@ -21,26 +30,30 @@ export const CartButton = styled.button`
   cursor: pointer;
   position: relative;
   background-color: #d31726;
+  width: ${({ isDetailView }) => isDetailView && "100%"};
+  margin: ${({ isDetailView }) => isDetailView && "10px 0"};
   color: #f8f8f8;
   font-size: 20px;
   outline: none;
-  padding: 6px;
+  padding: ${({ isDetailView }) => (isDetailView ? "9px" : "6px")};
   white-space: nowrap;
   border-radius: 8px;
   border: none;
   z-index: 100;
 
   & svg {
-    background-color: #a1121e;
-    height: 32px;
-    width: 32px;
-    border-radius: 4px;
-    padding: 5px;
+    background-color: ${({ isDetailView }) =>
+      isDetailView ? "transparent" : "#a1121e"};
+    height: ${({ isDetailView }) => (isDetailView ? "18px" : "32px")};
+    width: ${({ isDetailView }) => (isDetailView ? "18px" : "32px")};
+    border-radius: ${({ isDetailView }) => (isDetailView ? "0px" : "4px")};
+    padding: ${({ isDetailView }) => (isDetailView ? "0px" : "5px")};
   }
 
   & span {
     margin: 0 8px;
     font-size: 15px;
+    font-weight: 500;
   }
 
   &:hover {
@@ -62,22 +75,19 @@ export const CartButton = styled.button`
 
 export const CounterNumber = styled.span`
   background-color: #fdfcfd;
-  /* border-top: 1px solid #f54457;
-  border-bottom: 1px solid #f54457; */
   padding: 4px 14px;
   font-weight: 700;
-  color: #595f6a;
+  color: ${({ theme }) => theme.textGray};
   z-index: 100;
   cursor: default;
 `;
 
 export const CountButton = styled.button`
-  background-color: #191919;
+  background-color: ${({ theme }) => theme.black};
   color: #f8f8f8;
   height: 28px;
   width: 28px;
   text-align: center;
-  border-radius: ${({ left }) => (left ? "6px 0 0 6px" : "0 6px 6px 0")};
   border-radius: 6px;
   outline: none;
   border: none;

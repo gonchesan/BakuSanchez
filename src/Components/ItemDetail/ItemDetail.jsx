@@ -1,5 +1,9 @@
 //Components
+import { useState } from "react";
+import ItemCount from "../ItemCount/ItemCount";
 import ItemDetailSlider from "../ItemDetailSlider/ItemDetailSlider";
+
+import { MdRemoveShoppingCart } from "react-icons/md";
 
 //Styled Components
 import {
@@ -11,8 +15,19 @@ import {
   StockDetail,
   TittleDetail,
 } from "./ItemDetail.elements";
+import { CartButton } from "../ItemCount/ItemCount.elements";
 
 const ItemDetail = ({ product }) => {
+  const [itemsAdded, setItemsAdded] = useState(0);
+
+  const onAdd = (quantityToAdd) => {
+    setItemsAdded(quantityToAdd);
+  };
+
+  const returnProducts = () => {
+    setItemsAdded(0);
+  };
+
   return (
     <DetailContainer>
       <SliderWrapper>
@@ -26,6 +41,20 @@ const ItemDetail = ({ product }) => {
         <Paragraph>
           <b>Stock:</b> <StockDetail> {product.stock}</StockDetail>
         </Paragraph>
+        {itemsAdded !== 0 ? (
+          <CartButton isDetailView onClick={returnProducts}>
+            <MdRemoveShoppingCart />
+            <span>
+              Return <small>({itemsAdded})</small> products
+            </span>
+          </CartButton>
+        ) : (
+          <ItemCount
+            stock={product.stock}
+            initial={product.initial}
+            onAdd={onAdd}
+          />
+        )}
         <Paragraph>
           <b>Product name:</b> {product.title}
         </Paragraph>

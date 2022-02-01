@@ -1,7 +1,7 @@
 import BannerSlider from "../components/BannerSlider/BannerSlider";
-import BestSeller from "../components/BestSeller/BestSeller";
-import Collections from "../components/Collections/Collections";
-import PaymentData from "../components/PaymentData/PaymentData";
+import BestSeller from "../sections/BestSeller/BestSeller";
+import Collections from "../sections/Collections/Collections";
+import PaymentData from "../sections/PaymentData/PaymentData";
 
 const Home = () => {
   return (

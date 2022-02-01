@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 //Icons
 import { FaCartPlus } from "react-icons/fa";
+import { useLocation } from "react-router-dom";
 
 //Styled Components
 import {
@@ -13,7 +14,10 @@ import {
 } from "./ItemCount.elements";
 
 const ItemCount = ({ initial, stock, onAdd }) => {
-  const [count, setCount] = useState(initial);
+  const [count, setCount] = useState();
+  const [viewDetail, setViewDetail] = useState(false);
+
+  let location = useLocation();
 
   const handleCountingClick = (event) => {
     if (event.target.name === "add") {
@@ -27,9 +31,20 @@ const ItemCount = ({ initial, stock, onAdd }) => {
     }
   };
 
+  useEffect(() => {
+    if (location.pathname.includes("/shop/item/")) {
+      setViewDetail(true);
+    }
+  }, []);
+
+  useEffect(() => {
+    setCount(initial);
+  }, [initial]);
+
   return (
-    <ItemCountContainer>
-      <Wrapper>
+    <ItemCountContainer isDetailView={viewDetail}>
+      <Wrapper isDetailView={viewDetail}>
+        {viewDetail && <p>Quantity</p>}
         <CountButton
           onClick={handleCountingClick}
           name="subtract"
@@ -47,7 +62,11 @@ const ItemCount = ({ initial, stock, onAdd }) => {
           +
         </CountButton>
       </Wrapper>
-      <CartButton onClick={() => onAdd(count)} disabled={stock === 0}>
+      <CartButton
+        onClick={() => onAdd(count)}
+        disabled={stock === 0}
+        isDetailView={viewDetail}
+      >
         <FaCartPlus />
         <span>Add to cart</span>
       </CartButton>

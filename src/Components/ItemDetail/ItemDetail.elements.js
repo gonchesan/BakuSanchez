@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { CartButton } from "../ItemCount/ItemCount.elements";
 
 export const DetailContainer = styled.div`
   display: flex;
@@ -11,7 +12,7 @@ export const SliderWrapper = styled.div`
   overflow: hidden;
 `;
 export const InfoWrapper = styled.div`
-  width: 40%;
+  width: 35%;
   padding: 0 2rem;
 `;
 
