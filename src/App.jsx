@@ -7,23 +7,26 @@ import Shop from "./views/Shop";
 import ItemDetailContainer from "./modules/ItemDetailContainer/ItemDetailContainer";
 import CategoryContainer from "./modules/CategoryContainer/CategoryContainer";
 import Cart from "./views/Cart/Cart";
+import { CartProvider } from "./context/CartContext";
 
 const App = () => {
   return (
     <>
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route index element={<Home />} />
-            <Route path="/shop" element={<Shop />} />
-            <Route
-              path="/shop/category/:category"
-              element={<CategoryContainer />}
-            />
-            <Route path="/shop/item/:id" element={<ItemDetailContainer />} />
-            <Route path="/cart" element={<Cart />} />
-          </Route>
-        </Routes>
+        <CartProvider>
+          <Routes>
+            <Route path="/" element={<Layout />}>
+              <Route index element={<Home />} />
+              <Route path="/shop" element={<Shop />} />
+              <Route
+                path="/shop/category/:category"
+                element={<CategoryContainer />}
+              />
+              <Route path="/shop/item/:id" element={<ItemDetailContainer />} />
+              <Route path="/cart" element={<Cart />} />
+            </Route>
+          </Routes>
+        </CartProvider>
       </BrowserRouter>
     </>
   );

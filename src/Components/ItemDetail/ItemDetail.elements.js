@@ -9,6 +9,7 @@ export const DetailContainer = styled.div`
 export const SliderWrapper = styled.div`
   position: relative;
   overflow: hidden;
+  width: 55%;
 `;
 export const InfoWrapper = styled.div`
   width: 30%;

@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 
 //Components
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import ItemCount from "../ItemCount/ItemCount";
 import ItemDetailSlider from "../ItemDetailSlider/ItemDetailSlider";
 
@@ -18,9 +18,11 @@ import {
   TittleDetail,
 } from "./ItemDetail.elements";
 import { Button } from "../../globalStyle";
+import { CartContext } from "../../context/CartContext";
 
 const ItemDetail = ({ product }) => {
   const [itemsAdded, setItemsAdded] = useState(0);
+  const { addItem, removeItem } = useContext(CartContext);
 
   let navigate = useNavigate();
 
@@ -28,10 +30,7 @@ const ItemDetail = ({ product }) => {
     setItemsAdded(quantityToAdd);
   };
 
-  const shopNow = () => {
-    if (itemsAdded === 0) {
-      setItemsAdded(1);
-    }
+  const buyNow = () => {
     setTimeout(() => {
       navigate("/cart");
     }, 1000);
@@ -39,7 +38,14 @@ const ItemDetail = ({ product }) => {
 
   const returnProducts = () => {
     setItemsAdded(0);
+    removeItem(product.id);
   };
+
+  useEffect(() => {
+    if (itemsAdded !== 0) {
+      addItem(product, itemsAdded);
+    }
+  });
 
   return (
     <DetailContainer>
@@ -55,12 +61,18 @@ const ItemDetail = ({ product }) => {
           <b>Stock available</b>
         </Paragraph>
         {itemsAdded !== 0 ? (
-          <Button isDetailView secondary onClick={returnProducts}>
-            <MdRemoveShoppingCart />
-            <span>
-              Return <small>({itemsAdded})</small> products
-            </span>
-          </Button>
+          <>
+            <Button isDetailView secondary onClick={returnProducts}>
+              <MdRemoveShoppingCart />
+              <span>
+                Return <small>({itemsAdded})</small> products
+              </span>
+            </Button>
+            <Button isDetailView onClick={buyNow}>
+              <BsBagCheckFill />
+              <span>Buy now</span>
+            </Button>
+          </>
         ) : (
           <ItemCount
             stock={product.stock}
@@ -68,10 +80,7 @@ const ItemDetail = ({ product }) => {
             onAdd={onAdd}
           />
         )}
-        <Button isDetailView onClick={shopNow}>
-          <BsBagCheckFill />
-          <span>Shop now</span>
-        </Button>
+
         <Paragraph>
           <b>Product name:</b> {product.title}
         </Paragraph>

@@ -69,7 +69,6 @@ const ItemCount = ({ initial, stock, onAdd }) => {
         {viewDetail && <StockDetail>({stock} available)</StockDetail>}
       </Wrapper>
       <Button
-        secondary
         onClick={() => onAdd(count)}
         disabled={stock === 0}
         isDetailView={viewDetail}
