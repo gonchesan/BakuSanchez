@@ -71,18 +71,7 @@ const ItemList = () => {
     <ListWrapper>
       {dataProducts.map((info) => {
         if (!isLoading) {
-          return (
-            <Item
-              key={info.id}
-              id={info.id}
-              pictures={info.pictures}
-              title={info.title}
-              price={info.price}
-              itsOnSale={info.itsOnSale}
-              stock={info.stock}
-              initial={info.initial}
-            />
-          );
+          return <Item key={info.id} product={info} />;
         } else {
           return null;
         }

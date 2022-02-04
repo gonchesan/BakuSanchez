@@ -31,9 +31,7 @@ const ItemDetail = ({ product }) => {
   };
 
   const buyNow = () => {
-    setTimeout(() => {
-      navigate("/cart");
-    }, 1000);
+    navigate("/cart");
   };
 
   const returnProducts = () => {
@@ -45,7 +43,7 @@ const ItemDetail = ({ product }) => {
     if (itemsAdded !== 0) {
       addItem(product, itemsAdded);
     }
-  });
+  }, [itemsAdded]);
 
   return (
     <DetailContainer>

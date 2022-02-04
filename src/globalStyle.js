@@ -61,8 +61,8 @@ export const Button = styled.button`
   & svg {
     background-color: ${({ isDetailView }) =>
       isDetailView ? "transparent" : "#a1121e"};
-    height: ${({ isDetailView }) => (isDetailView ? "18px" : "32px")};
-    width: ${({ isDetailView }) => (isDetailView ? "18px" : "32px")};
+    height: ${({ isDetailView }) => (isDetailView ? "18px" : "26px")};
+    width: ${({ isDetailView }) => (isDetailView ? "18px" : "26px")};
     border-radius: ${({ isDetailView }) => (isDetailView ? "0px" : "4px")};
     padding: ${({ isDetailView }) => (isDetailView ? "0px" : "5px")};
   }

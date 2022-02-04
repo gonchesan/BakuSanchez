@@ -1,15 +1,7 @@
-import React from "react";
-import { Container } from "../../globalStyle";
+import CartContainer from "../../modules/CartContainer/CartContainer";
 
 const Cart = () => {
-  return (
-    <Container>
-      <h2 style={{ textAlign: "center" }}>Cart</h2>
-      <h4 style={{ textAlign: "center" }}>
-        There should be products here, but...
-      </h4>
-    </Container>
-  );
+  return <CartContainer />;
 };
 
 export default Cart;

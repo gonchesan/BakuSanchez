@@ -62,6 +62,7 @@ export const CardDetail = styled.div`
   display: flex;
   align-items: flex-end;
   width: 100%;
+  margin-bottom: 8px;
 `;
 
 export const Tittle = styled.p`

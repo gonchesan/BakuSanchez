@@ -16,35 +16,66 @@ import {
   Tittle,
 } from "./Item.elements";
 import { useNavigate } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { CartContext } from "../../context/CartContext";
+import { Button } from "../../globalStyle";
+import { MdRemoveShoppingCart } from "react-icons/md";
 
-const Item = ({ id, pictures, title, price, itsOnSale, initial, stock }) => {
+const Item = ({ product }) => {
+  const { addItem, removeItem } = useContext(CartContext);
+  const [itemsAdded, setItemsAdded] = useState(0);
+
   let navigate = useNavigate();
 
-  const onAdd = (valueToAdd) => {
-    console.log(valueToAdd);
+  const onAdd = (quantityToAdd) => {
+    setItemsAdded(quantityToAdd);
   };
 
   const goToProductDetailPage = (event) => {
     event.stopPropagation();
-    navigate(`/shop/item/${id}`);
+    navigate(`/shop/item/${product.id}`);
   };
+
+  const returnProducts = () => {
+    setItemsAdded(0);
+    removeItem(product.id);
+  };
+
+  useEffect(() => {
+    if (itemsAdded !== 0) {
+      addItem(product, itemsAdded);
+    }
+  }, [itemsAdded]);
 
   return (
     <ItemContainer>
       <SelectItem onClick={goToProductDetailPage} />
       <ItemBody>
-        <img src={pictures[0]} />
-        <BadgeCard isVisible={itsOnSale}>-22%</BadgeCard>
+        <img src={product.pictures[0]} />
+        <BadgeCard isVisible={product.itsOnSale}>-22%</BadgeCard>
         <LikeButton>
           <FaRegHeart />
         </LikeButton>
       </ItemBody>
       <ItemFooter>
         <CardDetail>
-          <Tittle>{title}</Tittle>
-          <PriceDetail>$ {price}</PriceDetail>
+          <Tittle>{product.title}</Tittle>
+          <PriceDetail>$ {product.price}</PriceDetail>
         </CardDetail>
-        <ItemCount stock={stock} initial={initial} onAdd={onAdd} />
+        {itemsAdded !== 0 ? (
+          <Button isDetailView secondary onClick={returnProducts}>
+            <MdRemoveShoppingCart />
+            <span>
+              Return <small>({itemsAdded})</small> products
+            </span>
+          </Button>
+        ) : (
+          <ItemCount
+            stock={product.stock}
+            initial={product.initial}
+            onAdd={onAdd}
+          />
+        )}
       </ItemFooter>
     </ItemContainer>
   );
