@@ -7,6 +7,7 @@ export const theme = {
   black: "#191919", //
   grayWhite: "#EFEFEF", //(background)
   gray: "#595f6a", //(icons)
+  lightGray: "#dedede", //(background summary)
   darkSlategray: "#262e39", //(navbar)
   mediumBlack: "#1b1b1b", //(mini button)B
   disabledRed: "#a97a80", //(with .7 opacity)

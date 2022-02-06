@@ -16,20 +16,13 @@ const ItemCart = ({ product, quantity, numberIndex }) => {
   const [count, setCount] = useState(quantity);
 
   const handleCountingClick = (event) => {
-    // const productEdit = {item: product, cart[numberIndex].quantity : count};
     if (event.target.name === "add") {
       if (count < product.stock) {
         setCount(count + 1);
-        // let newCart = [...cart];
-        // newCart[numberIndex] = { item: product, quantity: count };
-        // setCart(newCart);
       }
     } else {
       if (count > product.initial) {
         setCount(count - 1);
-        // let newCart = [...cart];
-        // newCart[numberIndex] = { item: product, quantity: count };
-        // setCart(newCart);
       }
     }
   };
@@ -74,7 +67,7 @@ const ItemCart = ({ product, quantity, numberIndex }) => {
       </p>
       <p>
         $<small>US </small>
-        {(product.price * quantity).toFixed(2)}
+        {Number((product.price * quantity).toFixed(2))}
       </p>
       <ButtonRemoveItem onClick={() => removeItem(product.id)}>
         <RiCloseLine />
