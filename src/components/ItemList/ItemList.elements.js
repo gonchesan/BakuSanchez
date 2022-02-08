@@ -6,4 +6,5 @@ export const ListWrapper = styled.div`
   grid-template-rows: 1fr;
   grid-column-gap: 10px;
   grid-row-gap: 1em;
+  margin-top: 0.5rem;
 `;
