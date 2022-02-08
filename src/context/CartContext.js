@@ -25,6 +25,11 @@ export const CartProvider = ({ children }) => {
   }; // Remove all the items from the cart
 
   const isInCart = (id) => cart.find((item) => item.id === id || false); // Return result || false
+  function truncameFloat(str) {
+    str = str.toString();
+    str = str.slice(0, str.indexOf(".") + 3);
+    return Number(str);
+  }
 
   useEffect(() => {
     if (cart.length > 1) {
@@ -32,19 +37,15 @@ export const CartProvider = ({ children }) => {
       const sum = arrayQuantity.reduce((x, y) => x + y);
       setTotalProductsInCart(sum);
       let arraySubTotal = cart.map((product) =>
-        parseFloat((product.item.price * product.quantity).toFixed(2))
+        truncameFloat(product.item.price * product.quantity)
       );
       const sumSubTotal = arraySubTotal.reduce((x, y) => x + y);
       setSubTotalPrice(sumSubTotal);
-      setTotalPrice(subTotalPrice);
+      setTotalPrice(sumSubTotal);
     } else if (cart.length === 1) {
       setTotalProductsInCart(cart[0].quantity);
-      setSubTotalPrice(
-        parseFloat((cart[0].item.price * cart[0].quantity).toFixed(2))
-      );
-      setTotalPrice(
-        parseFloat((cart[0].item.price * cart[0].quantity).toFixed(2))
-      );
+      setSubTotalPrice(truncameFloat(cart[0].item.price * cart[0].quantity));
+      setTotalPrice(truncameFloat(cart[0].item.price * cart[0].quantity));
     } else {
       setTotalProductsInCart(0);
       setSubTotalPrice(0);

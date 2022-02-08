@@ -27,6 +27,8 @@ const ItemCart = ({ product, quantity, numberIndex }) => {
     }
   };
 
+  const numberFormat = new Intl.NumberFormat("en-US");
+
   useEffect(() => {
     let newCart = [...cart];
     newCart[numberIndex] = { item: product, quantity: count };
@@ -63,11 +65,11 @@ const ItemCart = ({ product, quantity, numberIndex }) => {
         </CountButton>
       </CountWrapper>
       <p>
-        $<small>US</small> {product.price}
+        $<small>US</small> {numberFormat.format(product.price)}
       </p>
       <p>
         $<small>US </small>
-        {Number((product.price * quantity).toFixed(2))}
+        {numberFormat.format(product.price * quantity)}
       </p>
       <ButtonRemoveItem onClick={() => removeItem(product.id)}>
         <RiCloseLine />

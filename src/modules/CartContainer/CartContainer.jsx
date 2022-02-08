@@ -72,6 +72,8 @@ const CartContainer = () => {
     navigate("/shop");
   };
 
+  const numberFormat = new Intl.NumberFormat("en-US");
+
   return (
     <Container>
       {cart.length === 0 ? (
@@ -109,7 +111,7 @@ const CartContainer = () => {
               <CheckoutSubtitle>Items {cart.length}</CheckoutSubtitle>
               <CheckoutSubtitle>
                 $<small>US </small>
-                {subTotalPrice}
+                {numberFormat.format(subTotalPrice)}
               </CheckoutSubtitle>
             </WrapperSummaryInfo>
             <WrapperSummaryInfo>
@@ -133,17 +135,19 @@ const CartContainer = () => {
               <AlertPromo showAlert={promoAlert} error={promoCodeError}>
                 {promoCodeError
                   ? "Promotional code not found"
-                  : "Promotional code applied!"}
+                  : "Promotional code applied! - 15% Applied"}
               </AlertPromo>
             </WrapperSummaryInfo>
 
             <WrapperSummaryInfo>
               <CheckoutSubtitle>Total cost</CheckoutSubtitle>
               <CheckoutSubtitle>
-                $<small>US</small>
+                $<small>US </small>
                 {!promoCodeError
-                  ? totalPrice - (totalPrice * 15) / 100 + shippingCost
-                  : totalPrice + shippingCost}
+                  ? numberFormat.format(
+                      totalPrice - (totalPrice * 15) / 100 + shippingCost
+                    )
+                  : numberFormat.format(totalPrice + shippingCost)}
               </CheckoutSubtitle>
             </WrapperSummaryInfo>
             <SummaryButton>Checkout</SummaryButton>
