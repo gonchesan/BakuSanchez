@@ -3,17 +3,17 @@ import lottie from "lottie-web";
 
 import ItemCart from "../../components/ItemCart/ItemCart";
 import SelectShipping from "../../components/SelectShipping/SelectShipping";
-import { Container } from "../../globalStyle";
+import { ButtonLink, ButtonOutline, Container } from "../../globalStyle";
 import { CartContext } from "../../context/CartContext";
 import { useNavigate, useOutletContext } from "react-router-dom";
 import {
+  AlertPromo,
   CheckoutInfo,
   CheckoutSubtitle,
   CheckoutTitle,
   HeaderListCart,
   InputCode,
   ItemListCart,
-  // SelectShipping,
   SummaryButton,
   WrapperCart,
   WrapperSummaryInfo,
@@ -23,39 +23,49 @@ import {
   MdOutlineKeyboardBackspace,
   MdRemoveShoppingCart,
 } from "react-icons/md";
+import EmpyCart from "../../components/EmpyCart/EmpyCart";
 
 const CartContainer = () => {
-  const {
-    cart,
-    subTotalPrice,
-    setSubTotalPrice,
-    totalPrice,
-    setTotalPrice,
-    clear,
-  } = useContext(CartContext);
+  const { cart, subTotalPrice, totalPrice, setTotalPrice, clear } =
+    useContext(CartContext);
   const [promoCode, setPromoCode] = useState("");
+  const [promoCodeError, setPromoCodeError] = useState(true);
   const [promoAlert, setPromoAlert] = useState(false);
+  const [isVisible, setisVisible] = useState(false);
+  const [indexArray, setIndexArray] = useState();
+  const [shippingCost, setShippingCost] = useState(0);
 
   const [isLoading, setIsLoading] = useOutletContext();
 
   let navigate = useNavigate();
 
   useEffect(() => {
-    setIsLoading(true);
-
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 1000);
-  }, [cart]);
+    setIsLoading(false);
+    switch (indexArray) {
+      case 0:
+        setShippingCost(50);
+        break;
+      case 1:
+        setShippingCost(100);
+        break;
+      case 2:
+        setShippingCost(175);
+        break;
+      case 3:
+        setShippingCost(200);
+        break;
+    }
+  }, [indexArray]);
 
   const handleInput = (event) => {
     setPromoCode(event.target.value);
   };
 
   const checkPromoCode = () => {
-    let newValue = totalPrice - (totalPrice * 15) / 100;
-    promoCode === "030355556" && setTotalPrice(newValue);
     setPromoAlert(true);
+    if (promoCode === "030355556") {
+      setPromoCodeError(false);
+    }
   };
 
   const navigateToShop = () => {
@@ -64,20 +74,15 @@ const CartContainer = () => {
 
   return (
     <Container>
-      {/* Si no hay ningun producto en el carro */}
-      <h2 style={{ textAlign: "center" }}>Cart</h2>
       {cart.length === 0 ? (
-        <h4 style={{ textAlign: "center" }}>
-          There should be products here, but...
-        </h4>
+        <EmpyCart />
       ) : (
         <WrapperCart>
           <ItemListCart>
-            {/* //! Cambiar el estilo de clear cart button y si se puede agregarle icono  */}
-            <SummaryButton small onClick={clear}>
+            <ButtonOutline secondary small onClick={clear}>
               <MdRemoveShoppingCart />
               Clear cart
-            </SummaryButton>
+            </ButtonOutline>
             <HeaderListCart>
               <p>Product detail</p>
               <p>Quantity</p>
@@ -94,9 +99,9 @@ const CartContainer = () => {
                 />
               );
             })}
-            <button onClick={navigateToShop}>
+            <ButtonLink onClick={navigateToShop}>
               <MdOutlineKeyboardBackspace /> Continue shopping
-            </button>
+            </ButtonLink>
           </ItemListCart>
           <CheckoutInfo>
             <CheckoutTitle>Order summary</CheckoutTitle>
@@ -109,13 +114,12 @@ const CartContainer = () => {
             </WrapperSummaryInfo>
             <WrapperSummaryInfo>
               <CheckoutSubtitle>Shipping</CheckoutSubtitle>
-              {/* <SelectShipping> */}
-              <SelectShipping />
-              {/* <option>Standard Delivery - $us 50</option>
-                <option>Same Day Delivery - $us 100</option>
-                <option>Overnight Shipping Services - $us 175</option>
-                <option>Express Delivery - $us 200</option> */}
-              {/* </SelectShipping> */}
+              <SelectShipping
+                isVisible={isVisible}
+                setisVisible={setisVisible}
+                indexArray={indexArray}
+                setIndexArray={setIndexArray}
+              />
             </WrapperSummaryInfo>
 
             <WrapperSummaryInfo>
@@ -126,13 +130,20 @@ const CartContainer = () => {
                   Apply
                 </SummaryButton>
               </WrapperSummaryInfo>
-              {promoAlert && <p>Promotional code applied!</p>}
+              <AlertPromo showAlert={promoAlert} error={promoCodeError}>
+                {promoCodeError
+                  ? "Promotional code not found"
+                  : "Promotional code applied!"}
+              </AlertPromo>
             </WrapperSummaryInfo>
 
             <WrapperSummaryInfo>
               <CheckoutSubtitle>Total cost</CheckoutSubtitle>
               <CheckoutSubtitle>
-                $<small>US</small> {subTotalPrice}
+                $<small>US</small>
+                {!promoCodeError
+                  ? totalPrice - (totalPrice * 15) / 100 + shippingCost
+                  : totalPrice + shippingCost}
               </CheckoutSubtitle>
             </WrapperSummaryInfo>
             <SummaryButton>Checkout</SummaryButton>

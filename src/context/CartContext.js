@@ -42,7 +42,9 @@ export const CartProvider = ({ children }) => {
       setSubTotalPrice(
         parseFloat((cart[0].item.price * cart[0].quantity).toFixed(2))
       );
-      setTotalPrice(subTotalPrice);
+      setTotalPrice(
+        parseFloat((cart[0].item.price * cart[0].quantity).toFixed(2))
+      );
     } else {
       setTotalProductsInCart(0);
       setSubTotalPrice(0);

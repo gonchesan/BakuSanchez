@@ -90,4 +90,70 @@ export const Button = styled.button`
   }
 `;
 
+export const ButtonOutline = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+  background-color: ${({ theme }) => theme.white};
+  margin: 0 0 8px 0;
+  color: ${({ theme, secondary }) => (secondary ? theme.red : theme.white)};
+  font-size: 0.95rem;
+  outline: none;
+  padding: 6px 14px 6px 4px;
+  white-space: nowrap;
+  border-radius: 8px;
+  border: 1px solid
+    ${({ theme, secondary }) => (secondary ? theme.red : theme.white)};
+  z-index: 100;
+
+  & svg {
+    background-color: transparent;
+    height: 26px;
+    width: 26px;
+    border-radius: 4px;
+    padding: 4px;
+  }
+
+  &:hover {
+    transition: 0.3s all;
+    background-color: ${({ theme }) => theme.lightPink};
+  }
+`;
+
+export const ButtonLink = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+  background-color: transparent;
+  margin: 0 0 8px 0;
+  color: ${({ theme }) => theme.crimson};
+  font-size: 0.95rem;
+  outline: none;
+  padding: 6px 14px 6px 4px;
+  white-space: nowrap;
+  border-radius: 8px;
+  border:none;
+  z-index: 100
+  opacity: .7;
+  
+
+  & svg {
+    background-color: transparent;
+    height: 26px;
+    width: 26px;
+    border-radius: 4px;
+    padding: 4px;
+  }
+
+  &:hover {
+    transition: 0.3s all;
+    opacity: 1;
+    transform: translateX(-2px);
+  }
+`;
+
 export default GlobalStyle;

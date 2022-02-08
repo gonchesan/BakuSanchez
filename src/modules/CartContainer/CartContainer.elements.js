@@ -1,11 +1,11 @@
 import styled from "styled-components";
 import { Button } from "../../globalStyle";
-import { theme } from "../../theme";
 
 export const WrapperCart = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
+  margin-top: 2rem;
 `;
 
 export const HeaderListCart = styled.div`
@@ -15,7 +15,6 @@ export const HeaderListCart = styled.div`
   margin: 1rem 0;
 
 }
-  /* background-color: mediumseagreen; */
 
   & p {
     display: block;
@@ -46,7 +45,6 @@ export const HeaderListCart = styled.div`
 `;
 
 export const ItemListCart = styled.div`
-  /* background-color: lightskyblue; */
   width: 65%;
 `;
 
@@ -68,13 +66,17 @@ export const CheckoutSubtitle = styled.p`
 
   &:nth-child(2) {
     text-align: right;
+    color: ${({ theme }) => theme.red};
+    font-family: "Oswald", sans-serif;
+    line-height: 0.5rem;
+
+    font-size: 1.4rem;
   }
 `;
 
 export const WrapperSummaryInfo = styled.div`
   display: flex;
   justify-content: space-between;
-  /* margin: 2px 0; */
 
   &:nth-child(2) {
     justify-content: ${({ flexStart }) => flexStart && "flex-start"};
@@ -88,15 +90,13 @@ export const WrapperSummaryInfo = styled.div`
   }
 `;
 
-// export const SelectShipping = styled.select`
-//   height: 2.5rem;
-//   width: 80%;
-//   /* margin: 0 auto; */
-// `;
-
 export const InputCode = styled.input`
   height: 2.5rem;
   margin-right: 16px;
+  border-radius: 6px;
+  border: 1px solid ${({ theme }) => theme.outlineGray};
+  padding-left: 10px;
+  font-size: 1rem;
 `;
 
 export const SummaryButton = styled(Button)`
@@ -115,4 +115,13 @@ export const CheckoutInfo = styled.div`
   justify-content: space-evenly;
   background-color: ${({ theme }) => theme.lightGray};
   border-radius: 8px;
+`;
+
+export const AlertPromo = styled.p`
+  margin: 8px 0;
+  padding-left: 4px;
+  color: ${({ theme, error }) => (error ? theme.red : theme.darkSlategray)};
+  font-weight: 600;
+  font-size: 0.8rem;
+  opacity: ${({ showAlert }) => (showAlert ? "1" : "0")};
 `;

@@ -1,27 +1,53 @@
 import React, { useState } from "react";
+import { GoChevronDown } from "react-icons/go";
+import {
+  ButtonArrow,
+  Option,
+  Options,
+  SelectedOptions,
+  WrapperSelect,
+} from "./SelectShipping/SelectShipping.elements";
 
-const SelectShipping = () => {
-  const [indexArray, setIndexArray] = useState(0);
-
+const SelectShipping = ({
+  isVisible,
+  setisVisible,
+  indexArray,
+  setIndexArray,
+}) => {
   const optionsArray = [
     "Standard Delivery - $us 50",
     "Same Day Delivery - $us 100",
-    "Overnight Shipping Services - $us 175",
+    "Overnight Shipping - $us 175",
     "Express Delivery - $us 200",
   ];
 
   const handleSelect = (e) => {
-    console.log(e.target);
+    setIndexArray(e.target.value);
+    setisVisible(false);
   };
 
+  const showOptions = () => setisVisible(!isVisible);
+
   return (
-    <ul>
-      {optionsArray.map((option, index) => (
-        <li onClick={handleSelect} key={index} value={index}>
-          {option}
-        </li>
-      ))}
-    </ul>
+    <>
+      <WrapperSelect>
+        <Options isVisible={isVisible}>
+          {optionsArray.map((option, index) => (
+            <Option onClick={handleSelect} key={index} value={index}>
+              {option}
+            </Option>
+          ))}
+        </Options>
+        <SelectedOptions>
+          <p>
+            {indexArray > -1 ? optionsArray[indexArray] : "Select an option"}
+          </p>
+        </SelectedOptions>
+        <ButtonArrow onClick={showOptions}>
+          <GoChevronDown />
+        </ButtonArrow>
+      </WrapperSelect>
+    </>
   );
 };
 
