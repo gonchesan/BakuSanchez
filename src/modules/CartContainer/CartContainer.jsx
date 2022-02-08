@@ -1,4 +1,6 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
+import lottie from "lottie-web";
+
 import ItemCart from "../../components/ItemCart/ItemCart";
 import SelectShipping from "../../components/SelectShipping/SelectShipping";
 import { Container } from "../../globalStyle";

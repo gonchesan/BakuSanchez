@@ -6,7 +6,7 @@ export const OverlaySpinner = styled.div`
   position: absolute;
   left: 0;
   top: 0;
-  background-color: #00000080;
+  background-color: #ffffff;
   z-index: 999;
 `;
 
@@ -23,69 +23,22 @@ export const SpinnerWrapper = styled.div`
   & span {
     text-transform: uppercase;
     position: absolute;
-    top: 75px;
+    top: 105px;
     font-family: "Oswald", sans-serif;
     font-size: 16px;
     font-weight: 600;
     letter-spacing: 9px;
-    color: ${({ theme }) => theme.white};
-    left: 23%;
+    color: ${({ theme }) => theme.black};
+    left: 45%;
     z-index: 999999;
   }
 `;
 
 export const Circle = styled.div`
-  width: 20px;
-  height: 20px;
+  width: 100px;
+  height: 100px;
   position: absolute;
   border-radius: 50%;
   transform-origin: 50%;
-  left: 50%;
-  background-color: ${({ theme }) => theme.crimson};
-  animation: circle 0.5s alternate infinite ease;
-
-  @keyframes circle {
-    0% {
-      top: 60px;
-      height: 5px;
-      border-radius: 50px 50px 25px 25px;
-      transform: scaleX(1.7);
-    }
-    40% {
-      height: 20px;
-      border-radius: 50%;
-      transform: scaleX(1);
-    }
-    100% {
-      top: 0%;
-    }
-  }
-`;
-
-export const Shadow = styled.div`
-  width: 20px;
-  height: 4px;
-  border-radius: 50%;
-  background-color: rgba(0, 0, 0, 0.5);
-  position: absolute;
-  top: 62px;
-  left: 50%;
-  transform-origin: 50%;
-  z-index: -1;
-  filter: blur(1px);
-  animation: shadow 0.5s alternate infinite ease;
-
-  @keyframes shadow {
-    0% {
-      transform: scaleX(1.5);
-    }
-    40% {
-      transform: scaleX(1);
-      opacity: 0.7;
-    }
-    100% {
-      transform: scaleX(0.2);
-      opacity: 0.4;
-    }
-  }
+  left: 49%;
 `;

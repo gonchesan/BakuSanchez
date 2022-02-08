@@ -1,17 +1,25 @@
-import {
-  SpinnerWrapper,
-  Circle,
-  Shadow,
-  OverlaySpinner,
-} from "./Spiner.elements";
+import lottie from "lottie-web";
+import { useEffect, useRef } from "react";
+import { SpinnerWrapper, Circle, OverlaySpinner } from "./Spiner.elements";
 
 const Spinner = () => {
+  const container = useRef(null);
+
+  useEffect(() => {
+    lottie.loadAnimation({
+      container: container.current,
+      renderer: "svg",
+      loop: true,
+      autoplay: true,
+      animationData: require("../../assets/lotties/lf30_editor_wxacuz13.json"),
+    });
+  }, []);
+
   return (
     <>
       <OverlaySpinner />
       <SpinnerWrapper>
-        <Circle />
-        <Shadow />
+        <Circle ref={container}></Circle>
         <span>Loading</span>
       </SpinnerWrapper>
     </>
