@@ -125,3 +125,31 @@ export const AlertPromo = styled.p`
   font-size: 0.8rem;
   opacity: ${({ showAlert }) => (showAlert ? "1" : "0")};
 `;
+
+export const ContainerCartItem = styled.div`
+  width: 100%;
+  height: 360px;
+  overflow-y: auto;
+
+  /* width */
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  /* Track */
+  &::-webkit-scrollbar-track {
+    background: ${({ theme }) => theme.outlineGray};
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: ${({ theme }) => theme.crimson};
+    border-radius: 4px;
+  }
+
+  /* Handle on hover */
+  &::-webkit-scrollbar-thumb:hover {
+    background: ${({ theme }) => theme.red};
+  }
+`;

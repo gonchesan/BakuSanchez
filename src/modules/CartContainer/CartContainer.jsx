@@ -11,6 +11,7 @@ import {
   CheckoutInfo,
   CheckoutSubtitle,
   CheckoutTitle,
+  ContainerCartItem,
   HeaderListCart,
   InputCode,
   ItemListCart,
@@ -94,16 +95,18 @@ const CartContainer = () => {
                 <p>Price</p>
                 <p>Total price</p>
               </HeaderListCart>
-              {cart.map((product, numberIndex) => {
-                return (
-                  <ItemCart
-                    key={product.item.id}
-                    numberIndex={numberIndex}
-                    product={product.item}
-                    quantity={product.quantity}
-                  />
-                );
-              })}
+              <ContainerCartItem>
+                {cart.map((product, numberIndex) => {
+                  return (
+                    <ItemCart
+                      key={product.item.id}
+                      numberIndex={numberIndex}
+                      product={product.item}
+                      quantity={product.quantity}
+                    />
+                  );
+                })}
+              </ContainerCartItem>
               <ButtonLink onClick={navigateToShop}>
                 <MdOutlineKeyboardBackspace /> Continue shopping
               </ButtonLink>
