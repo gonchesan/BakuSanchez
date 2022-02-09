@@ -9,8 +9,24 @@ export const CartProvider = ({ children }) => {
   const [totalPrice, setTotalPrice] = useState(0);
 
   const addItem = (item, quantity) => {
-    if (!isInCart(item.id)) {
+    if (isInCart(item.id) === false) {
       setCart([...cart, { item, quantity }]);
+    } else {
+      let getProduct = cart.find((result) => result.item.id === item.id);
+      let newQty = getProduct.quantity + quantity;
+      const newArray = cart.filter((result) => result.item.id !== item.id);
+      let newProduct;
+
+      cart.forEach((element) => {
+        if (element.item.id === item.id) {
+          element.quantity = newQty;
+          newProduct = element;
+          return newProduct;
+        }
+      });
+      setCart([...newArray, newProduct]);
+
+      //If it's in the cart, add the quantity to the item.
     }
   }; // Add a product with  his quantity if it is not in the cart
 
@@ -24,38 +40,29 @@ export const CartProvider = ({ children }) => {
     setTotalProductsInCart(0);
   }; // Remove all the items from the cart
 
-  const isInCart = (id) => cart.find((item) => item.id === id || false); // Return result || false
-  function truncameFloat(str) {
-    str = str.toString();
-    str = str.slice(0, str.indexOf(".") + 3);
-    return Number(str);
-  }
+  const isInCart = (id) => cart.some((e) => e.item.id === id); // Return result || false
+  // vendors.some(e => e.Name === 'Magenic')
 
   useEffect(() => {
     if (cart.length > 1) {
       let arrayQuantity = cart.map((product) => product.quantity);
       const sum = arrayQuantity.reduce((x, y) => x + y);
       setTotalProductsInCart(sum);
-      let arraySubTotal = cart.map((product) =>
-        truncameFloat(product.item.price * product.quantity)
+      let arraySubTotal = cart.map(
+        (product) => product.item.price * product.quantity
       );
       const sumSubTotal = arraySubTotal.reduce((x, y) => x + y);
       setSubTotalPrice(sumSubTotal);
       setTotalPrice(sumSubTotal);
     } else if (cart.length === 1) {
       setTotalProductsInCart(cart[0].quantity);
-      setSubTotalPrice(truncameFloat(cart[0].item.price * cart[0].quantity));
-      setTotalPrice(truncameFloat(cart[0].item.price * cart[0].quantity));
+      setSubTotalPrice(cart[0].item.price * cart[0].quantity);
+      setTotalPrice(cart[0].item.price * cart[0].quantity);
     } else {
       setTotalProductsInCart(0);
       setSubTotalPrice(0);
       setTotalPrice(0);
     }
-
-    console.log("Cart:", cart);
-
-    console.log("SubTotal:", subTotalPrice);
-    console.log("Total:", totalPrice);
   }, [cart]);
 
   return (
@@ -64,6 +71,7 @@ export const CartProvider = ({ children }) => {
         cart,
         setCart,
         addItem,
+        isInCart,
         clear,
         totalProductsInCart,
         removeItem,
