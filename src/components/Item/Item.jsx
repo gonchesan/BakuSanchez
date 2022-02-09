@@ -65,9 +65,7 @@ const Item = ({ product }) => {
         {itemsAdded !== 0 ? (
           <Button isDetailView secondary onClick={returnProducts}>
             <MdRemoveShoppingCart />
-            <span>
-              Return <small>({itemsAdded})</small> products
-            </span>
+            <span>Return products</span>
           </Button>
         ) : (
           <ItemCount

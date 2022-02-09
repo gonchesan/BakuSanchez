@@ -62,9 +62,7 @@ const ItemDetail = ({ product }) => {
           <>
             <Button isDetailView secondary onClick={returnProducts}>
               <MdRemoveShoppingCart />
-              <span>
-                Return <small>({itemsAdded})</small> products
-              </span>
+              <span>Return products</span>
             </Button>
             <Button isDetailView onClick={buyNow}>
               <BsBagCheckFill />
