@@ -2,6 +2,11 @@ export const getAllProducts = () => {
   return fetch("https://baku-api.herokuapp.com/products").then((response) =>
     response.json()
   );
+
+  // const query = collection(db, "products");
+  // const snapshot = await getDocs(query);
+
+  // return snapshot;
 };
 
 export const getItem = (id) => {
