@@ -11,7 +11,10 @@ export const CartProvider = ({ children }) => {
   const addItem = (item, quantity) => {
     if (isInCart(item.id) === false) {
       setCart([...cart, { item, quantity }]);
+      // Add a product with  his quantity if it is not in the cart
     } else {
+      //If it's in the cart, add the quantity to the item. <>
+
       let getProduct = cart.find((result) => result.item.id === item.id);
       let newQty = getProduct.quantity + quantity;
       const newArray = cart.filter((result) => result.item.id !== item.id);
@@ -26,10 +29,9 @@ export const CartProvider = ({ children }) => {
       });
       setCart([...newArray, newProduct]);
 
-      //If it's in the cart, add the quantity to the item.
+      //</>
     }
-  }; // Add a product with  his quantity if it is not in the cart
-
+  };
   const removeItem = (itemId) => {
     const newArray = cart.filter((result) => result.item.id !== itemId);
     setCart(newArray);
@@ -41,7 +43,6 @@ export const CartProvider = ({ children }) => {
   }; // Remove all the items from the cart
 
   const isInCart = (id) => cart.some((e) => e.item.id === id); // Return result || false
-  // vendors.some(e => e.Name === 'Magenic')
 
   useEffect(() => {
     if (cart.length > 1) {
@@ -51,7 +52,7 @@ export const CartProvider = ({ children }) => {
       let arraySubTotal = cart.map(
         (product) => product.item.price * product.quantity
       );
-      const sumSubTotal = arraySubTotal.reduce((x, y) => x + y);
+      let sumSubTotal = arraySubTotal.reduce((x, y) => x + y);
       setSubTotalPrice(sumSubTotal);
       setTotalPrice(sumSubTotal);
     } else if (cart.length === 1) {

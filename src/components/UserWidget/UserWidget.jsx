@@ -1,3 +1,4 @@
+//Icons
 import { FaUserCircle } from "react-icons/fa";
 
 const UserWidget = () => {

@@ -1,24 +1,24 @@
 import { useEffect, useState } from "react";
-
 import { useOutletContext } from "react-router-dom";
-
 import { getBanners } from "../../utils/information";
 
+//Styled Components
 import {
   BannerContainer,
   ButtonContainers,
   ButtonSlider,
 } from "./BannerSlider.elements";
 
+//Icons
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 const BannerSlider = () => {
-  const [banner, setBanner] = useState();
+  const [banner, setBanner] = useState(); // Images for the banner
   const [indexPicture, setIndexPicture] = useState(0);
   const [isLoading, setIsLoading] = useOutletContext();
 
   useEffect(() => {
-    getBanners().then((result) => setBanner(result[indexPicture]));
+    getBanners().then((result) => setBanner(result[indexPicture])); //fetch url img for Banners
 
     setIsLoading(false);
   }, [indexPicture]);

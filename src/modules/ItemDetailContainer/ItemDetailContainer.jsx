@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
 import { useOutletContext, useParams } from "react-router-dom";
+import { getItem } from "../../utils/products";
 
 //Components
 import ItemDetail from "../../components/ItemDetail/ItemDetail";
-
-//Fetch detail product
-import { getItem } from "../../utils/products";
 
 //Styled Components
 import { Container } from "../../globalStyle";

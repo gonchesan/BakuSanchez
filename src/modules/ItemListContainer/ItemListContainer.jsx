@@ -1,7 +1,10 @@
 import { useLocation } from "react-router-dom";
+
+//Components
 import Breadcrumb from "../../components/Breadcrumb/Breadcrumb";
 import ItemList from "../../components/ItemList/ItemList";
 
+//Styled Components
 import { Container } from "../../globalStyle";
 
 const ItemListContainer = () => {

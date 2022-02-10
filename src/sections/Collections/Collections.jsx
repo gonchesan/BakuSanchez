@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useOutletContext } from "react-router-dom";
-import { Container, Header } from "../../globalStyle";
 import { getCollectionPictures } from "../../utils/information";
+
+//Styled Components
+import { Container, Header } from "../../globalStyle";
 import {
   CardCollection,
   Overlay,

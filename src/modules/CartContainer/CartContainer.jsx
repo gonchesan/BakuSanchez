@@ -1,11 +1,15 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
-import lottie from "lottie-web";
+import { useNavigate, useOutletContext } from "react-router-dom";
 
+//Components
 import ItemCart from "../../components/ItemCart/ItemCart";
 import SelectShipping from "../../components/SelectShipping/SelectShipping";
+import EmpyCart from "../../components/EmpyCart/EmpyCart";
+import Breadcrumb from "../../components/Breadcrumb/Breadcrumb";
+
+//Styled Components
 import { ButtonLink, ButtonOutline, Container } from "../../globalStyle";
 import { CartContext } from "../../context/CartContext";
-import { useNavigate, useOutletContext } from "react-router-dom";
 import {
   AlertPromo,
   CheckoutInfo,
@@ -20,12 +24,11 @@ import {
   WrapperSummaryInfo,
 } from "./CartContainer.elements";
 
+//Icons
 import {
   MdOutlineKeyboardBackspace,
   MdRemoveShoppingCart,
 } from "react-icons/md";
-import EmpyCart from "../../components/EmpyCart/EmpyCart";
-import Breadcrumb from "../../components/Breadcrumb/Breadcrumb";
 
 const CartContainer = () => {
   const { cart, subTotalPrice, totalPrice, setTotalPrice, clear } =

@@ -1,7 +1,4 @@
 import { useEffect, useState } from "react";
-
-//Icons
-import { FaCartPlus } from "react-icons/fa";
 import { useLocation } from "react-router-dom";
 
 //Styled Components
@@ -13,6 +10,9 @@ import {
   StockDetail,
 } from "./ItemCount.elements";
 import { Button } from "../../globalStyle";
+
+//Icons
+import { FaCartPlus } from "react-icons/fa";
 
 const ItemCount = ({ initial, stock, onAdd }) => {
   const [count, setCount] = useState();

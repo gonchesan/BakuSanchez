@@ -1,18 +1,20 @@
 import React from "react";
 
-import {
-  MdLocalShipping,
-  MdSecurity,
-  MdLoyalty,
-  MdWifiProtectedSetup,
-} from "react-icons/md";
-
+//Styled Components
 import { Container } from "../../globalStyle";
 import {
   CardsPaymentData,
   PaymentDataInfo,
   WrapperPaymentData,
 } from "./PaymentData.elements";
+
+//Icons
+import {
+  MdLocalShipping,
+  MdSecurity,
+  MdLoyalty,
+  MdWifiProtectedSetup,
+} from "react-icons/md";
 
 const PaymentData = () => {
   return (

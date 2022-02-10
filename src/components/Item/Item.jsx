@@ -1,6 +1,7 @@
 //Components
 import ItemCount from "../ItemCount/ItemCount";
 
+//Icons
 import { FaRegHeart } from "react-icons/fa";
 
 //Styled Components

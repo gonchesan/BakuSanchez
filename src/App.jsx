@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { CartProvider } from "./context/CartContext";
 
 //Views
 import Layout from "./layouts/Layout";
@@ -6,8 +7,7 @@ import Home from "./views/Home";
 import Shop from "./views/Shop";
 import ItemDetailContainer from "./modules/ItemDetailContainer/ItemDetailContainer";
 import CategoryContainer from "./modules/CategoryContainer/CategoryContainer";
-import Cart from "./views/Cart/Cart";
-import { CartProvider } from "./context/CartContext";
+import Cart from "./views/Cart";
 
 const App = () => {
   return (

@@ -1,12 +1,16 @@
-import React, { useState } from "react";
-import { GoChevronDown } from "react-icons/go";
+import React from "react";
+
+//Styled Components
 import {
   ButtonArrow,
   Option,
   Options,
   SelectedOptions,
   WrapperSelect,
-} from "./SelectShipping/SelectShipping.elements";
+} from "./SelectShipping.elements";
+
+//Icons
+import { GoChevronDown } from "react-icons/go";
 
 const SelectShipping = ({
   isVisible,

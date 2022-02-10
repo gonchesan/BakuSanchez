@@ -1,8 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
-import { RiCloseLine } from "react-icons/ri";
 import { CartContext } from "../../context/CartContext";
+
+//Components
 import { CountButton, CounterNumber } from "../ItemCount/ItemCount.elements";
 
+//Styled Components
 import {
   ButtonRemoveItem,
   CountWrapper,
@@ -10,6 +12,9 @@ import {
   InfoItemCart,
   WrapperItemCart,
 } from "./ItemCart.element";
+
+//Icons
+import { RiCloseLine } from "react-icons/ri";
 
 const ItemCart = ({ product, quantity, numberIndex }) => {
   const { removeItem, cart, setCart } = useContext(CartContext);

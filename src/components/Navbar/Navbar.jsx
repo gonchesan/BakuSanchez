@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 
-//Source and Icons
-import Logo from "../../assets/images/logo-Baku.svg";
-import { FaBars, FaTimes } from "react-icons/fa";
-
 //Widgets and others components
 import CartWidget from "../CartWidget/CartWidget";
 import UserWidget from "../UserWidget/UserWidget";
+
+//Source and Icons
+import Logo from "../../assets/images/logo-Baku.svg";
+import { FaBars, FaTimes } from "react-icons/fa";
 
 import {
   Nav,
@@ -34,7 +34,7 @@ const Navbar = () => {
     setClick(!click);
   };
 
-  //To apply active status to "Home"
+  //To apply active status to "Home" <>
   let location = useLocation();
 
   useEffect(() => {
@@ -42,6 +42,7 @@ const Navbar = () => {
       setRouteActive("/");
     }
   });
+  // </>
 
   const closeMobileMenu = (event) => {
     setRouteActive(event.target.name);
