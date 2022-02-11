@@ -1,12 +1,19 @@
-export const getAllProducts = () => {
-  return fetch("https://baku-api.herokuapp.com/products").then((response) =>
-    response.json()
-  );
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../firebase";
+export const getAllProducts = async () => {
+  // return fetch("https://baku-api.herokuapp.com/products").then((response) =>
+  //   response.json()
+  // ); //! Deprecated method, do not use
 
-  // const query = collection(db, "products");
-  // const snapshot = await getDocs(query);
+  const query = collection(db, "products");
+  const docSnap = await getDocs(query);
 
-  // return snapshot;
+  let newState = [];
+  docSnap.forEach((doc) => {
+    newState.push({ ...doc.data(), id: doc.id });
+  });
+
+  return newState;
 };
 
 export const getItem = (id) => {

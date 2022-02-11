@@ -23,7 +23,6 @@ const ItemList = () => {
 
   useEffect(() => {
     setIsLoading(true);
-
     setTimeout(() => {
       getProductsByCategory(category)
         .then((products) => {
@@ -39,9 +38,6 @@ const ItemList = () => {
 
     if (location.pathname === "/shop") {
       setTimeout(() => {
-        // getAllProducts().then((result) =>
-        //   result.docs.forEach((r) => console.log(r.data()))
-        // );
         getAllProducts()
           .then((products) => {
             setIsLoading(false);
