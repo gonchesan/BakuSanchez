@@ -1,7 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { CartContext } from "../../context/CartContext";
-import { useOutletContext, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { getItem } from "../../utils/products.js";
+
 //Components
 import { useContext, useEffect, useState } from "react";
 import ItemCount from "../ItemCount/ItemCount";
@@ -26,24 +27,8 @@ const ItemDetail = () => {
   const [itemsAdded, setItemsAdded] = useState(0);
   const [product, setProduct] = useState({});
   const { addItem, removeItem } = useContext(CartContext);
-  const [isLoading, setIsLoading] = useOutletContext();
   const { id } = useParams();
   let navigate = useNavigate();
-
-  useEffect(() => {
-    let mounted = true;
-    // setIsLoading(true);
-
-    if (mounted) {
-      getItem(id)
-        .then((itemInfo) => {
-          setProduct(itemInfo);
-          setTimeout(() => setIsLoading(false), 500);
-        })
-        .catch((err) => console.log("Something is wrong: ", err));
-    }
-    return () => (mounted = false);
-  }, []);
 
   const onAdd = (quantityToAdd) => {
     setItemsAdded(quantityToAdd);
@@ -63,6 +48,18 @@ const ItemDetail = () => {
       addItem(product, itemsAdded);
     }
   }, [itemsAdded]);
+
+  useEffect(() => {
+    // Set a clean up flag
+    let isSubscribed = true;
+
+    getItem(id)
+      .then((itemInfo) => (isSubscribed ? setProduct(itemInfo) : null))
+      .catch((err) => console.log("Something is wrong: ", err));
+
+    // Cancel subscription to useEffect
+    return () => (isSubscribed = false);
+  }, []);
 
   return (
     <DetailContainer>
