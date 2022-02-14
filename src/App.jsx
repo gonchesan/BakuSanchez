@@ -8,24 +8,30 @@ import Shop from "./views/Shop";
 import ItemDetailContainer from "./modules/ItemDetailContainer/ItemDetailContainer";
 import CategoryContainer from "./modules/CategoryContainer/CategoryContainer";
 import Cart from "./views/Cart";
+import { ToastProvider } from "./context/ToastContext";
 
 const App = () => {
   return (
     <>
       <BrowserRouter>
         <CartProvider>
-          <Routes>
-            <Route path="/" element={<Layout />}>
-              <Route index element={<Home />} />
-              <Route path="/shop" element={<Shop />} />
-              <Route
-                path="/shop/category/:category"
-                element={<CategoryContainer />}
-              />
-              <Route path="/shop/item/:id" element={<ItemDetailContainer />} />
-              <Route path="/cart" element={<Cart />} />
-            </Route>
-          </Routes>
+          <ToastProvider>
+            <Routes>
+              <Route path="/" element={<Layout />}>
+                <Route index element={<Home />} />
+                <Route path="/shop" element={<Shop />} />
+                <Route
+                  path="/shop/category/:category"
+                  element={<CategoryContainer />}
+                />
+                <Route
+                  path="/shop/item/:id"
+                  element={<ItemDetailContainer />}
+                />
+                <Route path="/cart" element={<Cart />} />
+              </Route>
+            </Routes>
+          </ToastProvider>
         </CartProvider>
       </BrowserRouter>
     </>

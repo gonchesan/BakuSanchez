@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
-import { useOutletContext } from "react-router-dom";
+import { useNavigate, useOutletContext } from "react-router-dom";
 import { CartContext } from "../../context/CartContext";
 
 //Components
@@ -17,6 +17,7 @@ import {
 } from "./OrderSummary.elements";
 import { addDoc, collection } from "firebase/firestore";
 import { db } from "../../firebase";
+import { ToastContext } from "../../context/ToastContext";
 
 const OrderSummary = () => {
   const { cart, subTotalPrice, totalPrice, clear } = useContext(CartContext);
@@ -35,7 +36,11 @@ const OrderSummary = () => {
 
   const totalPriceReference = useRef(null);
 
+  const { setToastVisibility, setToastMessage } = useContext(ToastContext);
+
   const [isLoading, setIsLoading] = useOutletContext();
+
+  let navigate = useNavigate();
 
   useEffect(() => {
     setIsLoading(false);
@@ -80,11 +85,12 @@ const OrderSummary = () => {
       total: Number(totalPriceReference.current.innerText),
       date: today,
     };
-    console.log(order);
-
     addDoc(collection(db, "orders"), order)
       .then((doc) => {
-        console.log("New order purchase with the id: ", doc.id);
+        let textToast = `${buyerInfo.name}, your purchase order has been carried out successfully. Your purchase ID is: ${doc.id}. `;
+        setToastMessage(textToast);
+        navigate("/");
+        setToastVisibility(true);
         clear();
       })
       .catch((err) => console.log("Something is wrong: ", err));

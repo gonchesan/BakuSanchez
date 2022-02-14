@@ -14,4 +14,17 @@ export const theme = {
   disabledRed: "#a97a80", //(with .7 opacity)
   textBlack: "#3a3a3a",
   textGray: "#595f6a",
+  //acent color:
+  greenNotification: "#3DB95D",
+  blueNotification: "#026AE0",
+  yellowNotification: "#EE9500",
+  redNotification: "#ED4F2B",
+  greenBg: "#EAF7EE",
+  blueBg: "#E5EFFA",
+  yellowBg: "#FEF7EA",
+  redBg: "#FCEDE9",
+  greenOutline: "#D1E7D5",
+  blueOutline: "#CADDF0",
+  yellowOutline: "#F8E7CC",
+  redOutline: "#F4DBD6",
 };
