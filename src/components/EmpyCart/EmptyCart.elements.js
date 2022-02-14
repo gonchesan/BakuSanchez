@@ -28,7 +28,7 @@ export const EmpyCartWrapper = styled.div`
   }
 
   & ${ButtonOutline} {
-    width: 30%;
+    width: 40%;
     margin: 0 auto;
   }
 `;

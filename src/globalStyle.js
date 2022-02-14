@@ -8,7 +8,28 @@ const GlobalStyle = createGlobalStyle`
         margin: 0;
         font-family: 'Montserrat', sans-serif;
 
-    }
+        /* width */
+        &::-webkit-scrollbar {
+          width: 10px;
+        }
+
+        /* Track */
+        &::-webkit-scrollbar-track {
+          background: ${({ theme }) => theme.outlineGray};
+          box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Handle */
+        &::-webkit-scrollbar-thumb {
+          background: ${({ theme }) => theme.crimson};
+          border-radius: 4px;
+        }
+
+        /* Handle on hover */
+        &::-webkit-scrollbar-thumb:hover {
+          background: ${({ theme }) => theme.red};
+        }
+      }
     body{
         background-color: #F1F1F1;
     }
@@ -136,10 +157,9 @@ export const ButtonLink = styled.button`
   padding: 6px 14px 6px 4px;
   white-space: nowrap;
   border-radius: 8px;
-  border:none;
-  z-index: 100
-  opacity: .7;
-  
+  border: none;
+  z-index: 100;
+  opacity: 0.7;
 
   & svg {
     background-color: transparent;

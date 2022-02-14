@@ -9,8 +9,8 @@ import { theme } from "./theme";
 
 ReactDOM.render(
   <React.StrictMode>
-    <GlobalStyle />
     <ThemeProvider theme={theme}>
+      <GlobalStyle />
       <App />
     </ThemeProvider>
   </React.StrictMode>,

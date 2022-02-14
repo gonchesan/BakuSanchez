@@ -14,8 +14,6 @@ export const HeaderListCart = styled.div`
   width: 100%;
   margin: 1rem 0;
 
-}
-
   & p {
     display: block;
     text-transform: uppercase;
@@ -23,9 +21,7 @@ export const HeaderListCart = styled.div`
     font-size: 0.8rem;
     color: ${({ theme }) => theme.mediumBlack};
     opacity: 0.87;
-    
-    
-    
+
     &:nth-child(1) {
       width: 250px;
 
@@ -48,108 +44,8 @@ export const ItemListCart = styled.div`
   width: 65%;
 `;
 
-export const CheckoutTitle = styled.p`
-  font-weight: 600;
-  font-size: 1.4rem;
-  color: ${({ theme }) => theme.black};
-`;
-
-export const CheckoutSubtitle = styled.p`
-  display: block;
-  text-transform: uppercase;
-  font-weight: 700;
-  height: 1rem;
-  font-size: 0.8rem;
-  color: ${({ theme }) => theme.mediumBlack};
-  opacity: 0.87;
-  margin-bottom: 8px;
-
-  &:nth-child(2) {
-    text-align: right;
-    color: ${({ theme }) => theme.red};
-    font-family: "Oswald", sans-serif;
-    line-height: 0.5rem;
-
-    font-size: 1.4rem;
-  }
-`;
-
-export const WrapperSummaryInfo = styled.div`
-  display: flex;
-  justify-content: space-between;
-
-  &:nth-child(2) {
-    justify-content: ${({ flexStart }) => flexStart && "flex-start"};
-  }
-  &:nth-child(3) {
-    flex-direction: column;
-  }
-
-  &:nth-child(4) {
-    flex-direction: column;
-  }
-`;
-
-export const InputCode = styled.input`
-  height: 2.5rem;
-  margin-right: 16px;
-  border-radius: 6px;
-  border: 1px solid ${({ theme }) => theme.outlineGray};
-  padding-left: 10px;
-  font-size: 1rem;
-`;
-
-export const SummaryButton = styled(Button)`
-  font-size: 0.9rem;
-  height: 2.5rem;
-  width: ${({ small }) => (small ? "100px" : "100%")};
-`;
-
-export const CheckoutInfo = styled.div`
-  width: 35%;
-  height: 70vh;
-  margin: 0 0 0 30px;
-  padding: 8px 16px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  background-color: ${({ theme }) => theme.lightGray};
-  border-radius: 8px;
-`;
-
-export const AlertPromo = styled.p`
-  margin: 8px 0;
-  padding-left: 4px;
-  color: ${({ theme, error }) => (error ? theme.red : theme.darkSlategray)};
-  font-weight: 600;
-  font-size: 0.8rem;
-  opacity: ${({ showAlert }) => (showAlert ? "1" : "0")};
-`;
-
 export const ContainerCartItem = styled.div`
   width: 100%;
   height: 360px;
   overflow-y: auto;
-
-  /* width */
-  &::-webkit-scrollbar {
-    width: 10px;
-  }
-
-  /* Track */
-  &::-webkit-scrollbar-track {
-    background: ${({ theme }) => theme.outlineGray};
-    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-  }
-
-  /* Handle */
-  &::-webkit-scrollbar-thumb {
-    background: ${({ theme }) => theme.crimson};
-    border-radius: 4px;
-  }
-
-  /* Handle on hover */
-  &::-webkit-scrollbar-thumb:hover {
-    background: ${({ theme }) => theme.red};
-  }
 `;

@@ -1,9 +1,8 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
-import { useNavigate, useOutletContext } from "react-router-dom";
+import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 
 //Components
 import ItemCart from "../../components/ItemCart/ItemCart";
-import SelectShipping from "../../components/SelectShipping/SelectShipping";
 import EmpyCart from "../../components/EmpyCart/EmpyCart";
 import Breadcrumb from "../../components/Breadcrumb/Breadcrumb";
 
@@ -11,17 +10,10 @@ import Breadcrumb from "../../components/Breadcrumb/Breadcrumb";
 import { ButtonLink, ButtonOutline, Container } from "../../globalStyle";
 import { CartContext } from "../../context/CartContext";
 import {
-  AlertPromo,
-  CheckoutInfo,
-  CheckoutSubtitle,
-  CheckoutTitle,
   ContainerCartItem,
   HeaderListCart,
-  InputCode,
   ItemListCart,
-  SummaryButton,
   WrapperCart,
-  WrapperSummaryInfo,
 } from "./CartContainer.elements";
 
 //Icons
@@ -29,55 +21,16 @@ import {
   MdOutlineKeyboardBackspace,
   MdRemoveShoppingCart,
 } from "react-icons/md";
+import OrderSummary from "../../components/OrderSummary/OrderSummary";
 
 const CartContainer = () => {
-  const { cart, subTotalPrice, totalPrice, setTotalPrice, clear } =
-    useContext(CartContext);
-  const [promoCode, setPromoCode] = useState("");
-  const [promoCodeError, setPromoCodeError] = useState(true);
-  const [promoAlert, setPromoAlert] = useState(false);
-  const [isVisible, setisVisible] = useState(false);
-  const [indexArray, setIndexArray] = useState();
-  const [shippingCost, setShippingCost] = useState(0);
-
-  const [isLoading, setIsLoading] = useOutletContext();
+  const { cart, subTotalPrice, totalPrice, clear } = useContext(CartContext);
 
   let navigate = useNavigate();
-
-  useEffect(() => {
-    setIsLoading(false);
-    switch (indexArray) {
-      case 0:
-        setShippingCost(50);
-        break;
-      case 1:
-        setShippingCost(100);
-        break;
-      case 2:
-        setShippingCost(175);
-        break;
-      case 3:
-        setShippingCost(200);
-        break;
-    }
-  }, [indexArray]);
-
-  const handleInput = (event) => {
-    setPromoCode(event.target.value);
-  };
-
-  const checkPromoCode = () => {
-    setPromoAlert(true);
-    if (promoCode === "030355556") {
-      setPromoCodeError(false);
-    }
-  };
 
   const navigateToShop = () => {
     navigate("/shop");
   };
-
-  const numberFormat = new Intl.NumberFormat("en-US");
 
   return (
     <Container>
@@ -114,7 +67,8 @@ const CartContainer = () => {
                 <MdOutlineKeyboardBackspace /> Continue shopping
               </ButtonLink>
             </ItemListCart>
-            <CheckoutInfo>
+            <OrderSummary length={cart.length} />
+            {/* <CheckoutInfo>
               <CheckoutTitle>Order summary</CheckoutTitle>
               <WrapperSummaryInfo>
                 <CheckoutSubtitle>Items {cart.length}</CheckoutSubtitle>
@@ -160,7 +114,7 @@ const CartContainer = () => {
                 </CheckoutSubtitle>
               </WrapperSummaryInfo>
               <SummaryButton>Checkout</SummaryButton>
-            </CheckoutInfo>
+            </CheckoutInfo> */}
           </WrapperCart>
         </>
       )}

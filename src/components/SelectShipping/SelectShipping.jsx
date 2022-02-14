@@ -14,7 +14,7 @@ import { GoChevronDown } from "react-icons/go";
 
 const SelectShipping = ({
   isVisible,
-  setisVisible,
+  setIsVisible,
   indexArray,
   setIndexArray,
 }) => {
@@ -27,10 +27,10 @@ const SelectShipping = ({
 
   const handleSelect = (e) => {
     setIndexArray(e.target.value);
-    setisVisible(false);
+    setIsVisible(false);
   };
 
-  const showOptions = () => setisVisible(!isVisible);
+  const showOptions = () => setIsVisible(!isVisible);
 
   return (
     <>
