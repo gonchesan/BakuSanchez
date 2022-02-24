@@ -62,7 +62,7 @@ const ItemCount = ({ initial, stock, onAdd }) => {
         <CountButton
           onClick={handleCountingClick}
           name="add"
-          disabled={count == stock}
+          disabled={count === stock}
         >
           +
         </CountButton>

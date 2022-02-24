@@ -64,7 +64,7 @@ const ItemCart = ({ product, quantity, numberIndex }) => {
         <CountButton
           onClick={handleCountingClick}
           name="add"
-          disabled={count == product.stock}
+          disabled={count === product.stock}
         >
           +
         </CountButton>

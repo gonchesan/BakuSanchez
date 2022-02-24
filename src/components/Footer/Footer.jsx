@@ -29,26 +29,22 @@ const Footer = () => {
       <FooterItem>
         <Logo style={{ height: "100px" }} />
         <SocialMediaContainer>
-          <a href="#">
+          <button>
             <FaFacebookSquare />
-          </a>
-          <a href="#">
+          </button>
+          <button>
             <FaInstagramSquare />
-          </a>
-          <a href="#">
+          </button>
+          <button>
             <FaTwitterSquare />
-          </a>
+          </button>
         </SocialMediaContainer>
       </FooterItem>
       <FooterItem>
         <LinksContainer>
           <h4>Information</h4>
           {arrayLinks[0].map((element, index) => {
-            return (
-              <a href="#" key={index}>
-                {element}
-              </a>
-            );
+            return <button key={index}>{element}</button>;
           })}
         </LinksContainer>
       </FooterItem>
@@ -56,11 +52,7 @@ const Footer = () => {
         <LinksContainer>
           <h4>Helpful Links</h4>
           {arrayLinks[1].map((element, index) => {
-            return (
-              <a href="#" key={index}>
-                {element}
-              </a>
-            );
+            return <button key={index}>{element}</button>;
           })}
         </LinksContainer>
       </FooterItem>

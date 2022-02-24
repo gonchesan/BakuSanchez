@@ -2,12 +2,7 @@ import { useEffect, useState } from "react";
 import { useLocation, useOutletContext, useParams } from "react-router-dom";
 
 //Fetch products
-import {
-  getAllCategories,
-  getAllProducts,
-  getBestSeller,
-  getProductsByCategory,
-} from "../../utils/products";
+import { getAllProducts, getProductsByCategory } from "../../utils/products";
 
 //Components
 import Item from "../Item/Item";

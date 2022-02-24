@@ -1,4 +1,4 @@
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { Container } from "../../globalStyle";
 
@@ -108,27 +108,33 @@ export const DropdownItem = styled.li`
   background-color: ${({ theme }) => theme.red};
   margin: 0px 8px;
   border-bottom: 2px solid transparent;
-  transition: all 0.3s;
+  transition: all 0.2s;
+
+  & button {
+    cursor: pointer;
+    white-space: nowrap;
+    display: inline-block;
+    text-decoration: none;
+    text-transform: uppercase;
+    outline: none;
+    border: none;
+    background-color: inherit;
+    color: #fdfcfd;
+    width: 100%;
+    text-align: left;
+    font-family: "Oswald", sans-serif;
+    font-weight: 300;
+    font-size: 0.9rem;
+  }
 
   &:hover {
     background-color: ${({ theme }) => theme.white};
     color: ${({ theme }) => theme.red};
-  }
-`;
 
-export const DropdownLink = styled(Link)`
-  cursor: pointer;
-  white-space: nowrap;
-  display: inline-block;
-  text-decoration: none;
-  font-size: inherit;
-  text-transform: inherit;
-  outline: none;
-  border: none;
-  font-family: "Oswald", sans-serif;
-  font-weight: 300;
-  background-color: inherit;
-  color: inherit;
+    & button {
+      color: ${({ theme }) => theme.red};
+    }
+  }
 `;
 
 export const StyledNavLink = styled(NavLink)`
@@ -142,7 +148,7 @@ export const StyledNavLink = styled(NavLink)`
   padding: 7px 8px;
   font-size: 0.9rem;
   text-transform: uppercase;
-  opacity: ${({ activeClassName }) => (activeClassName ? "1" : "0.7")};
+  opacity: ${({ activeclassname }) => (activeclassname ? "1" : "0.7")};
   outline: none;
   border: none;
   background-color: transparent;

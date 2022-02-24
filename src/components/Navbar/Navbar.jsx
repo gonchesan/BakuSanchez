@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 //Widgets and others components
 import CartWidget from "../CartWidget/CartWidget";
@@ -21,14 +22,14 @@ import {
   WidgetContainer,
   DropdownMenu,
   DropdownItem,
-  DropdownLink,
 } from "./Navbar.elements";
-import { Link, useLocation } from "react-router-dom";
 
 const Navbar = () => {
   const [click, setClick] = useState(false);
   const [hover, setHover] = useState(false);
   const [routeActive, setRouteActive] = useState("/");
+
+  let navigate = useNavigate();
 
   const handleClick = () => {
     setClick(!click);
@@ -43,6 +44,13 @@ const Navbar = () => {
     }
   });
   // </>
+
+  const navigateToCategories = (event) => {
+    setRouteActive(event.target.name);
+    setHover(false);
+    setClick(false);
+    navigate(`/${event.target.name}`);
+  };
 
   const closeMobileMenu = (event) => {
     setRouteActive(event.target.name);
@@ -80,7 +88,10 @@ const Navbar = () => {
           <NavMenu click={click}>
             <NavItem active={routeActive === "/"}>
               <StyledNavLink
-                activeClassName={routeActive === "/" || routeActive === "logo"}
+                // activeclassname={value.toString()}.
+                activeclassname={toString(
+                  routeActive === "/" || routeActive === "logo"
+                )}
                 to="/"
                 name="/"
                 onClick={closeMobileMenu}
@@ -97,52 +108,52 @@ const Navbar = () => {
                 onMouseOver={() => setHover(true)}
                 onMouseLeave={() => setHover(false)}
                 name="shop"
-                activeClassName={
+                activeclassname={toString(
                   routeActive === "shop" || routeActive?.includes("shop")
-                }
+                )}
               >
                 Shop
-                <DropdownMenu isHovered={hover}>
-                  <DropdownItem>
-                    <DropdownLink
-                      onClick={closeMobileMenu}
-                      name="shop/category/figures"
-                      to="shop/category/figures"
-                    >
-                      Figure & Dolls
-                    </DropdownLink>
-                  </DropdownItem>
-
-                  <DropdownItem>
-                    <DropdownLink
-                      onClick={closeMobileMenu}
-                      name="shop/category/plushies"
-                      to="shop/category/plushies"
-                    >
-                      Plushies
-                    </DropdownLink>
-                  </DropdownItem>
-
-                  <DropdownItem>
-                    <DropdownLink
-                      onClick={closeMobileMenu}
-                      name="shop/category/manga"
-                      to="shop/category/manga"
-                    >
-                      Mangas
-                    </DropdownLink>
-                  </DropdownItem>
-                  <DropdownItem>
-                    <DropdownLink
-                      onClick={closeMobileMenu}
-                      name="shop/category/clothing"
-                      to="shop/category/clothing"
-                    >
-                      Clothing
-                    </DropdownLink>
-                  </DropdownItem>
-                </DropdownMenu>
               </StyledNavLink>
+              <DropdownMenu
+                isHovered={hover}
+                onMouseOver={() => setHover(true)}
+                onMouseLeave={() => setHover(false)}
+              >
+                <DropdownItem>
+                  <button
+                    onClick={navigateToCategories}
+                    name="shop/category/figures"
+                  >
+                    Figure & Dolls
+                  </button>
+                </DropdownItem>
+
+                <DropdownItem>
+                  <button
+                    onClick={navigateToCategories}
+                    name="shop/category/plushies"
+                  >
+                    Plushies
+                  </button>
+                </DropdownItem>
+
+                <DropdownItem>
+                  <button
+                    onClick={navigateToCategories}
+                    name="shop/category/manga"
+                  >
+                    Mangas
+                  </button>
+                </DropdownItem>
+                <DropdownItem>
+                  <button
+                    onClick={navigateToCategories}
+                    name="shop/category/clothing"
+                  >
+                    Clothing
+                  </button>
+                </DropdownItem>
+              </DropdownMenu>
             </NavItem>
             <NavItem active={routeActive === "contact-us"}>
               <NavItemBtn

@@ -59,12 +59,16 @@ export const LinksContainer = styled.div`
     font-weight: 500;
   }
 
-  & a {
+  & button {
     text-decoration: none;
     margin: 4px 0;
     font-weight: 500;
     font-size: 0.9rem;
     color: ${({ theme }) => theme.red};
+    background-color: transparent;
+    border: none;
+    text-align: left;
+    cursor: pointer;
   }
 `;
 
