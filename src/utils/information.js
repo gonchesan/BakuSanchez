@@ -24,3 +24,11 @@ export const getAboutUstInfo = () => {
       .then((result) => result.aboutUs)
   );
 };
+
+export const shippingChoice = {
+  "-1": 0,
+  0: 50,
+  1: 100,
+  2: 175,
+  3: 200,
+};

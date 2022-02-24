@@ -1,16 +1,15 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import {
   BackgroundIcon,
   ButtonClose,
   ToastBody,
-  ToastHeader,
   ToastWrapper,
 } from "./Toast.elements";
 
 import { IoIosCheckmarkCircle } from "react-icons/io";
 import { ToastContext } from "../../context/ToastContext";
 const Toast = () => {
-  const { toastVisibility, setToastVisibility, toastMessage, setToastMessage } =
+  const { toastVisibility, setToastVisibility, toastMessage } =
     useContext(ToastContext);
   const hideToast = () => {
     setToastVisibility(false);
@@ -21,12 +20,8 @@ const Toast = () => {
       <BackgroundIcon>
         <IoIosCheckmarkCircle />
       </BackgroundIcon>
-      {/* <div> */}
-      {/* <ToastHeader>
-          <strong>Success</strong>
-        </ToastHeader> */}
+
       <ToastBody>{toastMessage}</ToastBody>
-      {/* </div> */}
       <ButtonClose onClick={hideToast} type="button">
         <span aria-hidden="true">&times;</span>
       </ButtonClose>

@@ -17,7 +17,7 @@ import {
   Tittle,
 } from "./Item.elements";
 import { useNavigate } from "react-router-dom";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { CartContext } from "../../context/CartContext";
 import { Button } from "../../globalStyle";
 import { MdRemoveShoppingCart } from "react-icons/md";
@@ -29,6 +29,7 @@ const Item = ({ product }) => {
   let navigate = useNavigate();
 
   const onAdd = (quantityToAdd) => {
+    addItem(product, quantityToAdd);
     setItemsAdded(quantityToAdd);
   };
 
@@ -42,17 +43,11 @@ const Item = ({ product }) => {
     removeItem(product.id);
   };
 
-  useEffect(() => {
-    if (itemsAdded !== 0) {
-      addItem(product, itemsAdded);
-    }
-  }, [itemsAdded]);
-
   return (
     <ItemContainer>
       <SelectItem onClick={goToProductDetailPage} />
       <ItemBody>
-        <img src={product.pictures[0]} />
+        <img src={product.pictures[0]} alt={product.title} />
         <BadgeCard isVisible={product.itsOnSale}>-22%</BadgeCard>
         <LikeButton>
           <FaRegHeart />

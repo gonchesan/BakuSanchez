@@ -24,7 +24,7 @@ import {
 import OrderSummary from "../../components/OrderSummary/OrderSummary";
 
 const CartContainer = () => {
-  const { cart, subTotalPrice, totalPrice, clear } = useContext(CartContext);
+  const { cart, clear } = useContext(CartContext);
 
   let navigate = useNavigate();
 
@@ -68,53 +68,6 @@ const CartContainer = () => {
               </ButtonLink>
             </ItemListCart>
             <OrderSummary length={cart.length} />
-            {/* <CheckoutInfo>
-              <CheckoutTitle>Order summary</CheckoutTitle>
-              <WrapperSummaryInfo>
-                <CheckoutSubtitle>Items {cart.length}</CheckoutSubtitle>
-                <CheckoutSubtitle>
-                  $<small>US </small>
-                  {numberFormat.format(subTotalPrice)}
-                </CheckoutSubtitle>
-              </WrapperSummaryInfo>
-              <WrapperSummaryInfo>
-                <CheckoutSubtitle>Shipping</CheckoutSubtitle>
-                <SelectShipping
-                  isVisible={isVisible}
-                  setisVisible={setisVisible}
-                  indexArray={indexArray}
-                  setIndexArray={setIndexArray}
-                />
-              </WrapperSummaryInfo>
-
-              <WrapperSummaryInfo>
-                <CheckoutSubtitle>Promo code</CheckoutSubtitle>
-                <WrapperSummaryInfo flexStart>
-                  <InputCode value={promoCode} onChange={handleInput} />
-                  <SummaryButton small onClick={checkPromoCode}>
-                    Apply
-                  </SummaryButton>
-                </WrapperSummaryInfo>
-                <AlertPromo showAlert={promoAlert} error={promoCodeError}>
-                  {promoCodeError
-                    ? "Promotional code not found"
-                    : "Promotional code applied! - 15% Applied"}
-                </AlertPromo>
-              </WrapperSummaryInfo>
-
-              <WrapperSummaryInfo>
-                <CheckoutSubtitle>Total cost</CheckoutSubtitle>
-                <CheckoutSubtitle>
-                  $<small>US </small>
-                  {!promoCodeError
-                    ? numberFormat.format(
-                        totalPrice - (totalPrice * 15) / 100 + shippingCost
-                      )
-                    : numberFormat.format(totalPrice + shippingCost)}
-                </CheckoutSubtitle>
-              </WrapperSummaryInfo>
-              <SummaryButton>Checkout</SummaryButton>
-            </CheckoutInfo> */}
           </WrapperCart>
         </>
       )}

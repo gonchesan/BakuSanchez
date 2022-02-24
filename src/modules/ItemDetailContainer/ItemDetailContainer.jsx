@@ -22,7 +22,7 @@ const ItemDetailContainer = () => {
         setProduct(data);
       });
     }, 2000);
-  }, [id]);
+  }, [id, setIsLoading]);
 
   return (
     <Container>

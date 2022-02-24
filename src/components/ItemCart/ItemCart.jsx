@@ -45,11 +45,7 @@ const ItemCart = ({ product, quantity, numberIndex }) => {
       <ImageItemCart src={product.pictures[0]} />
       <InfoItemCart>
         <p>{product.title}</p>
-        {product.series ? (
-          <p>{product.series}</p>
-        ) : (
-          <p>{product.author_illustrator}</p>
-        )}
+        {product.series ? <p>{product.series}</p> : <p>{product.detail1}</p>}
       </InfoItemCart>
       <CountWrapper>
         <CountButton

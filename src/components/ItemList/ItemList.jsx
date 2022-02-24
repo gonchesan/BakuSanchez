@@ -53,38 +53,18 @@ const ItemList = () => {
 
         return () => (mounted = false);
       }
-
-      //todo BORRAR ESTE CEIRRE y el setTimeout establecerlo para "/", "/shopt/category"
     }
     setTimeout(() => setIsLoading(false), 500);
-
-    // } else if (location.pathname === "/") {
-    //   setTimeout(() => {
-    //     getBestSeller()
-    //       .then((products) => {
-    //         setIsLoading(false);
-    //         setDataProducts(products);
-    //       })
-    //       .catch((err) => console.log("Something is wrong: ", err));
-    //   }, 2000);
-    // } else {
-    //   setTimeout(() => {
-    //     getProductsByCategory(category)
-    //       .then((products) => {
-    //         setIsLoading(false);
-    //         setDataProducts(products);
-    //       })
-    //       .catch((err) => console.log("Something is wrong: ", err));
-    //   }, 2000);
-    // }
-  }, []);
+  }, [category, location.pathname, setIsLoading]);
 
   if (dataProducts.length !== 0) {
     return (
       <ListWrapper>
-        {dataProducts.map((info) => {
-          return <Item key={info.id} product={info} />;
-        })}
+        {!isLoading
+          ? dataProducts.map((info) => {
+              return <Item key={info.id} product={info} />;
+            })
+          : null}
       </ListWrapper>
     );
   } else {

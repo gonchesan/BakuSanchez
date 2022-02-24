@@ -18,6 +18,7 @@ import {
 import { addDoc, collection } from "firebase/firestore";
 import { db } from "../../firebase";
 import { ToastContext } from "../../context/ToastContext";
+import { shippingChoice } from "../../utils/information";
 
 const OrderSummary = () => {
   const { cart, subTotalPrice, totalPrice, clear } = useContext(CartContext);
@@ -32,7 +33,7 @@ const OrderSummary = () => {
   });
   const [shippingCost, setShippingCost] = useState(0);
   const [promoCode, setPromoCode] = useState("");
-  const [indexArray, setIndexArray] = useState();
+  const [indexArray, setIndexArray] = useState(-1);
 
   const totalPriceReference = useRef(null);
 
@@ -42,23 +43,18 @@ const OrderSummary = () => {
 
   let navigate = useNavigate();
 
+  // const shippingChoice = {
+  //   "-1": 0,
+  //   0: 50,
+  //   1: 100,
+  //   2: 175,
+  //   3: 200,
+  // };
+
   useEffect(() => {
     setIsLoading(false);
-    switch (indexArray) {
-      case 0:
-        setShippingCost(50);
-        break;
-      case 1:
-        setShippingCost(100);
-        break;
-      case 2:
-        setShippingCost(175);
-        break;
-      case 3:
-        setShippingCost(200);
-        break;
-    }
-  }, [indexArray]);
+    setShippingCost(shippingChoice[indexArray]);
+  }, [indexArray, setIsLoading]);
 
   const handleInput = (event) => {
     setPromoCode(event.target.value);
@@ -98,74 +94,77 @@ const OrderSummary = () => {
 
   return (
     <CheckoutInfo>
-      <CheckoutTitle>Order summary</CheckoutTitle>
-      <WrapperSummaryInfo>
-        <CheckoutSubtitle>Items {cart.length}</CheckoutSubtitle>
-        <CheckoutSubtitle>
-          {numberFormat.format(subTotalPrice)}
-        </CheckoutSubtitle>
-      </WrapperSummaryInfo>
-      <WrapperSummaryInfo>
-        <CheckoutSubtitle>Name</CheckoutSubtitle>
-        <InputCode
-          onChange={handleInputBuyer}
-          name="name"
-          value={buyerInfo.name}
-        />
-      </WrapperSummaryInfo>
-      <WrapperSummaryInfo>
-        <CheckoutSubtitle>Email</CheckoutSubtitle>
-        <InputCode
-          onChange={handleInputBuyer}
-          name="email"
-          value={buyerInfo.email}
-        />
-      </WrapperSummaryInfo>
-      <WrapperSummaryInfo>
-        <CheckoutSubtitle>Phone</CheckoutSubtitle>
-        <InputCode
-          onChange={handleInputBuyer}
-          name="phone"
-          value={buyerInfo.phone}
-        />
-      </WrapperSummaryInfo>
-      <WrapperSummaryInfo>
-        <CheckoutSubtitle>Shipping</CheckoutSubtitle>
-        <SelectShipping
-          isVisible={isVisible}
-          setIsVisible={setIsVisible}
-          indexArray={indexArray}
-          setIndexArray={setIndexArray}
-        />
-      </WrapperSummaryInfo>
+      {!isLoading ? (
+        <>
+          <CheckoutTitle>Order summary</CheckoutTitle>
+          <WrapperSummaryInfo>
+            <CheckoutSubtitle>Items {cart.length}</CheckoutSubtitle>
+            <CheckoutSubtitle>
+              {numberFormat.format(subTotalPrice)}
+            </CheckoutSubtitle>
+          </WrapperSummaryInfo>
+          <WrapperSummaryInfo>
+            <CheckoutSubtitle>Name</CheckoutSubtitle>
+            <InputCode
+              onChange={handleInputBuyer}
+              name="name"
+              value={buyerInfo.name}
+            />
+          </WrapperSummaryInfo>
+          <WrapperSummaryInfo>
+            <CheckoutSubtitle>Email</CheckoutSubtitle>
+            <InputCode
+              onChange={handleInputBuyer}
+              name="email"
+              value={buyerInfo.email}
+            />
+          </WrapperSummaryInfo>
+          <WrapperSummaryInfo>
+            <CheckoutSubtitle>Phone</CheckoutSubtitle>
+            <InputCode
+              onChange={handleInputBuyer}
+              name="phone"
+              value={buyerInfo.phone}
+            />
+          </WrapperSummaryInfo>
+          <WrapperSummaryInfo>
+            <CheckoutSubtitle>Shipping</CheckoutSubtitle>
+            <SelectShipping
+              isVisible={isVisible}
+              setIsVisible={setIsVisible}
+              indexArray={indexArray}
+              setIndexArray={setIndexArray}
+            />
+          </WrapperSummaryInfo>
 
-      <WrapperSummaryInfo>
-        <CheckoutSubtitle>Promo code</CheckoutSubtitle>
-        <WrapperSummaryInfo flexStart>
-          <InputCode value={promoCode} onChange={handleInput} />
-          <SummaryButton small onClick={checkPromoCode}>
-            Apply
-          </SummaryButton>
-        </WrapperSummaryInfo>
-        <AlertPromo showAlert={promoAlert} error={promoCodeError}>
-          {promoCodeError
-            ? "Promotional code not found"
-            : "Promotional code applied! - 15% Applied"}
-        </AlertPromo>
-      </WrapperSummaryInfo>
+          <WrapperSummaryInfo>
+            <CheckoutSubtitle>Promo code</CheckoutSubtitle>
+            <WrapperSummaryInfo flexStart>
+              <InputCode value={promoCode} onChange={handleInput} />
+              <SummaryButton small onClick={checkPromoCode}>
+                Apply
+              </SummaryButton>
+            </WrapperSummaryInfo>
+            <AlertPromo showAlert={promoAlert} error={promoCodeError}>
+              {promoCodeError
+                ? "Promotional code not found"
+                : "Promotional code applied! - 15% Applied"}
+            </AlertPromo>
+          </WrapperSummaryInfo>
 
-      <WrapperSummaryInfo>
-        <CheckoutSubtitle>Total cost</CheckoutSubtitle>
-        <CheckoutSubtitle ref={totalPriceReference}>
-          {/* $<small>US </small> */}
-          {!promoCodeError
-            ? numberFormat.format(
-                totalPrice - (totalPrice * 15) / 100 + shippingCost
-              )
-            : numberFormat.format(totalPrice + shippingCost)}
-        </CheckoutSubtitle>
-      </WrapperSummaryInfo>
-      <SummaryButton onClick={submitForm}>Checkout</SummaryButton>
+          <WrapperSummaryInfo>
+            <CheckoutSubtitle>Total cost</CheckoutSubtitle>
+            <CheckoutSubtitle ref={totalPriceReference}>
+              {!promoCodeError
+                ? numberFormat.format(
+                    totalPrice - (totalPrice * 15) / 100 + shippingCost
+                  )
+                : numberFormat.format(totalPrice + shippingCost)}
+            </CheckoutSubtitle>
+          </WrapperSummaryInfo>
+          <SummaryButton onClick={submitForm}>Checkout</SummaryButton>
+        </>
+      ) : null}
     </CheckoutInfo>
   );
 };

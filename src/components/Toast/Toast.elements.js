@@ -41,20 +41,6 @@ export const BackgroundIcon = styled.div`
   }
 `;
 
-// export const ToastHeader = styled.div`
-//   display: flex;
-//   align-items: center;
-//   padding: 0px 0.75rem;
-//   color: ${({ theme }) => theme.mediumBlack};
-//   /* background-color: rgba(255, 255, 255, 0.85); */
-//   background-clip: padding-box;
-//   /* border-bottom: 1px solid rgba(0, 0, 0, 0.05); */
-
-//   & strong {
-//     margin-right: auto !important;
-//   }
-// `;
-
 export const ButtonClose = styled.div`
   padding: 0;
   text-align: center;

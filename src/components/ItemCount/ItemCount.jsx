@@ -33,14 +33,16 @@ const ItemCount = ({ initial, stock, onAdd }) => {
   };
 
   useEffect(() => {
+    setCount(initial);
+
     if (location.pathname.includes("/shop/item/")) {
       setViewDetail(true);
     }
-  }, []);
+  }, [location.pathname, initial]);
 
-  useEffect(() => {
-    setCount(initial);
-  }, [initial]);
+  // useEffect(() => {
+  //   setCount(initial);
+  // }, [initial]);
 
   return (
     <ItemCountContainer isDetailView={viewDetail}>

@@ -32,6 +32,7 @@ const ItemDetail = () => {
 
   const onAdd = (quantityToAdd) => {
     setItemsAdded(quantityToAdd);
+    addItem(product, quantityToAdd);
   };
 
   const buyNow = () => {
@@ -43,11 +44,11 @@ const ItemDetail = () => {
     removeItem(product.id);
   };
 
-  useEffect(() => {
-    if (itemsAdded !== 0) {
-      addItem(product, itemsAdded);
-    }
-  }, [itemsAdded]);
+  // useEffect(() => {
+  //   if (itemsAdded !== 0) {
+  //     addItem(product, itemsAdded);
+  //   }
+  // }, [itemsAdded]);
 
   useEffect(() => {
     // Set a clean up flag
@@ -59,7 +60,7 @@ const ItemDetail = () => {
 
     // Cancel subscription to useEffect
     return () => (isSubscribed = false);
-  }, []);
+  }, [id]);
 
   return (
     <DetailContainer>

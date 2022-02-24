@@ -42,7 +42,7 @@ const Navbar = () => {
     if (location.pathname === "/") {
       setRouteActive("/");
     }
-  });
+  }, [location.pathname]);
   // </>
 
   const navigateToCategories = (event) => {

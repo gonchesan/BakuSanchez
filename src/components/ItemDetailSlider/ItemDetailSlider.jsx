@@ -34,6 +34,7 @@ const ItemDetailSlider = ({ pictures }) => {
                   }}
                   key={index}
                   src={url}
+                  alt={`detail_${index}`}
                 />
               );
             })}

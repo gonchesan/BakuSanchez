@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useOutletContext } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { getCollectionPictures } from "../../utils/information";
 
 //Styled Components
@@ -15,22 +15,28 @@ const Collections = () => {
 
   let navigate = useNavigate();
 
-  const data = ["Figures", "Plushies", "Manga", "Clothing", "Funko", "Cosplay"];
+  const nameCollection = [
+    "Figures",
+    "Plushies",
+    "Manga",
+    "Clothing",
+    "Funko",
+    "Cosplay",
+  ];
 
   useEffect(() => {
     getCollectionPictures().then((result) => setCollection(result));
   }, []);
 
+  const collections = {
+    Figures: "shop/category/figures",
+    Plushies: "shop/category/plushies",
+    Manga: "shop/category/manga",
+  };
+
   const handleCollection = (index) => {
-    switch (index) {
-      case 0:
-        navigate("shop/category/figures");
-        break;
-      case 1:
-        navigate("shop/category/plushies");
-        break;
-      case 2:
-        navigate("shop/category/manga");
+    if (collections[nameCollection[index]] !== undefined) {
+      navigate(collections[nameCollection[index]]);
     }
   };
 
@@ -45,9 +51,9 @@ const Collections = () => {
                 onClick={() => handleCollection(index)}
                 key={index}
               >
-                <img src={url} />
+                <img src={url} alt={nameCollection[index]} />
                 <Overlay />
-                <h5>{data[index]}</h5>
+                <h5>{nameCollection[index]}</h5>
               </CardCollection>
             );
           })}

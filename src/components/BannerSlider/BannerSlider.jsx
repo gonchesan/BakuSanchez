@@ -21,7 +21,7 @@ const BannerSlider = () => {
     getBanners().then((result) => setBanner(result[indexPicture])); //fetch url img for Banners
 
     setIsLoading(false);
-  }, [indexPicture]);
+  }, [indexPicture, setIsLoading]);
 
   const handleSlider = (event) => {
     if (event.target.name === "+") {
@@ -39,7 +39,7 @@ const BannerSlider = () => {
 
   return (
     <BannerContainer>
-      <img src={banner} alt="Banner" />
+      {!isLoading ? <img src={banner} alt="Banner" /> : null}
       <ButtonContainers>
         <ButtonSlider onClick={handleSlider} name="-">
           <FaChevronLeft />
