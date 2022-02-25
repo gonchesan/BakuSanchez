@@ -32,6 +32,12 @@ const CartContainer = () => {
     navigate("/shop");
   };
 
+  // const setItemsCart = (numberIndex, product, count) => {
+  //   let newCart = [...cart];
+  //   newCart[numberIndex] = { item: product, quantity: count };
+  //   setCart(newCart);
+  // };
+
   return (
     <Container>
       {cart.length === 0 ? (

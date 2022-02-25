@@ -44,6 +44,12 @@ export const CartProvider = ({ children }) => {
 
   const isInCart = (id) => cart.some((e) => e.item.id === id); // Return result || false
 
+  const setItemsCart = (numberIndex, product, count) => {
+    let newCart = [...cart];
+    newCart[numberIndex] = { item: product, quantity: count };
+    setCart(newCart);
+  };
+
   useEffect(() => {
     if (cart.length > 1) {
       let arrayQuantity = cart.map((product) => product.quantity);
@@ -80,6 +86,7 @@ export const CartProvider = ({ children }) => {
         setSubTotalPrice,
         totalPrice,
         setTotalPrice,
+        setItemsCart,
       }}
     >
       {children}

@@ -17,7 +17,7 @@ import {
 import { RiCloseLine } from "react-icons/ri";
 
 const ItemCart = ({ product, quantity, numberIndex }) => {
-  const { removeItem, cart, setCart } = useContext(CartContext);
+  const { removeItem, setItemsCart } = useContext(CartContext);
   const [count, setCount] = useState(quantity);
 
   const handleCountingClick = (event) => {
@@ -35,10 +35,11 @@ const ItemCart = ({ product, quantity, numberIndex }) => {
   const numberFormat = new Intl.NumberFormat("en-US");
 
   useEffect(() => {
-    let newCart = [...cart];
-    newCart[numberIndex] = { item: product, quantity: count };
-    setCart(newCart);
-  }, [count]);
+    setItemsCart(numberIndex, product, count);
+    // let newCart = [...cart];
+    // newCart[numberIndex] = { item: product, quantity: count };
+    // setCart(newCart);
+  }, [count, numberIndex, product, setItemsCart]);
 
   return (
     <WrapperItemCart>

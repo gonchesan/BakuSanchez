@@ -27,7 +27,7 @@ const ItemList = () => {
         })
         .catch((err) => console.log("Something is wrong: ", err));
     }
-  }, [category]);
+  }, [category, setIsLoading]);
 
   useEffect(() => {
     let mounted = true;
