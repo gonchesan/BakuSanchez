@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { CartContext } from "../../context/CartContext";
 
 //Components
@@ -24,22 +24,17 @@ const ItemCart = ({ product, quantity, numberIndex }) => {
     if (event.target.name === "add") {
       if (count < product.stock) {
         setCount(count + 1);
+        setItemsCart(numberIndex, product, count + 1);
       }
     } else {
       if (count > product.initial) {
         setCount(count - 1);
+        setItemsCart(numberIndex, product, count - 1);
       }
     }
   };
 
   const numberFormat = new Intl.NumberFormat("en-US");
-
-  useEffect(() => {
-    setItemsCart(numberIndex, product, count);
-    // let newCart = [...cart];
-    // newCart[numberIndex] = { item: product, quantity: count };
-    // setCart(newCart);
-  }, [count, numberIndex, product, setItemsCart]);
 
   return (
     <WrapperItemCart>
