@@ -48,7 +48,7 @@ const ItemCart = ({ product, quantity, numberIndex }) => {
           onClick={handleCountingClick}
           name="subtract"
           left
-          disabled={count === 0}
+          disabled={count === 1}
         >
           -
         </CountButton>

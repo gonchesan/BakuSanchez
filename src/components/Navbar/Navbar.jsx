@@ -35,15 +35,17 @@ const Navbar = () => {
     setClick(!click);
   };
 
-  //To apply active status to "Home" <>
   let location = useLocation();
 
   useEffect(() => {
     if (location.pathname === "/") {
       setRouteActive("/");
+    } else if (location.pathname === "/cart") {
+      setRouteActive("/cart");
+    } else if (location.pathname.includes("/shop")) {
+      setRouteActive("/shop");
     }
   }, [location.pathname]);
-  // </>
 
   const navigateToCategories = (event) => {
     setRouteActive(event.target.name);
@@ -63,7 +65,7 @@ const Navbar = () => {
     <>
       <Nav>
         <NavbarContainer>
-          <Link onClick={closeMobileMenu} name="logo" to="/">
+          <Link onClick={closeMobileMenu} to="/">
             <NavLogo src={Logo} alt="image logo" />
           </Link>
           <MobileIcon onClick={handleClick}>
@@ -88,7 +90,6 @@ const Navbar = () => {
           <NavMenu click={click}>
             <NavItem active={routeActive === "/"}>
               <StyledNavLink
-                // activeclassname={value.toString()}.
                 activeclassname={toString(
                   routeActive === "/" || routeActive === "logo"
                 )}

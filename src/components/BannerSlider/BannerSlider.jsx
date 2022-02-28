@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useOutletContext } from "react-router-dom";
-import { getBanners } from "../../utils/information";
 
 //Styled Components
 import {
@@ -11,17 +10,20 @@ import {
 
 //Icons
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { DataContext } from "../../context/DataContext";
 
 const BannerSlider = () => {
   const [banner, setBanner] = useState(); // Images for the banner
   const [indexPicture, setIndexPicture] = useState(0);
   const [isLoading, setIsLoading] = useOutletContext();
+  const { bannersFromDatabase } = useContext(DataContext);
 
   useEffect(() => {
-    getBanners().then((result) => setBanner(result[indexPicture])); //fetch url img for Banners
+    // bannersFromDatabase
+    setBanner(bannersFromDatabase[indexPicture]); //fetch url img for Banners
 
     setIsLoading(false);
-  }, [indexPicture, setIsLoading]);
+  }, [indexPicture, setIsLoading, bannersFromDatabase]);
 
   const handleSlider = (event) => {
     if (event.target.name === "+") {

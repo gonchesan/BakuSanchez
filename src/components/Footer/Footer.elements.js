@@ -43,6 +43,45 @@ export const SocialMediaContainer = styled.div`
     height: 100%;
     width: 20px;
   }
+  & button {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+  }
+`;
+
+export const ButtonSubscribe = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+  background-color: ${({ theme }) => theme.crimson} !important;
+  margin: 0 0 8px 0;
+  color: ${({ theme }) => theme.white} !important;
+  font-size: 0.95rem;
+  outline: none;
+  padding: 6px 14px 6px 4px;
+  white-space: nowrap;
+  border-radius: 8px;
+  border: none;
+  width: 80%;
+  z-index: 100;
+
+  & svg {
+    background-color: transparent;
+    height: 26px;
+    width: 26px;
+    border-radius: 4px;
+    padding: 4px;
+  }
+
+  &:hover {
+    transition: 0.3s all;
+    background-color: ${({ theme }) => theme.lightPink} !important;
+    color: ${({ theme }) => theme.crimson} !important;
+  }
 `;
 
 export const LinksContainer = styled.div`
@@ -80,36 +119,4 @@ export const InputSubscribe = styled.input`
   padding-left: 10px;
   width: 100%;
   font-size: 1rem;
-`;
-export const ButtonSubscribe = styled.button`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  position: relative;
-  background-color: ${({ theme }) => theme.crimson};
-  margin: 0 0 8px 0;
-  color: ${({ theme }) => theme.white};
-  font-size: 0.95rem;
-  outline: none;
-  padding: 6px 14px 6px 4px;
-  white-space: nowrap;
-  border-radius: 8px;
-  border: none;
-  width: 80%;
-  z-index: 100;
-
-  & svg {
-    background-color: transparent;
-    height: 26px;
-    width: 26px;
-    border-radius: 4px;
-    padding: 4px;
-  }
-
-  &:hover {
-    transition: 0.3s all;
-    background-color: ${({ theme }) => theme.lightPink};
-    color: ${({ theme }) => theme.crimson};
-  }
 `;

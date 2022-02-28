@@ -1,10 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { CartContext } from "../../context/CartContext";
-import { useParams } from "react-router-dom";
-import { getItem } from "../../utils/products.js";
 
 //Components
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import ItemCount from "../ItemCount/ItemCount";
 import ItemDetailSlider from "../ItemDetailSlider/ItemDetailSlider";
 
@@ -23,12 +21,25 @@ import { Button } from "../../globalStyle";
 import { MdRemoveShoppingCart } from "react-icons/md";
 import { BsBagCheckFill } from "react-icons/bs";
 
-const ItemDetail = () => {
+const ItemDetail = ({ product }) => {
   const [itemsAdded, setItemsAdded] = useState(0);
-  const [product, setProduct] = useState({});
   const { addItem, removeItem } = useContext(CartContext);
-  const { id } = useParams();
   let navigate = useNavigate();
+
+  const {
+    id,
+    description,
+    pictures,
+    title,
+    price,
+    series,
+    detail1,
+    detail2,
+    detail3,
+    detail4,
+    stock,
+    initial,
+  } = product;
 
   const onAdd = (quantityToAdd) => {
     setItemsAdded(quantityToAdd);
@@ -41,36 +52,18 @@ const ItemDetail = () => {
 
   const returnProducts = () => {
     setItemsAdded(0);
-    removeItem(product.id);
+    removeItem(id);
   };
-
-  // useEffect(() => {
-  //   if (itemsAdded !== 0) {
-  //     addItem(product, itemsAdded);
-  //   }
-  // }, [itemsAdded]);
-
-  useEffect(() => {
-    // Set a clean up flag
-    let isSubscribed = true;
-
-    getItem(id)
-      .then((itemInfo) => (isSubscribed ? setProduct(itemInfo) : null))
-      .catch((err) => console.log("Something is wrong: ", err));
-
-    // Cancel subscription to useEffect
-    return () => (isSubscribed = false);
-  }, [id]);
 
   return (
     <DetailContainer>
       <SliderWrapper>
-        <ItemDetailSlider pictures={product.pictures} />
+        <ItemDetailSlider pictures={pictures} />
       </SliderWrapper>
       <InfoWrapper>
-        <TittleDetail>{product.title}</TittleDetail>
+        <TittleDetail>{title}</TittleDetail>
         <PriceDetail>
-          <span>US</span> ${product.price}
+          <span>US</span> ${price}
         </PriceDetail>
         <Paragraph>
           <b>Stock available</b>
@@ -87,64 +80,28 @@ const ItemDetail = () => {
             </Button>
           </>
         ) : (
-          <ItemCount
-            stock={product.stock}
-            initial={product.initial}
-            onAdd={onAdd}
-          />
+          <ItemCount stock={stock} initial={initial} onAdd={onAdd} />
         )}
 
         <Paragraph>
-          <b>Product name:</b> {product.title}
+          <b>Product name:</b> {title}
         </Paragraph>
-        {product.series && (
+        {series && (
           <Paragraph>
-            <b>Series:</b> {product.series}
+            <b>Series:</b> {series}
           </Paragraph>
         )}
-        {product.manufacturer && (
+        {detail3 && (
           <Paragraph>
-            <b>Manufacturer:</b> {product.manufacturer}
-          </Paragraph>
-        )}
-        {product.specifications && (
-          <Paragraph>
-            <b>Specifications:</b> {product.specifications}
-          </Paragraph>
-        )}
-        {product.size && (
-          <Paragraph>
-            <b>Dimensions:</b> {product.size}
-          </Paragraph>
-        )}
-        {product.materials && (
-          <Paragraph>
-            <b>Materials:</b> {product.materials}
-          </Paragraph>
-        )}
-        {product.author_illustrator && (
-          <Paragraph>
-            <b>Author/Illustrator:</b> {product.author_illustrator}
-          </Paragraph>
-        )}
-        {product.publisher && (
-          <Paragraph>
-            <b>Publisher:</b> {product.publisher}
-          </Paragraph>
-        )}
-        {product.pages && (
-          <Paragraph>
-            <b>Pages:</b> {product.pages}
-          </Paragraph>
-        )}
-        {product.language && (
-          <Paragraph>
-            <b>Language:</b> {product.language}
+            <b>Specifications:</b> {detail3}
           </Paragraph>
         )}
         <Paragraph>
-          <b>Description:</b> {product.description}
+          <b>Description:</b> {description}
         </Paragraph>
+        {detail1 && <Paragraph>◉ {detail1}</Paragraph>}
+        {detail2 && <Paragraph>◉ {detail2}</Paragraph>}
+        {detail4 && <Paragraph>◉ {product.detail4}</Paragraph>}
       </InfoWrapper>
     </DetailContainer>
   );

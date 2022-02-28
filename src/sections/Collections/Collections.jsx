@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { getCollectionPictures } from "../../utils/information";
 
 //Styled Components
 import { Container, Header } from "../../globalStyle";
@@ -9,10 +8,10 @@ import {
   Overlay,
   WrapperCollection,
 } from "./Collections.elements";
+import { DataContext } from "../../context/DataContext";
 
 const Collections = () => {
-  const [collection, setCollection] = useState();
-
+  const { collectionPicturesFromDatabase } = useContext(DataContext);
   let navigate = useNavigate();
 
   const nameCollection = [
@@ -23,10 +22,6 @@ const Collections = () => {
     "Funko",
     "Cosplay",
   ];
-
-  useEffect(() => {
-    getCollectionPictures().then((result) => setCollection(result));
-  }, []);
 
   const collections = {
     Figures: "shop/category/figures",
@@ -44,8 +39,8 @@ const Collections = () => {
     <Container>
       <Header>Our Collection</Header>
       <WrapperCollection>
-        {collection &&
-          collection.map((url, index) => {
+        {collectionPicturesFromDatabase &&
+          collectionPicturesFromDatabase.map((url, index) => {
             return (
               <CardCollection
                 onClick={() => handleCollection(index)}

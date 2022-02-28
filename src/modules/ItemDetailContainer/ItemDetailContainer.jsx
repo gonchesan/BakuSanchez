@@ -1,28 +1,26 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useOutletContext, useParams } from "react-router-dom";
-import { getItem } from "../../utils/products";
 
 //Components
 import ItemDetail from "../../components/ItemDetail/ItemDetail";
 
 //Styled Components
 import { Container } from "../../globalStyle";
+import { DataContext } from "../../context/DataContext";
 
 const ItemDetailContainer = () => {
   let { id } = useParams();
   const [isLoading, setIsLoading] = useOutletContext();
   const [product, setProduct] = useState({});
+  const { productsFromDatabase } = useContext(DataContext);
 
   useEffect(() => {
     setIsLoading(true);
 
-    setTimeout(() => {
-      getItem(id).then((data) => {
-        setIsLoading(false);
-        setProduct(data);
-      });
-    }, 2000);
-  }, [id, setIsLoading]);
+    const itemInfo = productsFromDatabase.find((doc) => doc.id === id);
+    setProduct(itemInfo);
+    setTimeout(() => setIsLoading(false), 500);
+  }, [id, setIsLoading, productsFromDatabase]);
 
   return (
     <Container>

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 //Components
@@ -32,11 +32,9 @@ const CartContainer = () => {
     navigate("/shop");
   };
 
-  // const setItemsCart = (numberIndex, product, count) => {
-  //   let newCart = [...cart];
-  //   newCart[numberIndex] = { item: product, quantity: count };
-  //   setCart(newCart);
-  // };
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <Container>

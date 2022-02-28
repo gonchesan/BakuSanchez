@@ -1,75 +1,58 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useLocation, useOutletContext, useParams } from "react-router-dom";
 
 //Fetch products
-import { getAllProducts, getProductsByCategory } from "../../utils/products";
+import {
+  handleProductsBestSeller,
+  handleProductsCategory,
+} from "../../utils/products";
 
 //Components
 import Item from "../Item/Item";
 
 //Styled Components
 import { ListWrapper } from "./ItemList.elements";
+import { DataContext } from "../../context/DataContext";
 
 const ItemList = () => {
   const [dataProducts, setDataProducts] = useState([]);
   const [isLoading, setIsLoading] = useOutletContext();
+  const { productsFromDatabase } = useContext(DataContext);
   const { category } = useParams();
 
   let location = useLocation();
 
   useEffect(() => {
     setIsLoading(true);
-    if (category !== undefined) {
-      getProductsByCategory(category)
-        .then((products) => {
-          setDataProducts(products);
-          setTimeout(() => setIsLoading(false), 500);
-        })
-        .catch((err) => console.log("Something is wrong: ", err));
-    }
-  }, [category, setIsLoading]);
 
-  useEffect(() => {
-    let mounted = true;
-    setIsLoading(true);
+    // productsFromDatabase is a variable from DataContext
 
-    if (location.pathname !== "/") {
-      if (mounted) {
-        if (category === undefined) {
-          getAllProducts()
-            .then((dataCollection) => {
-              setDataProducts(dataCollection);
-              setTimeout(() => setIsLoading(false), 500);
-            })
-            .catch((err) => console.log("Something is wrong: ", err));
+    if (productsFromDatabase.length) {
+      // I manage the items to show, depending on the route
+      if (location.pathname === "/") {
+        setDataProducts(handleProductsBestSeller(productsFromDatabase));
+      } else {
+        if (category !== undefined) {
+          setDataProducts(
+            handleProductsCategory(productsFromDatabase, category)
+          );
         } else {
-          getProductsByCategory(category)
-            .then((dataCollection) => {
-              setDataProducts(dataCollection);
-              setTimeout(() => setIsLoading(false), 500);
-            })
-            .catch((err) => console.log("Something is wrong: ", err));
+          setDataProducts(productsFromDatabase);
         }
-
-        return () => (mounted = false);
       }
     }
     setTimeout(() => setIsLoading(false), 500);
-  }, [category, location.pathname, setIsLoading]);
+  }, [category, setIsLoading, location.pathname, productsFromDatabase]);
 
-  if (dataProducts.length !== 0) {
-    return (
-      <ListWrapper>
-        {!isLoading
-          ? dataProducts.map((info) => {
-              return <Item key={info.id} product={info} />;
-            })
-          : null}
-      </ListWrapper>
-    );
-  } else {
-    return <h2>Una lista vacia</h2>;
-  }
+  return (
+    <ListWrapper>
+      {!isLoading
+        ? dataProducts.map((info) => {
+            return <Item key={info.id} product={info} />;
+          })
+        : null}
+    </ListWrapper>
+  );
 };
 
 export default ItemList;
