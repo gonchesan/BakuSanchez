@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useOutletContext } from "react-router-dom";
 
 //Components
 import ItemCart from "../../components/ItemCart/ItemCart";
@@ -25,6 +25,7 @@ import OrderSummary from "../../components/OrderSummary/OrderSummary";
 
 const CartContainer = () => {
   const { cart, clear } = useContext(CartContext);
+  const [isLoading, setIsLoading] = useOutletContext();
 
   let navigate = useNavigate();
 
@@ -33,12 +34,13 @@ const CartContainer = () => {
   };
 
   useEffect(() => {
+    setTimeout(() => setIsLoading(false), 500);
     window.scrollTo(0, 0);
-  }, []);
+  }, [setIsLoading]);
 
   return (
     <Container>
-      {cart.length === 0 ? (
+      {cart.length === 0 && !isLoading ? (
         <EmpyCart />
       ) : (
         <>
@@ -57,12 +59,13 @@ const CartContainer = () => {
               </HeaderListCart>
               <ContainerCartItem>
                 {cart.map((product, numberIndex) => {
+                  const { quantity, item } = product;
                   return (
                     <ItemCart
-                      key={product.item.id}
+                      key={item.id}
                       numberIndex={numberIndex}
-                      product={product.item}
-                      quantity={product.quantity}
+                      product={item}
+                      quantity={quantity}
                     />
                   );
                 })}
@@ -71,7 +74,7 @@ const CartContainer = () => {
                 <MdOutlineKeyboardBackspace /> Continue shopping
               </ButtonLink>
             </ItemListCart>
-            <OrderSummary length={cart.length} />
+            <OrderSummary />
           </WrapperCart>
         </>
       )}

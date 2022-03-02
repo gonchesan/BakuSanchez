@@ -4,7 +4,6 @@ export const WrapperFooter = styled.div`
   margin-top: 2rem;
   background-color: ${({ theme }) => theme.lightGray};
   width: 100%;
-  /* height: 250px; */
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-column-gap: 50px;
@@ -12,7 +11,10 @@ export const WrapperFooter = styled.div`
 `;
 
 export const FooterItem = styled.div`
-  /* background-color: ${({ theme }) => theme.red}; */
+  & svg {
+    height: 100px;
+  }
+
   &:nth-child(1) {
     margin: 20px 0;
   }
@@ -24,7 +26,6 @@ export const FooterItem = styled.div`
     font-size: 0.8rem;
     grid-column: 1/5;
     text-align: center;
-    /* margin: auto 0; */
   }
 `;
 

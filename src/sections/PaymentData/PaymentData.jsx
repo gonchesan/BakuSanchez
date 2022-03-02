@@ -1,5 +1,3 @@
-import React from "react";
-
 //Styled Components
 import { Container } from "../../globalStyle";
 import {
@@ -17,37 +15,33 @@ import {
 } from "react-icons/md";
 
 const PaymentData = () => {
+  const infoPaymentData = [
+    {
+      logo: MdLocalShipping,
+      title: "Free shipping",
+      subtitle: "from $100",
+    },
+    { logo: MdSecurity, title: "90 days", subtitle: "for free return" },
+    { logo: MdLoyalty, title: "Payment", subtitle: "Secure system" },
+    { logo: MdWifiProtectedSetup, title: "Only best", subtitle: "brands" },
+  ];
+
   return (
     <Container>
       <WrapperPaymentData>
-        <CardsPaymentData>
-          <MdLocalShipping />
-          <PaymentDataInfo>
-            <h4>Free shipping</h4>
-            <p>from $100</p>
-          </PaymentDataInfo>
-        </CardsPaymentData>
-        <CardsPaymentData>
-          <MdWifiProtectedSetup />
-          <PaymentDataInfo>
-            <h4>90 days</h4>
-            <p>for free return</p>
-          </PaymentDataInfo>
-        </CardsPaymentData>
-        <CardsPaymentData>
-          <MdSecurity />
-          <PaymentDataInfo>
-            <h4>Payment</h4>
-            <p>Secure system</p>
-          </PaymentDataInfo>
-        </CardsPaymentData>
-        <CardsPaymentData>
-          <MdLoyalty />
-          <PaymentDataInfo>
-            <h4>Only best</h4>
-            <p>brands</p>
-          </PaymentDataInfo>
-        </CardsPaymentData>
+        {infoPaymentData.map((element, index) => {
+          const { logo, title, subtitle } = element;
+          const Icon = logo;
+          return (
+            <CardsPaymentData key={index}>
+              <Icon />
+              <PaymentDataInfo>
+                <h4>{title}</h4>
+                <p>{subtitle}</p>
+              </PaymentDataInfo>
+            </CardsPaymentData>
+          );
+        })}
       </WrapperPaymentData>
     </Container>
   );

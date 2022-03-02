@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { CartContext } from "../../context/CartContext";
 
 //Components
@@ -15,38 +15,45 @@ import {
 
 //Icons
 import { RiCloseLine } from "react-icons/ri";
+import { handleCountingClick } from "../../utils/functions";
 
 const ItemCart = ({ product, quantity, numberIndex }) => {
-  const { removeItem, setItemsCart } = useContext(CartContext);
+  const { removeItem, setItemsCart, calculateSubTotal } =
+    useContext(CartContext);
   const [count, setCount] = useState(quantity);
 
-  const handleCountingClick = (event) => {
-    if (event.target.name === "add") {
-      if (count < product.stock) {
-        setCount(count + 1);
-        setItemsCart(numberIndex, product, count + 1);
-      }
-    } else {
-      if (count > product.initial) {
-        setCount(count - 1);
-        setItemsCart(numberIndex, product, count - 1);
-      }
-    }
-  };
+  //References to control the quantity
+  const addReference = useRef(null);
+  const substractReference = useRef(null);
+
+  const { id, stock, initial, pictures, title, series, detail1, price } =
+    product;
 
   const numberFormat = new Intl.NumberFormat("en-US");
 
   return (
     <WrapperItemCart>
-      <ImageItemCart src={product.pictures[0]} />
+      <ImageItemCart src={pictures[0]} />
       <InfoItemCart>
-        <p>{product.title}</p>
-        {product.series ? <p>{product.series}</p> : <p>{product.detail1}</p>}
+        <p>{title}</p>
+        {series ? <p>{series}</p> : <p>{detail1}</p>}
       </InfoItemCart>
       <CountWrapper>
         <CountButton
-          onClick={handleCountingClick}
+          onClick={() =>
+            handleCountingClick(
+              count,
+              setCount,
+              stock,
+              initial,
+              substractReference,
+              setItemsCart,
+              numberIndex,
+              product
+            )
+          }
           name="subtract"
+          ref={substractReference}
           left
           disabled={count === 1}
         >
@@ -54,21 +61,33 @@ const ItemCart = ({ product, quantity, numberIndex }) => {
         </CountButton>
         <CounterNumber>{count}</CounterNumber>
         <CountButton
-          onClick={handleCountingClick}
+          onClick={() =>
+            handleCountingClick(
+              count,
+              setCount,
+              stock,
+              initial,
+              addReference,
+              setItemsCart,
+              numberIndex,
+              product
+            )
+          }
           name="add"
-          disabled={count === product.stock}
+          ref={addReference}
+          disabled={count === stock}
         >
           +
         </CountButton>
       </CountWrapper>
       <p>
-        $<small>US</small> {numberFormat.format(product.price)}
+        $<small>US</small> {numberFormat.format(price)}
       </p>
       <p>
         $<small>US </small>
-        {numberFormat.format(product.price * quantity)}
+        {numberFormat.format(calculateSubTotal(price, quantity))}
       </p>
-      <ButtonRemoveItem onClick={() => removeItem(product.id)}>
+      <ButtonRemoveItem onClick={() => removeItem(id)}>
         <RiCloseLine />
       </ButtonRemoveItem>
     </WrapperItemCart>

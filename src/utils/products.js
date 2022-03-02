@@ -75,18 +75,3 @@ export const handleProductsCategory = (products, category) => {
 
 //   return newState;
 // };
-
-//! Deprecated method.
-// I make a single request to the api and save the data in a context variable.
-
-// export const getAllCategories = async () => {
-//   const query = collection(db, "categories");
-//   const docSnap = await getDocs(query);
-
-//   let newState = [];
-//   docSnap.forEach((doc) => {
-//     newState.push({ ...doc.data(), id: doc.id });
-//   });
-
-//   return newState;
-// };

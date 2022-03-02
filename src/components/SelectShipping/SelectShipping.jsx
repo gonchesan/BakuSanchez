@@ -25,8 +25,8 @@ const SelectShipping = ({
     "Express Delivery - $us 200",
   ];
 
-  const handleSelect = (e) => {
-    setIndexArray(e.target.value);
+  const handleSelect = (event) => {
+    setIndexArray(event.target.value);
     setIsVisible(false);
   };
 
@@ -42,7 +42,7 @@ const SelectShipping = ({
             </Option>
           ))}
         </Options>
-        <SelectedOptions>
+        <SelectedOptions onClick={showOptions}>
           <p>
             {indexArray > -1 ? optionsArray[indexArray] : "Select an option"}
           </p>

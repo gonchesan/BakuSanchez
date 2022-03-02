@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 
 //Styled Components
@@ -13,24 +13,17 @@ import { Button } from "../../globalStyle";
 
 //Icons
 import { FaCartPlus } from "react-icons/fa";
+import { handleCountingClick } from "../../utils/functions";
 
 const ItemCount = ({ initial, stock, onAdd }) => {
   const [count, setCount] = useState();
   const [viewDetail, setViewDetail] = useState(false);
 
-  let location = useLocation();
+  //References to control the quantity
+  const addReference = useRef(null);
+  const substractReference = useRef(null);
 
-  const handleCountingClick = (event) => {
-    if (event.target.name === "add") {
-      if (count < stock) {
-        setCount(count + 1);
-      }
-    } else {
-      if (count > initial) {
-        setCount(count - 1);
-      }
-    }
-  };
+  let location = useLocation();
 
   useEffect(() => {
     setCount(initial);
@@ -39,10 +32,6 @@ const ItemCount = ({ initial, stock, onAdd }) => {
       setViewDetail(true);
     }
   }, [location.pathname, initial]);
-
-  // useEffect(() => {
-  //   setCount(initial);
-  // }, [initial]);
 
   return (
     <ItemCountContainer isDetailView={viewDetail}>
@@ -53,8 +42,17 @@ const ItemCount = ({ initial, stock, onAdd }) => {
           </p>
         )}
         <CountButton
-          onClick={handleCountingClick}
+          onClick={() =>
+            handleCountingClick(
+              count,
+              setCount,
+              stock,
+              initial,
+              substractReference
+            )
+          }
           name="subtract"
+          ref={substractReference}
           left
           disabled={count === 0}
         >
@@ -62,8 +60,11 @@ const ItemCount = ({ initial, stock, onAdd }) => {
         </CountButton>
         <CounterNumber>{count}</CounterNumber>
         <CountButton
-          onClick={handleCountingClick}
+          onClick={() =>
+            handleCountingClick(count, setCount, stock, initial, addReference)
+          }
           name="add"
+          ref={addReference}
           disabled={count === stock}
         >
           +

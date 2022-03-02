@@ -21,7 +21,7 @@ const Toast = () => {
         <IoIosCheckmarkCircle />
       </BackgroundIcon>
 
-      <ToastBody>{toastMessage}</ToastBody>
+      <ToastBody dangerouslySetInnerHTML={{ __html: toastMessage }} />
       <ButtonClose onClick={hideToast} type="button">
         <span aria-hidden="true">&times;</span>
       </ButtonClose>

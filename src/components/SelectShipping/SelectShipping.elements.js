@@ -15,6 +15,7 @@ export const SelectedOptions = styled.div`
   border: 1px solid ${({ theme }) => theme.outlineGray};
   display: flex;
   align-content: center;
+  cursor: pointer;
 
   & p {
     margin: auto 0;
@@ -43,7 +44,6 @@ export const ButtonArrow = styled.button`
 
 export const Options = styled.ul`
   list-style: none;
-  decoration: none;
   width: 80%;
   display: flex;
   flex-direction: column;

@@ -1,12 +1,9 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 
 export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
-  const [totalProductsInCart, setTotalProductsInCart] = useState(0);
-  const [subTotalPrice, setSubTotalPrice] = useState(0);
-  const [totalPrice, setTotalPrice] = useState(0);
 
   const addItem = (item, quantity) => {
     if (isInCart(item.id) === false) {
@@ -39,7 +36,6 @@ export const CartProvider = ({ children }) => {
 
   const clear = () => {
     setCart([]);
-    setTotalProductsInCart(0);
   }; // Remove all the items from the cart
 
   const isInCart = (id) => cart.some((e) => e.item.id === id); // Return result || false
@@ -50,27 +46,31 @@ export const CartProvider = ({ children }) => {
     setCart(newCart);
   };
 
-  useEffect(() => {
-    if (cart.length > 1) {
-      let arrayQuantity = cart.map((product) => product.quantity);
-      const sum = arrayQuantity.reduce((x, y) => x + y);
-      setTotalProductsInCart(sum);
-      let arraySubTotal = cart.map(
-        (product) => product.item.price * product.quantity
-      );
-      let sumSubTotal = arraySubTotal.reduce((x, y) => x + y);
-      setSubTotalPrice(sumSubTotal);
-      setTotalPrice(sumSubTotal);
-    } else if (cart.length === 1) {
-      setTotalProductsInCart(cart[0].quantity);
-      setSubTotalPrice(cart[0].item.price * cart[0].quantity);
-      setTotalPrice(cart[0].item.price * cart[0].quantity);
+  const calculateSubTotal = (price, quantity) => {
+    return (price * quantity).toFixed(2);
+  };
+
+  const calculateTotalPrice = (shippingCost, promoCodeError) => {
+    let total = Number(
+      cart.reduce(
+        (acc, element) => acc + element.item.price * element.quantity,
+        0
+      )
+    );
+    if (shippingCost !== undefined && promoCodeError !== undefined) {
+      if (!promoCodeError) {
+        return total - (total * 15) / 100 + shippingCost;
+      } else {
+        return total + shippingCost;
+      }
     } else {
-      setTotalProductsInCart(0);
-      setSubTotalPrice(0);
-      setTotalPrice(0);
+      return total;
     }
-  }, [cart]);
+  };
+
+  const calculateTotalItem = () => {
+    return Number(cart.reduce((acc, item) => acc + item.quantity, 0));
+  };
 
   return (
     <CartContext.Provider
@@ -80,13 +80,11 @@ export const CartProvider = ({ children }) => {
         addItem,
         isInCart,
         clear,
-        totalProductsInCart,
         removeItem,
-        subTotalPrice,
-        setSubTotalPrice,
-        totalPrice,
-        setTotalPrice,
         setItemsCart,
+        calculateTotalPrice,
+        calculateSubTotal,
+        calculateTotalItem,
       }}
     >
       {children}

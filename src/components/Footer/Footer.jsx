@@ -21,41 +21,46 @@ import { HiMail } from "react-icons/hi";
 
 const Footer = () => {
   let arrayLinks = [
-    ["About Us", "More Search", "Blog", "Testimonials", "Events"],
-    ["Services", "Supports", "Terms & Condition", "Privacy Policy"],
+    {
+      title: "Information",
+      links: ["About Us", "More Search", "Blog", "Testimonials", "Events"],
+    },
+    {
+      title: "Helpful Links",
+      links: ["Services", "Supports", "Terms & Condition", "Privacy Policy"],
+    },
   ];
+
+  let iconsName = [FaFacebookSquare, FaInstagramSquare, FaTwitterSquare];
+
   return (
     <WrapperFooter>
       <FooterItem>
-        <Logo style={{ height: "100px" }} />
+        <Logo />
         <SocialMediaContainer>
-          <button>
-            <FaFacebookSquare />
-          </button>
-          <button>
-            <FaInstagramSquare />
-          </button>
-          <button>
-            <FaTwitterSquare />
-          </button>
+          {iconsName.map((element, index) => {
+            const Icon = element;
+            return (
+              <button key={index}>
+                <Icon />
+              </button>
+            );
+          })}
         </SocialMediaContainer>
       </FooterItem>
-      <FooterItem>
-        <LinksContainer>
-          <h4>Information</h4>
-          {arrayLinks[0].map((element, index) => {
-            return <button key={index}>{element}</button>;
-          })}
-        </LinksContainer>
-      </FooterItem>
-      <FooterItem>
-        <LinksContainer>
-          <h4>Helpful Links</h4>
-          {arrayLinks[1].map((element, index) => {
-            return <button key={index}>{element}</button>;
-          })}
-        </LinksContainer>
-      </FooterItem>
+      {arrayLinks.map((element, index) => {
+        const { title, links } = element;
+        return (
+          <FooterItem key={index}>
+            <LinksContainer>
+              <h4>{title}</h4>
+              {links.map((link, idx) => {
+                return <button key={idx}>{link}</button>;
+              })}
+            </LinksContainer>
+          </FooterItem>
+        );
+      })}
       <FooterItem>
         <LinksContainer>
           <h4>Subscribe for updates</h4>

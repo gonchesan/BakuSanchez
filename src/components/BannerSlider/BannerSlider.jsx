@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { useOutletContext } from "react-router-dom";
 
 //Styled Components
@@ -11,12 +11,17 @@ import {
 //Icons
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { DataContext } from "../../context/DataContext";
+import { handleSlider } from "../../utils/functions";
 
 const BannerSlider = () => {
   const [banner, setBanner] = useState(); // Images for the banner
   const [indexPicture, setIndexPicture] = useState(0);
   const [isLoading, setIsLoading] = useOutletContext();
   const { bannersFromDatabase } = useContext(DataContext);
+
+  //References to control banner slider
+  const minusRef = useRef(null);
+  const addRef = useRef(null);
 
   useEffect(() => {
     // bannersFromDatabase
@@ -25,28 +30,20 @@ const BannerSlider = () => {
     setIsLoading(false);
   }, [indexPicture, setIsLoading, bannersFromDatabase]);
 
-  const handleSlider = (event) => {
-    if (event.target.name === "+") {
-      setIndexPicture(indexPicture + 1);
-      if (indexPicture >= 4) {
-        setIndexPicture(0);
-      }
-    } else {
-      setIndexPicture(indexPicture - 1);
-      if (indexPicture <= 0) {
-        setIndexPicture(4);
-      }
-    }
-  };
-
   return (
     <BannerContainer>
       {!isLoading ? <img src={banner} alt="Banner" /> : null}
       <ButtonContainers>
-        <ButtonSlider onClick={handleSlider} name="-">
+        <ButtonSlider
+          onClick={() => handleSlider(indexPicture, setIndexPicture, minusRef)}
+          ref={minusRef}
+        >
           <FaChevronLeft />
         </ButtonSlider>
-        <ButtonSlider onClick={handleSlider} name="+">
+        <ButtonSlider
+          onClick={() => handleSlider(indexPicture, setIndexPicture, addRef)}
+          ref={addRef}
+        >
           <FaChevronRight />
         </ButtonSlider>
       </ButtonContainers>

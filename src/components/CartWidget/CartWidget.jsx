@@ -6,7 +6,7 @@ import { CartContext } from "../../context/CartContext";
 import { FaShoppingCart } from "react-icons/fa";
 
 const CartWidget = () => {
-  const { totalProductsInCart } = useContext(CartContext);
+  const { calculateTotalItem, cart } = useContext(CartContext);
 
   let navigate = useNavigate();
   const goToCart = () => {
@@ -16,7 +16,7 @@ const CartWidget = () => {
   return (
     <>
       <FaShoppingCart onClick={goToCart} />
-      {totalProductsInCart > 0 && <span>{totalProductsInCart}</span>}
+      {cart.length > 0 && <span>{calculateTotalItem()}</span>}
     </>
   );
 };
