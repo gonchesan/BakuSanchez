@@ -1,13 +1,15 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
+
 import {
   BackgroundIcon,
   ButtonClose,
   ToastBody,
   ToastWrapper,
 } from "./Toast.elements";
-
 import { IoIosCheckmarkCircle } from "react-icons/io";
+
 import { ToastContext } from "../../context/ToastContext";
+
 const Toast = () => {
   const { toastVisibility, setToastVisibility, toastMessage } =
     useContext(ToastContext);

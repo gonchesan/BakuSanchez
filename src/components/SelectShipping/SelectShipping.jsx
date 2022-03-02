@@ -1,6 +1,3 @@
-import React from "react";
-
-//Styled Components
 import {
   ButtonArrow,
   Option,
@@ -9,7 +6,6 @@ import {
   WrapperSelect,
 } from "./SelectShipping.elements";
 
-//Icons
 import { GoChevronDown } from "react-icons/go";
 
 const SelectShipping = ({

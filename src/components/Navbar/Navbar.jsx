@@ -1,13 +1,11 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
-//Widgets and others components
+import { FaBars, FaTimes } from "react-icons/fa";
+
 import CartWidget from "../CartWidget/CartWidget";
 import UserWidget from "../UserWidget/UserWidget";
-
-//Source and Icons
 import Logo from "../../assets/images/logo-Baku.svg";
-import { FaBars, FaTimes } from "react-icons/fa";
 
 import {
   Nav,

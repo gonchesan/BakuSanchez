@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 
-//Styled Components
 import {
   ItemCountContainer,
   Wrapper,
@@ -10,9 +9,8 @@ import {
   StockDetail,
 } from "./ItemCount.elements";
 import { Button } from "../../globalStyle";
-
-//Icons
 import { FaCartPlus } from "react-icons/fa";
+
 import { handleCountingClick } from "../../utils/functions";
 
 const ItemCount = ({ initial, stock, onAdd }) => {

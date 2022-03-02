@@ -1,11 +1,6 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import { useNavigate, useOutletContext } from "react-router-dom";
-import { CartContext } from "../../context/CartContext";
 
-//Components
-import SelectShipping from "../../components/SelectShipping/SelectShipping";
-
-//Styled Components
 import {
   AlertPromo,
   CheckoutInfo,
@@ -16,9 +11,11 @@ import {
   WrapperSummaryInfo,
 } from "./OrderSummary.elements";
 
+import { CartContext } from "../../context/CartContext";
 import { ToastContext } from "../../context/ToastContext";
 import { shippingChoice } from "../../utils/information";
 import { generateOrder } from "../../utils/functions";
+import SelectShipping from "../../components/SelectShipping/SelectShipping";
 
 const OrderSummary = () => {
   const { cart, clear, calculateTotalPrice } = useContext(CartContext);

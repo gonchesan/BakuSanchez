@@ -1,10 +1,6 @@
-import React, { useContext, useRef, useState } from "react";
-import { CartContext } from "../../context/CartContext";
+import { useContext, useRef, useState } from "react";
 
-//Components
 import { CountButton, CounterNumber } from "../ItemCount/ItemCount.elements";
-
-//Styled Components
 import {
   ButtonRemoveItem,
   CountWrapper,
@@ -12,9 +8,9 @@ import {
   InfoItemCart,
   WrapperItemCart,
 } from "./ItemCart.element";
-
-//Icons
 import { RiCloseLine } from "react-icons/ri";
+
+import { CartContext } from "../../context/CartContext";
 import { handleCountingClick } from "../../utils/functions";
 
 const ItemCart = ({ product, quantity, numberIndex }) => {

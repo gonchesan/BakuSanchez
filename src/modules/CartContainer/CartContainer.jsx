@@ -1,27 +1,23 @@
-import React, { useContext, useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { useNavigate, useOutletContext } from "react-router-dom";
 
-//Components
-import ItemCart from "../../components/ItemCart/ItemCart";
-import EmpyCart from "../../components/EmpyCart/EmpyCart";
-import Breadcrumb from "../../components/Breadcrumb/Breadcrumb";
-
-//Styled Components
 import { ButtonLink, ButtonOutline, Container } from "../../globalStyle";
-import { CartContext } from "../../context/CartContext";
 import {
   ContainerCartItem,
   HeaderListCart,
   ItemListCart,
   WrapperCart,
 } from "./CartContainer.elements";
-
-//Icons
 import {
   MdOutlineKeyboardBackspace,
   MdRemoveShoppingCart,
 } from "react-icons/md";
+
+import { CartContext } from "../../context/CartContext";
 import OrderSummary from "../../components/OrderSummary/OrderSummary";
+import ItemCart from "../../components/ItemCart/ItemCart";
+import EmpyCart from "../../components/EmpyCart/EmpyCart";
+import Breadcrumb from "../../components/Breadcrumb/Breadcrumb";
 
 const CartContainer = () => {
   const { cart, clear } = useContext(CartContext);

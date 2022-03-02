@@ -1,7 +1,6 @@
-import lottie from "lottie-web";
 import { useEffect, useRef } from "react";
 
-//Styled Components
+import lottie from "lottie-web";
 import { SpinnerWrapper, Circle, OverlaySpinner } from "./Spiner.elements";
 
 const Spinner = () => {

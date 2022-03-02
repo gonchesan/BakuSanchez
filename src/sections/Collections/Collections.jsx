@@ -1,13 +1,13 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
-//Styled Components
 import { Container, Header } from "../../globalStyle";
 import {
   CardCollection,
   Overlay,
   WrapperCollection,
 } from "./Collections.elements";
+
 import { DataContext } from "../../context/DataContext";
 
 const Collections = () => {

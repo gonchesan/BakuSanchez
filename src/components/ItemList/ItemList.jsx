@@ -1,18 +1,14 @@
 import { useContext, useEffect, useState } from "react";
 import { useLocation, useOutletContext, useParams } from "react-router-dom";
 
-//Fetch products
+import { ListWrapper } from "./ItemList.elements";
+
+import { DataContext } from "../../context/DataContext";
+import Item from "../Item/Item";
 import {
   handleProductsBestSeller,
   handleProductsCategory,
 } from "../../utils/products";
-
-//Components
-import Item from "../Item/Item";
-
-//Styled Components
-import { ListWrapper } from "./ItemList.elements";
-import { DataContext } from "../../context/DataContext";
 
 const ItemList = () => {
   const [dataProducts, setDataProducts] = useState([]);

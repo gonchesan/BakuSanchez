@@ -1,12 +1,10 @@
 import { useContext, useEffect, useState } from "react";
 import { useOutletContext, useParams } from "react-router-dom";
 
-//Components
-import ItemDetail from "../../components/ItemDetail/ItemDetail";
-
-//Styled Components
 import { Container } from "../../globalStyle";
 import { DataContext } from "../../context/DataContext";
+
+import ItemDetail from "../../components/ItemDetail/ItemDetail";
 
 const ItemDetailContainer = () => {
   let { id } = useParams();

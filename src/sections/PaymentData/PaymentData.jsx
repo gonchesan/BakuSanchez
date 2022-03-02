@@ -1,12 +1,9 @@
-//Styled Components
 import { Container } from "../../globalStyle";
 import {
   CardsPaymentData,
   PaymentDataInfo,
   WrapperPaymentData,
 } from "./PaymentData.elements";
-
-//Icons
 import {
   MdLocalShipping,
   MdSecurity,

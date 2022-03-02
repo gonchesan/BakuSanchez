@@ -1,12 +1,6 @@
 import { useNavigate } from "react-router-dom";
-import { CartContext } from "../../context/CartContext";
-
-//Components
 import { useContext, useState } from "react";
-import ItemCount from "../ItemCount/ItemCount";
-import ItemDetailSlider from "../ItemDetailSlider/ItemDetailSlider";
 
-//Styled Components
 import {
   DetailContainer,
   InfoWrapper,
@@ -16,10 +10,12 @@ import {
   TittleDetail,
 } from "./ItemDetail.elements";
 import { Button } from "../../globalStyle";
-
-//Icons
 import { MdRemoveShoppingCart } from "react-icons/md";
 import { BsBagCheckFill } from "react-icons/bs";
+
+import { CartContext } from "../../context/CartContext";
+import ItemCount from "../ItemCount/ItemCount";
+import ItemDetailSlider from "../ItemDetailSlider/ItemDetailSlider";
 
 const ItemDetail = ({ product }) => {
   const [itemsAdded, setItemsAdded] = useState(0);

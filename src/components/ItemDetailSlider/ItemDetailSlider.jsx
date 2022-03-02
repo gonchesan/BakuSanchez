@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 
-//Styled Components
 import {
   Carrousel,
   ImageSelected,

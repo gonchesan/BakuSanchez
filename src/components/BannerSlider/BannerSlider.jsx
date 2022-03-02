@@ -1,15 +1,13 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import { useOutletContext } from "react-router-dom";
 
-//Styled Components
 import {
   BannerContainer,
   ButtonContainers,
   ButtonSlider,
 } from "./BannerSlider.elements";
-
-//Icons
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+
 import { DataContext } from "../../context/DataContext";
 import { handleSlider } from "../../utils/functions";
 

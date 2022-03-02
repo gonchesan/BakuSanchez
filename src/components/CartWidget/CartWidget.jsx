@@ -1,9 +1,9 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { CartContext } from "../../context/CartContext";
 
-//Icons
 import { FaShoppingCart } from "react-icons/fa";
+
+import { CartContext } from "../../context/CartContext";
 
 const CartWidget = () => {
   const { calculateTotalItem, cart } = useContext(CartContext);

@@ -1,6 +1,3 @@
-import React from "react";
-
-//Styled Components
 import {
   ButtonSubscribe,
   FooterItem,
@@ -9,15 +6,14 @@ import {
   SocialMediaContainer,
   WrapperFooter,
 } from "./Footer.elements";
-
-//Icons
-import { ReactComponent as Logo } from "../../assets/images/logo-Baku.svg";
 import {
   FaFacebookSquare,
   FaInstagramSquare,
   FaTwitterSquare,
 } from "react-icons/fa";
 import { HiMail } from "react-icons/hi";
+
+import { ReactComponent as Logo } from "../../assets/images/logo-Baku.svg";
 
 const Footer = () => {
   let arrayLinks = [

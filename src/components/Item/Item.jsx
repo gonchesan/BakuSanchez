@@ -1,10 +1,7 @@
-//Components
-import ItemCount from "../ItemCount/ItemCount";
+import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-//Icons
 import { FaRegHeart } from "react-icons/fa";
-
-//Styled Components
 import {
   BadgeCard,
   CardDetail,
@@ -16,11 +13,11 @@ import {
   SelectItem,
   Tittle,
 } from "./Item.elements";
-import { useNavigate } from "react-router-dom";
-import { useContext, useState } from "react";
-import { CartContext } from "../../context/CartContext";
 import { Button } from "../../globalStyle";
 import { MdRemoveShoppingCart } from "react-icons/md";
+
+import { CartContext } from "../../context/CartContext";
+import ItemCount from "../ItemCount/ItemCount";
 
 const Item = ({ product }) => {
   const { addItem, removeItem } = useContext(CartContext);

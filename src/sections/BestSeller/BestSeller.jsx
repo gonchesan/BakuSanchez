@@ -1,8 +1,6 @@
-import React from "react";
-import ItemListContainer from "../../modules/ItemListContainer/ItemListContainer";
-
-//Styled Components
 import { Container, Header } from "../../globalStyle";
+
+import ItemListContainer from "../../modules/ItemListContainer/ItemListContainer";
 
 const BestSeller = () => {
   return (

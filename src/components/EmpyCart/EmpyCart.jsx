@@ -1,12 +1,9 @@
-import lottie from "lottie-web";
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
-//Styled Components
+import lottie from "lottie-web";
 import { ButtonOutline, Container } from "../../globalStyle";
 import { EmpyCartWrapper, Illustration } from "./EmptyCart.elements";
-
-//Icons
 import { MdOutlineKeyboardBackspace } from "react-icons/md";
 
 const EmpyCart = () => {
