@@ -1,3 +1,4 @@
+import { Field, Form } from "formik";
 import styled from "styled-components";
 import { Button } from "../../globalStyle";
 
@@ -24,6 +25,15 @@ export const WrapperSummaryInfo = styled.div`
   &:nth-child(7) {
     flex-direction: column;
   }
+
+  & select {
+    height: 2.5rem;
+    margin-right: 16px;
+    border-radius: 6px;
+    border: 1px solid ${({ theme }) => theme.outlineGray};
+    padding-left: 10px;
+    font-size: 1rem;
+  }
 `;
 
 export const InputCode = styled.input`
@@ -33,6 +43,29 @@ export const InputCode = styled.input`
   border: 1px solid ${({ theme }) => theme.outlineGray};
   padding-left: 10px;
   font-size: 1rem;
+  width: 60%;
+`;
+
+export const StyledField = styled(Field)`
+  height: 2.5rem;
+  margin-right: 16px;
+  border-radius: 6px;
+  border: 1px solid ${({ theme }) => theme.outlineGray};
+  padding-left: 10px;
+  font-size: 1rem;
+`;
+
+export const StyledForm = styled(Form)`
+  & div {
+    &:nth-child(1),
+    &:nth-child(2),
+    &:nth-child(4),
+    &:nth-child(5),
+    &:nth-child(6),
+    &:nth-child(7) {
+      flex-direction: column;
+    }
+  }
 `;
 
 export const SummaryButton = styled(Button)`

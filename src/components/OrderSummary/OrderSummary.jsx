@@ -16,6 +16,7 @@ import { ToastContext } from "../../context/ToastContext";
 import { shippingChoice } from "../../utils/information";
 import { generateOrder } from "../../utils/functions";
 import SelectShipping from "../../components/SelectShipping/SelectShipping";
+import OrderForm from "../OrderForm";
 
 const OrderSummary = () => {
   const { cart, clear, calculateTotalPrice } = useContext(CartContext);
@@ -31,6 +32,8 @@ const OrderSummary = () => {
   const [shippingCost, setShippingCost] = useState(0);
   const [promoCode, setPromoCode] = useState("");
   const [indexArray, setIndexArray] = useState(-1);
+
+  const [getErrors, setGetErrors] = useState({});
 
   const totalPriceReference = useRef(null);
 
@@ -55,30 +58,28 @@ const OrderSummary = () => {
       setPromoCodeError(false);
     }
   };
-
+  //!                                   BORRAR ESTE CONSOLE LOG
+  console.log(getErrors);
   const numberFormat = new Intl.NumberFormat("en-US");
 
   const handleInputBuyer = (event) => {
     setBuyerInfo({ ...buyerInfo, [event.target.name]: event.target.value });
   };
 
-  const arrayInputs = [
-    { subtitle: "Name", name: "name" },
-    { subtitle: "Email", name: "email" },
-    { subtitle: "Phone", name: "phone" },
-  ];
-
   return (
     <CheckoutInfo>
       {!isLoading ? (
         <>
           <CheckoutTitle>Order summary</CheckoutTitle>
+
           <WrapperSummaryInfo>
             <CheckoutSubtitle>Items {cart.length}</CheckoutSubtitle>
             <CheckoutSubtitle>
               {numberFormat.format(calculateTotalPrice())}
             </CheckoutSubtitle>
           </WrapperSummaryInfo>
+          <OrderForm setGetErrors={setGetErrors} />
+          {/* </WrapperSummaryInfo>
           {arrayInputs.map((element, index) => {
             return (
               <WrapperSummaryInfo key={index}>
@@ -100,7 +101,7 @@ const OrderSummary = () => {
               setIndexArray={setIndexArray}
             />
           </WrapperSummaryInfo>
-
+*/}
           <WrapperSummaryInfo>
             <CheckoutSubtitle>Promo code</CheckoutSubtitle>
             <WrapperSummaryInfo flexStart>
