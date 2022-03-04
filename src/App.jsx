@@ -10,6 +10,8 @@ import ItemDetailContainer from "./modules/ItemDetailContainer/ItemDetailContain
 import CategoryContainer from "./modules/CategoryContainer/CategoryContainer";
 import Cart from "./views/Cart";
 import NotFound from "./views/NotFound";
+import Contact from "./views/Contact";
+import About from "./views/About";
 
 const App = () => {
   return (
@@ -31,6 +33,8 @@ const App = () => {
                     element={<ItemDetailContainer />}
                   />
                   <Route path="/cart" element={<Cart />} />
+                  <Route path="/contact-us" element={<Contact />} />
+                  <Route path="/about-us" element={<About />} />
                   <Route path="*" element={<NotFound />} />
                 </Route>
               </Routes>

@@ -25,10 +25,6 @@ export const WrapperSummaryInfo = styled.div`
     flex-direction: column;
   }
 
-  &:nth-child(5) {
-    margin-top: 12px;
-  }
-
   & select {
     height: 2.5rem;
     margin-right: 16px;
@@ -63,10 +59,19 @@ export const StyledForm = styled(Form)`
     &:nth-child(1),
     &:nth-child(2),
     &:nth-child(4),
-    &:nth-child(5),
-    &:nth-child(6),
-    &:nth-child(7) {
+    &:nth-child(5) {
       flex-direction: column;
+    }
+
+    &:nth-child(5) {
+      & div {
+        flex-direction: row;
+      }
+      margin-bottom: 4px;
+    }
+
+    &:nth-child(6) {
+      flex-direction: row;
     }
   }
 `;

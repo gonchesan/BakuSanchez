@@ -13,7 +13,6 @@ import {
   NavLogo,
   NavMenu,
   NavItem,
-  NavItemBtn,
   StyledNavLink,
   MobileIcon,
   WidgetItemBtn,
@@ -42,6 +41,10 @@ const Navbar = () => {
       setRouteActive("/cart");
     } else if (location.pathname.includes("/shop")) {
       setRouteActive("/shop");
+    } else if (location.pathname === "/contact-us") {
+      setRouteActive("contact-us");
+    } else if (location.pathname === "/about-us") {
+      setRouteActive("about-us");
     }
   }, [location.pathname]);
 
@@ -155,22 +158,24 @@ const Navbar = () => {
               </DropdownMenu>
             </NavItem>
             <NavItem active={routeActive === "contact-us"}>
-              <NavItemBtn
-                onClick={closeMobileMenu}
-                active={routeActive === "contact-us"}
+              <StyledNavLink
+                activeclassname={toString(routeActive === "contact-us")}
+                to="/contact-us"
                 name="contact-us"
+                onClick={closeMobileMenu}
               >
                 Contact us
-              </NavItemBtn>
+              </StyledNavLink>
             </NavItem>
-            <NavItem active={routeActive === "blog"}>
-              <NavItemBtn
+            <NavItem active={routeActive === "about-us"}>
+              <StyledNavLink
+                activeclassname={toString(routeActive === "about-us")}
+                to="/about-us"
+                name="about-us"
                 onClick={closeMobileMenu}
-                active={routeActive === "blog"}
-                name="blog"
               >
-                Blog
-              </NavItemBtn>
+                About us
+              </StyledNavLink>
             </NavItem>
           </NavMenu>
         </NavbarContainer>

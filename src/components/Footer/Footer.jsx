@@ -14,19 +14,9 @@ import {
 import { HiMail } from "react-icons/hi";
 
 import { ReactComponent as Logo } from "../../assets/images/logo-Baku.svg";
+import { arrayFooterLinks } from "../../utils/arraysInfo";
 
 const Footer = () => {
-  let arrayLinks = [
-    {
-      title: "Information",
-      links: ["About Us", "More Search", "Blog", "Testimonials", "Events"],
-    },
-    {
-      title: "Helpful Links",
-      links: ["Services", "Supports", "Terms & Condition", "Privacy Policy"],
-    },
-  ];
-
   let iconsName = [FaFacebookSquare, FaInstagramSquare, FaTwitterSquare];
 
   return (
@@ -44,7 +34,7 @@ const Footer = () => {
           })}
         </SocialMediaContainer>
       </FooterItem>
-      {arrayLinks.map((element, index) => {
+      {arrayFooterLinks.map((element, index) => {
         const { title, links } = element;
         return (
           <FooterItem key={index}>

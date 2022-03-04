@@ -44,16 +44,6 @@ export const getCollectionPictures = async () => {
 //   );
 // };
 
-// TODO                CAMBIAR este info y ver si puedo agregar la seccion About us
-export const getAboutUstInfo = () => {
-  return fetch("https://baku-api.herokuapp.com/infoPage").then((response) =>
-    response
-      .json()
-      .then((data) => data[2])
-      .then((result) => result.aboutUs)
-  );
-};
-
 export const shippingChoice = {
   "-1": 0,
   0: 50,
