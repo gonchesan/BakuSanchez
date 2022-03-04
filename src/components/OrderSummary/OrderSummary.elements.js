@@ -20,10 +20,13 @@ export const WrapperSummaryInfo = styled.div`
 
   &:nth-child(3),
   &:nth-child(4),
-  &:nth-child(5),
   &:nth-child(6),
   &:nth-child(7) {
     flex-direction: column;
+  }
+
+  &:nth-child(5) {
+    margin-top: 12px;
   }
 
   & select {
@@ -75,7 +78,7 @@ export const SummaryButton = styled(Button)`
 `;
 
 export const AlertPromo = styled.p`
-  margin: 8px 0;
+  margin: 4px 0 0px 0;
   padding-left: 4px;
   color: ${({ theme, error }) => (error ? theme.red : theme.darkSlategray)};
   font-weight: 600;

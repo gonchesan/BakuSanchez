@@ -52,18 +52,19 @@ export const generateOrder = (
   setToastVisibility
 ) => {
   let order = {
-    buyer: { buyerInfo },
+    buyer: { ...buyerInfo },
     items: cart,
     total: Number(totalPrice),
     date: Timestamp.fromDate(new Date()),
   };
-  addDoc(collection(db, "orders"), order)
-    .then((doc) => {
-      let textToast = `<b>${buyerInfo.name}</b>, your purchase order has been carried out successfully. Your purchase ID is: <b>${doc.id}.</b> `;
-      setToastMessage(textToast);
-      setToastVisibility(true);
-      navigate("/");
-      clear();
-    })
-    .catch((err) => console.log("Something is wrong: ", err));
+  console.log(order);
+  // addDoc(collection(db, "orders"), order)
+  //   .then((doc) => {
+  //     let textToast = `<b>${buyerInfo.name}</b>, your purchase order has been carried out successfully. Your purchase ID is: <b>${doc.id}.</b> `;
+  //     setToastMessage(textToast);
+  //     setToastVisibility(true);
+  //     navigate("/");
+  //     clear();
+  //   })
+  //   .catch((err) => console.log("Something is wrong: ", err));
 };

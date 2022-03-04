@@ -59,7 +59,7 @@ export const CartProvider = ({ children }) => {
     );
     if (shippingCost !== undefined && promoCodeError !== undefined) {
       if (!promoCodeError) {
-        return total - (total * 15) / 100 + shippingCost;
+        return Number(total - (total * 15) / 100 + shippingCost).toFixed(2);
       } else {
         return total + shippingCost;
       }

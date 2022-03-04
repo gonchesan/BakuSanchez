@@ -1,4 +1,5 @@
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { useRef } from "react";
+import { Formik, Field } from "formik";
 
 import * as Yup from "yup";
 import {
@@ -29,13 +30,14 @@ const SignupSchema = Yup.object().shape(
   //   .matches("030355556", "Promo code error")
 );
 
-const OrderForm = ({ setGetErrors }) => {
+const OrderForm = ({ setGetErrors, setBuyerInfo, setIndexArray }) => {
   const arrayInputs = [
     { subtitle: "Name", name: "name", type: "text" },
     { subtitle: "Email", name: "email", type: "text" },
     { subtitle: "Phone", name: "phone", type: "tel" },
   ];
-
+  const ref = useRef(null);
+  const someFuncton = () => setIndexArray(ref.current.value);
   return (
     <>
       <Formik
@@ -49,13 +51,18 @@ const OrderForm = ({ setGetErrors }) => {
         onSubmit={(values, { resetForm }) => {
           // same shape as initial values
           setTimeout(() => {
+            setBuyerInfo({
+              name: values.name,
+              phone: values.phone,
+              email: values.email,
+            });
             resetForm();
             //!                                   RETORNAR VALORES
           }, 400);
         }}
       >
         {({ errors, touched }) => (
-          <StyledForm>
+          <StyledForm onChange={someFuncton}>
             {arrayInputs.map((element, index) => {
               return (
                 <WrapperSummaryInfo key={index}>
@@ -73,7 +80,7 @@ const OrderForm = ({ setGetErrors }) => {
             <WrapperSummaryInfo>
               <CheckoutSubtitle>Shipping</CheckoutSubtitle>
 
-              <Field as="select" name="shippingCost">
+              <Field as="select" name="shippingCost" innerRef={ref}>
                 <option value="" label="Select an option" />
                 <option value="0">Standard Delivery - $us 50</option>
                 <option value="1">Same Day Delivery - $us 100</option>

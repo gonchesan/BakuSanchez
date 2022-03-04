@@ -15,7 +15,6 @@ import { CartContext } from "../../context/CartContext";
 import { ToastContext } from "../../context/ToastContext";
 import { shippingChoice } from "../../utils/information";
 import { generateOrder } from "../../utils/functions";
-import SelectShipping from "../../components/SelectShipping/SelectShipping";
 import OrderForm from "../OrderForm";
 
 const OrderSummary = () => {
@@ -31,7 +30,7 @@ const OrderSummary = () => {
   });
   const [shippingCost, setShippingCost] = useState(0);
   const [promoCode, setPromoCode] = useState("");
-  const [indexArray, setIndexArray] = useState(-1);
+  const [indexArray, setIndexArray] = useState("");
 
   const [getErrors, setGetErrors] = useState({});
 
@@ -58,13 +57,11 @@ const OrderSummary = () => {
       setPromoCodeError(false);
     }
   };
-  //!                                   BORRAR ESTE CONSOLE LOG
-  console.log(getErrors);
-  const numberFormat = new Intl.NumberFormat("en-US");
 
-  const handleInputBuyer = (event) => {
-    setBuyerInfo({ ...buyerInfo, [event.target.name]: event.target.value });
-  };
+  const numberFormat = new Intl.NumberFormat("en-US");
+  // const handleInputBuyer = (event) => {
+  //   setBuyerInfo({ ...buyerInfo, [event.target.name]: event.target.value });
+  // };
 
   return (
     <CheckoutInfo>
@@ -78,30 +75,13 @@ const OrderSummary = () => {
               {numberFormat.format(calculateTotalPrice())}
             </CheckoutSubtitle>
           </WrapperSummaryInfo>
-          <OrderForm setGetErrors={setGetErrors} />
-          {/* </WrapperSummaryInfo>
-          {arrayInputs.map((element, index) => {
-            return (
-              <WrapperSummaryInfo key={index}>
-                <CheckoutSubtitle>{element.subtitle}</CheckoutSubtitle>
-                <InputCode
-                  onChange={handleInputBuyer}
-                  name={element.name}
-                  value={buyerInfo[element.name]}
-                />
-              </WrapperSummaryInfo>
-            );
-          })}
-          <WrapperSummaryInfo>
-            <CheckoutSubtitle>Shipping</CheckoutSubtitle>
-            <SelectShipping
-              isVisible={isVisible}
-              setIsVisible={setIsVisible}
-              indexArray={indexArray}
-              setIndexArray={setIndexArray}
-            />
-          </WrapperSummaryInfo>
-*/}
+
+          <OrderForm
+            setGetErrors={setGetErrors}
+            setBuyerInfo={setBuyerInfo}
+            setIndexArray={setIndexArray}
+          />
+
           <WrapperSummaryInfo>
             <CheckoutSubtitle>Promo code</CheckoutSubtitle>
             <WrapperSummaryInfo flexStart>
@@ -130,7 +110,7 @@ const OrderSummary = () => {
               generateOrder(
                 buyerInfo,
                 cart,
-                totalPriceReference,
+                totalPriceReference.current.innerText,
                 setToastMessage,
                 clear,
                 navigate,
