@@ -44,6 +44,18 @@ export const getCollectionPictures = async () => {
 //   );
 // };
 
+export const getAboutInformation = async () => {
+  const query = collection(db, "infoPage");
+  const docSnap = await getDocs(query);
+
+  let newState = [];
+
+  docSnap.forEach((doc) => {
+    newState.push(doc.data().aboutUsInfo);
+  });
+  return newState;
+};
+
 export const shippingChoice = {
   "-1": 0,
   0: 50,

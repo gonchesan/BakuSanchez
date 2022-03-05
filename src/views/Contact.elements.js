@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 export const WrapperForm = styled.div`
-  background-color: #eff0f4;
-  border: 2px solid #c9d3de;
+  background-color: ${({ theme }) => theme.white};
+  border: 2px solid ${({ theme }) => theme.lightGray};
   border-radius: 8px;
   display: flex;
   width: 70%;
@@ -16,7 +16,8 @@ export const SectionContact = styled.div`
   align-items: center;
   width: ${({ isLeft }) => (isLeft ? "60%" : "40%")};
   padding: 1.5rem;
-  border-left: ${({ isRight }) => (isRight ? "2px solid #c9d3de" : "")};
+  border-left: ${({ isRight, theme }) =>
+    isRight ? `2px solid ${theme.lightGray}` : ""};
 `;
 
 export const WrapperInputs = styled.div`
@@ -68,9 +69,9 @@ export const ButtonContactSubmit = styled.button`
 
 export const TitleContact = styled.p`
   color: ${({ theme }) => theme.mediumGray};
-  font-size: 1.97rem;
+  font-size: 1.5rem;
   font-weight: 500;
-  margin-top: 2rem;
+  margin-top: 0.5rem;
   margin-bottom: 1rem;
 `;
 
@@ -78,11 +79,12 @@ export const SubtitleContact = styled.p`
   color: ${({ theme }) => theme.gray};
   font-size: 0.97rem;
   font-weight: 500;
+  margin-top: 0.5rem;
 `;
 
 export const ListInformationContact = styled.ul`
-  border-top: 2px solid #c9d3de;
-  border-bottom: 2px solid #c9d3de;
+  border-top: 2px solid ${({ theme }) => theme.lightGray};
+  border-bottom: 2px solid ${({ theme }) => theme.lightGray};
   list-style: none;
   margin: 2rem 0;
   padding: 1.5rem 0;

@@ -5,11 +5,11 @@ export const arrayInputsSummary = [
 ];
 
 export const arrayOptionsSummary = [
-  { value: "Name", label: "Select an option" },
-  { value: "Email", label: "Standard Delivery - $us 50" },
-  { value: "Phone", label: "Same Day Delivery - $us 100" },
-  { value: "Phone", label: "Overnight Shipping - $us 175" },
-  { value: "Phone", label: "Express Delivery - $us 200" },
+  { value: "", label: "Select an option" },
+  { value: "0", label: "Standard Delivery - $us 50" },
+  { value: "1", label: "Same Day Delivery - $us 100" },
+  { value: "2", label: "Overnight Shipping - $us 175" },
+  { value: "3", label: "Express Delivery - $us 200" },
 ];
 
 export const arrayFooterLinks = [

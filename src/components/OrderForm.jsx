@@ -46,24 +46,22 @@ const OrderForm = ({
         }}
         validationSchema={formSchema}
         onSubmit={(values, { resetForm }) => {
-          setTimeout(() => {
-            const buyerInfo = {
-              name: values.name,
-              phone: values.phone,
-              email: values.email,
-            };
+          const buyerInfo = {
+            name: values.name,
+            phone: values.phone,
+            email: values.email,
+          };
 
-            generateOrder(
-              buyerInfo,
-              cart,
-              totalPriceReference.current.innerText,
-              setToastMessage,
-              clear,
-              navigate,
-              setToastVisibility
-            );
-            resetForm();
-          }, 400);
+          generateOrder(
+            buyerInfo,
+            cart,
+            totalPriceReference.current.innerText,
+            setToastMessage,
+            clear,
+            navigate,
+            setToastVisibility
+          );
+          resetForm();
         }}
       >
         {({ errors, touched }) => (

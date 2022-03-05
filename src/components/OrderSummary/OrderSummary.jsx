@@ -28,6 +28,7 @@ const OrderSummary = () => {
   useEffect(() => {
     setIsLoading(false);
     setShippingCost(shippingChoice[indexArray]);
+    console.log(indexArray);
   }, [indexArray, setIsLoading]);
 
   const handleInput = (event) => {

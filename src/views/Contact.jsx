@@ -2,7 +2,7 @@ import { useEffect } from "react";
 
 import { useOutletContext } from "react-router-dom";
 import { CheckoutSubtitle } from "../components/OrderSummary/OrderSummary.elements";
-import { Container } from "../globalStyle";
+import { Container, Header } from "../globalStyle";
 import {
   ButtonContactSubmit,
   InputContact,
@@ -28,7 +28,7 @@ const Contact = () => {
     <>
       {!isLoading && (
         <Container>
-          <TitleContact>Contact us</TitleContact>
+          <Header>Contact us</Header>
           <div className="contact-info">
             <SubtitleContact>
               We love questions and feedback- and we're always happy to help!
@@ -37,7 +37,7 @@ const Contact = () => {
             <WrapperForm>
               <SectionContact isLeft>
                 <form>
-                  <h2>Send us a message</h2>
+                  <TitleContact>Send us a message</TitleContact>
                   <SubtitleContact>
                     Send us a message and we'll within 24 hours.
                   </SubtitleContact>
@@ -85,11 +85,9 @@ const Contact = () => {
                   </ButtonContactSubmit>
                 </form>
               </SectionContact>
-
-              {/* ------------------------------------ */}
               <SectionContact isRight>
                 <div className="details">
-                  <h3>Contact information</h3>
+                  <TitleContact>Contact information</TitleContact>
                   <ListInformationContact>
                     <li>
                       <IoLocationOutline />
