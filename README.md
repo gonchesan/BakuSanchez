@@ -12,7 +12,7 @@
   </p>
 </div>
 
-![Preview Demo](https://i.imgur.com/izP0Sph.gif)
+![Preview Demo](https://i.imgur.com/izP0Sph.mp4)
 
 ## ⛩ Baku Ecommerce
 
@@ -60,4 +60,4 @@
 
 ## 🙌 Usage
 
-![Preview Demo](https://i.imgur.com/vi0RDRX.gif)
+![Preview Demo](https://i.imgur.com/vi0RDRX.mp4)
