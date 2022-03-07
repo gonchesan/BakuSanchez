@@ -10,7 +10,7 @@ import {
 
 import { CartContext } from "../../context/CartContext";
 import { shippingChoice } from "../../utils/information";
-import OrderForm from "../OrderForm";
+import OrderForm from "../OrderForm/OrderForm";
 
 const OrderSummary = () => {
   const { cart, calculateTotalPrice } = useContext(CartContext);

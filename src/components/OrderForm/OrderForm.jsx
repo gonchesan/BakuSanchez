@@ -9,13 +9,16 @@ import {
   AlertPromo,
   SummaryButton,
   InputCode,
-} from "./OrderSummary/OrderSummary.elements";
+} from "../OrderSummary/OrderSummary.elements";
 
-import { generateOrder } from "../utils/functions";
-import { ToastContext } from "../context/ToastContext";
-import { CartContext } from "../context/CartContext";
-import { formSchema } from "../utils/schema";
-import { arrayInputsSummary, arrayOptionsSummary } from "../utils/arraysInfo";
+import { generateOrder } from "../../utils/functions";
+import { ToastContext } from "../../context/ToastContext";
+import { CartContext } from "../../context/CartContext";
+import { formSchema } from "../../utils/schema";
+import {
+  arrayInputsSummary,
+  arrayOptionsSummary,
+} from "../../utils/arraysInfo";
 
 const OrderForm = ({
   setIndexArray,
