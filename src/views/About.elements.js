@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { device } from "../device";
 
 export const WrapperAbout = styled.div`
   display: flex;
@@ -21,6 +22,12 @@ export const SectionAbout = styled.div`
     border-radius: 4px;
     position: relative;
   }
+
+  @media ${device.tablet} {
+    & img {
+      width: 20rem;
+    }
+  }
 `;
 
 export const TextAbout = styled.p`
@@ -30,5 +37,9 @@ export const TextAbout = styled.p`
   margin-top: 2.5rem;
   &:nth-child(1) {
     margin-top: 0;
+  }
+
+  @media ${device.tablet} {
+    margin-top: 1.5rem;
   }
 `;

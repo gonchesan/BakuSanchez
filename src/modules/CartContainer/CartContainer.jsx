@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useState, useEffect } from "react";
 import { useNavigate, useOutletContext } from "react-router-dom";
 
 import { ButtonLink, ButtonOutline, Container } from "../../globalStyle";
@@ -22,12 +22,15 @@ import Breadcrumb from "../../components/Breadcrumb/Breadcrumb";
 const CartContainer = () => {
   const { cart, clear } = useContext(CartContext);
   const [isLoading, setIsLoading] = useOutletContext();
+  const [isOpen, setIsOpen] = useState(false);
 
   let navigate = useNavigate();
 
   const navigateToShop = () => {
     navigate("/shop");
   };
+
+  const handleOpenSummary = () => setIsOpen(!isOpen);
 
   useEffect(() => {
     setTimeout(() => setIsLoading(false), 500);
@@ -70,7 +73,7 @@ const CartContainer = () => {
                 <MdOutlineKeyboardBackspace /> Continue shopping
               </ButtonLink>
             </ItemListCart>
-            <OrderSummary />
+            <OrderSummary isOpen={isOpen} />
           </WrapperCart>
         </>
       )}

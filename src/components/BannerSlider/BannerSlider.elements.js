@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { device } from "../../device";
 
 export const BannerContainer = styled.div`
   position: relative;
@@ -11,6 +12,12 @@ export const BannerContainer = styled.div`
     object-fit: cover;
     object-position: top center;
   }
+  @media ${device.tablet} {
+    height: auto;
+    & img {
+      object-fit: contain;
+    }
+  }
 `;
 
 export const ButtonContainers = styled.div`
@@ -22,6 +29,10 @@ export const ButtonContainers = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  @media ${device.tablet} {
+    top: 40%;
+    padding: 0 1.5rem;
+  }
 `;
 export const ButtonSlider = styled.button`
   background-color: #595f6a87;

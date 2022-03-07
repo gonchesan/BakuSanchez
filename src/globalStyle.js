@@ -1,4 +1,5 @@
 import styled, { createGlobalStyle } from "styled-components";
+import { device } from "./device";
 
 const GlobalStyle = createGlobalStyle`
 
@@ -107,6 +108,17 @@ export const Button = styled.button`
     & svg {
       opacity: 0.4;
       background-color: #d31726;
+    }
+  }
+
+  @media ${device.tablet} {
+    width: ${({ isDetailView }) => (isDetailView ? "100%" : "11rem")};
+    justify-content: ${({ isDetailView }) =>
+      isDetailView ? "center" : "start"};
+    margin: ${({ isDetailView }) =>
+      isDetailView ? "0 0 8px 0 " : "0rem 0.4rem 0rem 0.7rem"};
+    & svg {
+      margin: 0rem 0.4rem 0rem 0.7rem;
     }
   }
 `;

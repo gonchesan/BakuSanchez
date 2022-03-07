@@ -5,8 +5,10 @@ import {
   CheckoutInfo,
   CheckoutSubtitle,
   CheckoutTitle,
+  DetailButton,
   WrapperSummaryInfo,
 } from "./OrderSummary.elements";
+import { RiMenuFoldFill } from "react-icons/ri";
 
 import { CartContext } from "../../context/CartContext";
 import { shippingChoice } from "../../utils/information";
@@ -28,7 +30,6 @@ const OrderSummary = () => {
   useEffect(() => {
     setIsLoading(false);
     setShippingCost(shippingChoice[indexArray]);
-    console.log(indexArray);
   }, [indexArray, setIsLoading]);
 
   const handleInput = (event) => {
@@ -48,6 +49,9 @@ const OrderSummary = () => {
     <CheckoutInfo>
       {!isLoading ? (
         <>
+          <DetailButton>
+            <RiMenuFoldFill />
+          </DetailButton>
           <CheckoutTitle>Order summary</CheckoutTitle>
           <WrapperSummaryInfo>
             <CheckoutSubtitle>Items {cart.length}</CheckoutSubtitle>

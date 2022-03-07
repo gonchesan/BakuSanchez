@@ -1,6 +1,7 @@
-import { NavLink } from "react-router-dom";
 import styled from "styled-components";
+import { NavLink } from "react-router-dom";
 import { Container } from "../../globalStyle";
+import { device } from "../../device";
 
 export const Nav = styled.nav`
   display: flex;
@@ -35,7 +36,7 @@ export const NavLogo = styled.img`
 export const MobileIcon = styled.div`
   display: none;
 
-  @media screen and (max-width: 960px) {
+  @media ${device.tablet} {
     display: block;
     position: absolute;
     top: 0%;
@@ -53,14 +54,21 @@ export const NavMenu = styled.ul`
   align-items: center;
   transition: all 0.5s ease;
 
-  @media screen and (max-width: 960px) {
+  @media ${device.tablet} {
     position: absolute;
     width: 100%;
-    height: 90vh;
-    top: 70px;
+    height: 20vh;
+    top: 100px;
     left: ${({ click }) => (click ? "0%" : "-100%")};
     background-image: linear-gradient(to top, #f0e6e6 0%, #f5eeee 100%);
+    background: ${({ theme }) => theme.lightGray};
     flex-direction: column;
+
+    &:nth-child(1) {
+      top: 154px;
+      background-image: linear-gradient(to top, #f0e6e6 0%, #f5eeee 100%);
+      height: 63vh;
+    }
   }
 `;
 
@@ -78,8 +86,14 @@ export const NavItem = styled.li`
     border-bottom: 2px solid ${({ theme }) => theme.red};
   }
 
-  @media screen and (max-width: 960px) {
-    margin: 18px 0;
+  @media ${device.tablet} {
+    margin: 1rem 0;
+    background-color: transparent;
+    color: ${({ active, theme }) => (active ? theme.red : "transparent")};
+
+    &:hover {
+      border-bottom: 2px solid transparent;
+    }
   }
 `;
 
@@ -157,6 +171,10 @@ export const StyledNavLink = styled(NavLink)`
   &:hover {
     opacity: 1;
   }
+  @media ${device.tablet} {
+    color: ${({ theme }) => theme.black};
+    font-weight: 400;
+  }
 `;
 
 export const NavItemBtn = styled.button`
@@ -183,16 +201,17 @@ export const WidgetContainer = styled.li`
   width: 48px;
   height: 48px;
   margin: 0px 8px;
-
-  @media screen and (max-width: 960px) {
-    margin: 18px 0;
+  @media ${device.tablet} {
+    margin: 0.25rem 6rem 0.25rem 0;
   }
 `;
 
 export const WidgetItemBtn = styled(NavItemBtn)`
   ${NavItemBtn}
-  width: 100%;
+  width: 8rem;
   height: 100%;
+  display: flex;
+  align-items: center;
 
   position: relative;
   color: ${({ theme }) => theme.gray};
@@ -205,6 +224,7 @@ export const WidgetItemBtn = styled(NavItemBtn)`
   & span {
     position: absolute;
     top: 10%;
+    right: 0;
     display: inline-block;
     background-color: ${({ theme }) => theme.red};
     color: ${({ theme }) => theme.white};
@@ -217,5 +237,26 @@ export const WidgetItemBtn = styled(NavItemBtn)`
 
   &:hover {
     opacity: 0.87;
+  }
+  & label {
+    display: none;
+  }
+  @media ${device.tablet} {
+    width: 9rem;
+    font-weight: 400;
+
+    & label {
+      font-family: "Oswald", sans-serif;
+      display: block;
+      margin-left: 1.5rem;
+    }
+    & svg {
+      width: 2rem;
+      height: 100%;
+    }
+    & span {
+      top: -10%;
+      left: 2.5rem;
+    }
   }
 `;

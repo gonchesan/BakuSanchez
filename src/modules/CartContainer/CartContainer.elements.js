@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { device } from "../../device";
 
 export const WrapperCart = styled.div`
   display: flex;
@@ -37,14 +38,34 @@ export const HeaderListCart = styled.div`
       white-space: nowrap;
     }
   }
+  @media ${device.tablet} {
+    & p {
+      &:nth-child(1) {
+        width: 100px;
+      }
+      &:nth-child(2) {
+        width: 50px;
+      }
+      &:nth-child(3) {
+        width: 15px;
+      }
+      &:nth-child(4) {
+        width: 250px;
+      }
+    }
+  }
 `;
 
 export const ItemListCart = styled.div`
   width: 65%;
+  @media ${device.tablet} {
+    width: 100%;
+  }
 `;
 
 export const ContainerCartItem = styled.div`
   width: 100%;
   height: 360px;
   overflow-y: auto;
+  overflow-x: hidden;
 `;

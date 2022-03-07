@@ -1,19 +1,31 @@
 import styled from "styled-components";
+import { device } from "../../device";
 
 export const DetailContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: flex-start;
   padding: 40px 0;
+
+  @media ${device.tablet} {
+    justify-content: start;
+  }
 `;
 export const SliderWrapper = styled.div`
   position: relative;
   overflow: hidden;
   width: 55%;
+  @media ${device.tablet} {
+    width: 50%;
+    height: 25rem;
+  }
 `;
 export const InfoWrapper = styled.div`
   width: 30%;
   padding: 0 2rem;
+  @media ${device.tablet} {
+    width: 50%;
+  }
 `;
 
 export const TittleDetail = styled.p`

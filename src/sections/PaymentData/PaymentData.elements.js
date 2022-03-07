@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { device } from "../../device";
 
 export const WrapperPaymentData = styled.div`
   margin: 1.5rem 0;
@@ -10,6 +11,11 @@ export const WrapperPaymentData = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-column-gap: 16px;
+
+  @media ${device.tablet} {
+    grid-column-gap: 0rem;
+    height: 4rem;
+  }
 `;
 
 export const CardsPaymentData = styled.div`
@@ -18,10 +24,15 @@ export const CardsPaymentData = styled.div`
   align-items: center;
 
   & svg {
-    width: 32px;
-    height: 32px;
+    width: 2rem;
+    height: 2rem;
     margin: 0 20px;
     color: ${({ theme }) => theme.crimson};
+  }
+  @media ${device.tablet} {
+    & svg {
+      margin: 0 0.8rem;
+    }
   }
 `;
 
@@ -31,4 +42,8 @@ export const PaymentDataInfo = styled.div`
   }
   font-weight: 500;
   color: ${({ theme }) => theme.textBlack};
+
+  @media ${device.tablet} {
+    font-size: 0.85rem;
+  }
 `;

@@ -1,12 +1,12 @@
 import styled from "styled-components";
+import { device } from "../../device";
 
 export const SliderContainer = styled.div`
-  background-color: lightgreen;
   position: relative;
 `;
 export const ImageSelected = styled.img`
   float: right;
-  width: calc(100% - 100px);
+  width: calc(100% - 70px);
   animation: 1s fadeIn;
 
   @keyframes fadeIn {
@@ -43,6 +43,14 @@ export const Carrousel = styled.div`
 
     &:hover {
       opacity: 1;
+    }
+  }
+
+  @media ${device.tablet} {
+    width: 3.75rem;
+
+    & img {
+      height: 3.75rem;
     }
   }
 `;

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { device } from "../../device";
 
 export const WrapperCollection = styled.div`
   height: 70vh;
@@ -16,6 +17,7 @@ export const Overlay = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
+  border-radius: 8px;
   background: linear-gradient(
     180deg,
     rgba(0, 0, 0, 0.45) 0%,
@@ -23,6 +25,11 @@ export const Overlay = styled.div`
   );
   transition: all 0.3s;
   opacity: 0;
+
+  @media ${device.tablet} {
+    opacity: 1;
+    background: linear-gradient(rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 0.4) 75%);
+  }
 `;
 
 export const CardCollection = styled.div`
@@ -82,5 +89,16 @@ export const CardCollection = styled.div`
     font-size: 1.5rem;
     text-transform: uppercase;
     opacity: 0;
+  }
+  @media ${device.tablet} {
+    & h5 {
+      opacity: 1;
+      font-size: 1.2rem;
+      transform: translateY(-10px);
+      color: ${({ theme }) => theme.lightGray};
+    }
+    &:hover {
+      background: transparent;
+    }
   }
 `;

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { device } from "../device";
 
 export const WrapperForm = styled.div`
   background-color: ${({ theme }) => theme.white};
@@ -7,6 +8,10 @@ export const WrapperForm = styled.div`
   display: flex;
   width: 70%;
   margin: 1.5rem auto;
+
+  @media ${device.tablet} {
+    width: 100%;
+  }
 `;
 
 export const SectionContact = styled.div`

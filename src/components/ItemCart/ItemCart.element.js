@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import { Button } from "../../globalStyle";
+import { device } from "../../device";
 
 export const WrapperItemCart = styled.div`
-  /* background-color: lightgreen; */
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -29,6 +29,16 @@ export const WrapperItemCart = styled.div`
     font-weight: 600;
     font-size: 0.9rem;
   }
+  @media ${device.tablet} {
+    & p:nth-child(4) {
+      margin-left: 0.5rem;
+      width: 75px;
+    }
+    & p:nth-child(5) {
+      margin-left: 1.5rem;
+      width: 105px;
+    }
+  }
 `;
 
 export const ImageItemCart = styled.img`
@@ -37,13 +47,16 @@ export const ImageItemCart = styled.img`
   object-fit: cover;
   object-position: center;
   margin: 8px 0;
+  @media ${device.tablet} {
+    width: 60px;
+    height: 60px;
+  }
 `;
 
 export const InfoItemCart = styled.div`
   display: flex;
   flex-direction: column;
   width: 14rem;
-  /* background-color: lightyellow; */
 
   //Title
   & p:nth-child(1) {
@@ -53,7 +66,6 @@ export const InfoItemCart = styled.div`
     color: ${({ theme }) => theme.darkSlategray};
     font-size: 0.9rem;
     font-weight: 600;
-    /* white-space: nowrap; */
     overflow: hidden;
     text-overflow: ellipsis;
   }
@@ -65,6 +77,13 @@ export const InfoItemCart = styled.div`
     font-family: "Oswald", sans-serif;
     text-transform: uppercase;
     font-size: 0.8rem;
+  }
+
+  @media ${device.tablet} {
+    width: 10rem;
+    & p:nth-child(1) {
+      width: 150px;
+    }
   }
 `;
 

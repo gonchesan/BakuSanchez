@@ -13,8 +13,7 @@ export const theme = {
   mediumBlack: "#1b1b1b", //(mini button)B
   disabledRed: "#a97a80", //(with .7 opacity)
   textBlack: "#3a3a3a",
-  textGray: "#595f6a",
-  //acent color:
+  textGray: "#595f6a", //acent color:
   greenNotification: "#3DB95D",
   blueNotification: "#026AE0",
   yellowNotification: "#EE9500",
