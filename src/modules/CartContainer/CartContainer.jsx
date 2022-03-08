@@ -22,6 +22,7 @@ import Breadcrumb from "../../components/Breadcrumb/Breadcrumb";
 const CartContainer = () => {
   const { cart, clear } = useContext(CartContext);
   const [isLoading, setIsLoading] = useOutletContext();
+
   const [isOpen, setIsOpen] = useState(false);
 
   let navigate = useNavigate();
@@ -73,7 +74,10 @@ const CartContainer = () => {
                 <MdOutlineKeyboardBackspace /> Continue shopping
               </ButtonLink>
             </ItemListCart>
-            <OrderSummary isOpen={isOpen} />
+            <OrderSummary
+              isOpen={isOpen}
+              handleOpenSummary={handleOpenSummary}
+            />
           </WrapperCart>
         </>
       )}

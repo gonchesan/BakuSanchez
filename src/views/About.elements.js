@@ -6,6 +6,9 @@ export const WrapperAbout = styled.div`
   width: 100%;
   justify-content: center;
   align-items: flex-start;
+  @media ${device.mobileM} {
+    flex-direction: column;
+  }
 `;
 
 export const SectionAbout = styled.div`
@@ -26,6 +29,18 @@ export const SectionAbout = styled.div`
   @media ${device.tablet} {
     & img {
       width: 20rem;
+    }
+  }
+  @media ${device.mobileM} {
+    margin-top: 0.5rem;
+    width: 100%;
+    & img {
+      position: absolute;
+      width: 22rem;
+      height: 85vh;
+      mix-blend-mode: darken;
+      margin-right: 0;
+      opacity: 0.1;
     }
   }
 `;

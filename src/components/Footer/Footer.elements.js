@@ -13,6 +13,12 @@ export const WrapperFooter = styled.div`
   @media ${device.tablet} {
     grid-column-gap: 1.5rem;
   }
+  @media ${device.mobileM} {
+    grid-column-gap: 0.5rem;
+
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr 2rem;
+  }
 `;
 
 export const FooterItem = styled.div`
@@ -39,6 +45,24 @@ export const FooterItem = styled.div`
       width: 4.5rem;
     }
     font-size: 0.9rem;
+  }
+
+  @media ${device.mobileM} {
+    &:nth-child(1) {
+      grid-area: 1 / 1 / 2 / 2;
+    }
+    &:nth-child(2) {
+      display: none;
+    }
+    &:nth-child(3) {
+      display: none;
+    }
+    &:nth-child(4) {
+      grid-area: 1 / 2 / 2 / 3;
+    }
+    &:nth-child(5) {
+      grid-column: 1/5;
+    }
   }
 `;
 

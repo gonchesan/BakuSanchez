@@ -13,4 +13,9 @@ export const ListWrapper = styled.div`
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 0.5rem;
   }
+
+  @media ${device.mobileM} {
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 0.5rem;
+  }
 `;

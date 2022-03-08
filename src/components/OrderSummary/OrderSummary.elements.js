@@ -19,6 +19,11 @@ export const CheckoutInfo = styled.div`
     right: ${({ isOpen }) => (isOpen ? "0" : "-335px")};
     z-index: 105;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    transition: all 0.3s linear;
+  }
+  @media ${device.mobileM} {
+    width: 80%;
+    right: ${({ isOpen }) => (isOpen ? "-294px" : "-4px")};
   }
 `;
 
@@ -146,5 +151,9 @@ export const DetailButton = styled.button`
     height: 100%;
     padding: 8px;
     color: ${({ theme }) => theme.mediumBlack};
+  }
+
+  @media ${device.mobileM} {
+    left: -12%;
   }
 `;

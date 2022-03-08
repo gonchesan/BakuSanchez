@@ -12,6 +12,10 @@ export const WrapperForm = styled.div`
   @media ${device.tablet} {
     width: 100%;
   }
+
+  @media ${device.mobileM} {
+    flex-direction: column-reverse;
+  }
 `;
 
 export const SectionContact = styled.div`
@@ -23,6 +27,13 @@ export const SectionContact = styled.div`
   padding: 1.5rem;
   border-left: ${({ isRight, theme }) =>
     isRight ? `2px solid ${theme.lightGray}` : ""};
+  @media ${device.mobileM} {
+    width: 100%;
+    border-left: none;
+    &:nth-child(2) {
+      height: 300px;
+    }
+  }
 `;
 
 export const WrapperInputs = styled.div`
@@ -78,6 +89,10 @@ export const TitleContact = styled.p`
   font-weight: 500;
   margin-top: 0.5rem;
   margin-bottom: 1rem;
+
+  @media ${device.mobileM} {
+    margin-top: 0;
+  }
 `;
 
 export const SubtitleContact = styled.p`

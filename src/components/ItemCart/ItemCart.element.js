@@ -39,6 +39,15 @@ export const WrapperItemCart = styled.div`
       width: 105px;
     }
   }
+  @media ${device.mobileM} {
+    & p:nth-child(4) {
+      display: none;
+    }
+    & p:nth-child(5) {
+      width: 45px;
+      margin-left: 0.5rem;
+    }
+  }
 `;
 
 export const ImageItemCart = styled.img`
@@ -50,6 +59,10 @@ export const ImageItemCart = styled.img`
   @media ${device.tablet} {
     width: 60px;
     height: 60px;
+  }
+  @media ${device.mobileM} {
+    width: 45px;
+    height: 45px;
   }
 `;
 
@@ -83,6 +96,21 @@ export const InfoItemCart = styled.div`
     width: 10rem;
     & p:nth-child(1) {
       width: 150px;
+    }
+  }
+
+  @media ${device.mobileM} {
+    & p:nth-child(1) {
+      margin-left: 0.5rem;
+      width: 80px;
+      height: 100%;
+      font-size: 0.8rem;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    & p:nth-child(2) {
+      margin-left: 0.5rem;
+      font-size: 0.75rem;
     }
   }
 `;

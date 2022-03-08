@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { ButtonOutline } from "../../globalStyle";
+import { device } from "../../device";
 
 export const Illustration = styled.div`
   width: 200px;
@@ -19,7 +20,6 @@ export const EmpyCartWrapper = styled.div`
   & h4 {
     color: ${({ theme }) => theme.crimson};
   }
-
   & p {
     color: ${({ theme }) => theme.mediumBlack};
     display: inline-block;
@@ -30,5 +30,25 @@ export const EmpyCartWrapper = styled.div`
   & ${ButtonOutline} {
     width: 40%;
     margin: 0 auto;
+  }
+
+  @media ${device.tablet} {
+    width: 100%;
+    & p {
+      width: 50%;
+    }
+    & ${ButtonOutline} {
+      width: 30%;
+    }
+  }
+
+  @media ${device.mobileM} {
+    width: 100%;
+    & p {
+      width: 80%;
+    }
+    & ${ButtonOutline} {
+      width: 50%;
+    }
   }
 `;

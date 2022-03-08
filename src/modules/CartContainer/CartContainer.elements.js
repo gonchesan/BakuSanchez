@@ -6,6 +6,10 @@ export const WrapperCart = styled.div`
   justify-content: space-between;
   width: 100%;
   margin-top: 2rem;
+
+  @media ${device.mobileM} {
+    min-height: 630px;
+  }
 `;
 
 export const HeaderListCart = styled.div`
@@ -54,6 +58,25 @@ export const HeaderListCart = styled.div`
       }
     }
   }
+  @media ${device.mobileM} {
+    justify-content: space-around;
+
+    & p {
+      &:nth-child(1) {
+        width: auto;
+      }
+      &:nth-child(2) {
+        width: auto;
+      }
+      &:nth-child(3) {
+        display: none;
+      }
+      &:nth-child(4) {
+        width: auto;
+        margin-right: 1rem;
+      }
+    }
+  }
 `;
 
 export const ItemListCart = styled.div`
@@ -68,4 +91,8 @@ export const ContainerCartItem = styled.div`
   height: 360px;
   overflow-y: auto;
   overflow-x: hidden;
+
+  @media ${device.mobileM} {
+    height: 420px;
+  }
 `;

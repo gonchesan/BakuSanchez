@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { device } from "../../device";
 
 export const SelectItem = styled.div`
   position: absolute;
@@ -125,5 +126,9 @@ export const ItemContainer = styled.div`
     height: 100%;
     object-fit: cover;
     object-position: center;
+  }
+
+  @media ${device.mobileM} {
+    height: 17.5rem;
   }
 `;

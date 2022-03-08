@@ -8,13 +8,13 @@ import {
   DetailButton,
   WrapperSummaryInfo,
 } from "./OrderSummary.elements";
-import { RiMenuFoldFill } from "react-icons/ri";
+import { RiMenuFoldFill, RiMenuUnfoldFill } from "react-icons/ri";
 
 import { CartContext } from "../../context/CartContext";
 import { shippingChoice } from "../../utils/information";
 import OrderForm from "../OrderForm/OrderForm";
 
-const OrderSummary = () => {
+const OrderSummary = ({ isOpen, handleOpenSummary }) => {
   const { cart, calculateTotalPrice } = useContext(CartContext);
   const [isLoading, setIsLoading] = useOutletContext();
 
@@ -46,11 +46,11 @@ const OrderSummary = () => {
   const numberFormat = new Intl.NumberFormat("en-US");
 
   return (
-    <CheckoutInfo>
+    <CheckoutInfo isOpen={isOpen}>
       {!isLoading ? (
         <>
-          <DetailButton>
-            <RiMenuFoldFill />
+          <DetailButton onClick={handleOpenSummary}>
+            {!isOpen ? <RiMenuFoldFill /> : <RiMenuUnfoldFill />}
           </DetailButton>
           <CheckoutTitle>Order summary</CheckoutTitle>
           <WrapperSummaryInfo>

@@ -9,6 +9,12 @@ export const WrapperCollection = styled.div`
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 10px;
   grid-auto-rows: minmax(100px, auto);
+
+  @media ${device.mobileM} {
+    display: flex;
+    height: 10rem;
+    overflow-x: scroll;
+  }
 `;
 
 export const Overlay = styled.div`
@@ -43,7 +49,6 @@ export const CardCollection = styled.div`
   justify-content: center;
   align-items: center;
   transform: scale(1);
-
   transition: all 0.3s ease-in-out;
 
   &:nth-child(1) {
@@ -90,6 +95,7 @@ export const CardCollection = styled.div`
     text-transform: uppercase;
     opacity: 0;
   }
+
   @media ${device.tablet} {
     & h5 {
       opacity: 1;
@@ -100,5 +106,21 @@ export const CardCollection = styled.div`
     &:hover {
       background: transparent;
     }
+  }
+
+  @media ${device.mobileM} {
+    min-width: 13rem;
+    & h5 {
+      font-size: 1.1rem;
+      transform: translateY(-10px);
+    }
+
+    /* &:nth-child(1) {
+      grid-column: 1;
+    }
+    &:nth-child(6) {
+      grid-row: 1;
+      grid-column: 6;
+    } */
   }
 `;

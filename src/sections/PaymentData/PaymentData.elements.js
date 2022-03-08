@@ -16,13 +16,16 @@ export const WrapperPaymentData = styled.div`
     grid-column-gap: 0rem;
     height: 4rem;
   }
+  @media ${device.mobileM} {
+    grid-template-columns: repeat(2, 1fr);
+    height: 8rem;
+  }
 `;
 
 export const CardsPaymentData = styled.div`
   margin: 8px;
   display: flex;
   align-items: center;
-
   & svg {
     width: 2rem;
     height: 2rem;
@@ -31,6 +34,13 @@ export const CardsPaymentData = styled.div`
   }
   @media ${device.tablet} {
     & svg {
+      margin: 0 0.8rem;
+    }
+  }
+  @media ${device.mobileM} {
+    & svg {
+      width: 1.7rem;
+      height: 1.7rem;
       margin: 0 0.8rem;
     }
   }
@@ -45,5 +55,8 @@ export const PaymentDataInfo = styled.div`
 
   @media ${device.tablet} {
     font-size: 0.85rem;
+  }
+  @media ${device.mobileM} {
+    font-size: 0.75rem;
   }
 `;

@@ -18,6 +18,12 @@ export const BannerContainer = styled.div`
       object-fit: contain;
     }
   }
+  @media ${device.mobileM} {
+    height: 250px;
+    & img {
+      object-fit: cover;
+    }
+  }
 `;
 
 export const ButtonContainers = styled.div`
@@ -32,6 +38,10 @@ export const ButtonContainers = styled.div`
   @media ${device.tablet} {
     top: 40%;
     padding: 0 1.5rem;
+  }
+  @media ${device.mobileM} {
+    padding: 0 0.5rem;
+    top: 35%;
   }
 `;
 export const ButtonSlider = styled.button`
@@ -54,5 +64,12 @@ export const ButtonSlider = styled.button`
     height: 100%;
     width: 100%;
     padding: 12px;
+  }
+  @media ${device.mobileM} {
+    width: 32px;
+    height: 32px;
+    & svg {
+      padding: 8px;
+    }
   }
 `;
