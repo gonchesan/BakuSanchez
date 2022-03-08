@@ -1,6 +1,7 @@
 import { Field, Form } from "formik";
 import styled from "styled-components";
 import { Button } from "../../globalStyle";
+import { device } from "../../device";
 
 export const CheckoutInfo = styled.div`
   width: 35%;
@@ -11,6 +12,19 @@ export const CheckoutInfo = styled.div`
   justify-content: space-evenly;
   background-color: ${({ theme }) => theme.lightGray};
   border-radius: 8px;
+
+  @media ${device.tablet} {
+    width: 45%;
+    position: absolute;
+    right: ${({ isOpen }) => (isOpen ? "0" : "-335px")};
+    z-index: 105;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    transition: all 0.3s linear;
+  }
+  @media ${device.mobileM} {
+    width: 80%;
+    right: ${({ isOpen }) => (isOpen ? "-294px" : "-4px")};
+  }
 `;
 
 export const WrapperSummaryInfo = styled.div`
@@ -80,6 +94,7 @@ export const SummaryButton = styled(Button)`
   font-size: 0.9rem;
   height: 2.5rem;
   width: ${({ small }) => (small ? "100px" : "100%")};
+  justify-content: center;
 `;
 
 export const AlertPromo = styled.p`
@@ -117,5 +132,28 @@ export const CheckoutSubtitle = styled.p`
       content: "$ ";
       font-size: 1.2rem;
     }
+  }
+`;
+
+export const DetailButton = styled.button`
+  position: absolute;
+  top: 0;
+  left: -10%;
+  background-color: ${({ theme }) => theme.lightGray};
+  outline: none;
+  border: none;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 8px 0 0 8px;
+
+  & svg {
+    width: 100%;
+    height: 100%;
+    padding: 8px;
+    color: ${({ theme }) => theme.mediumBlack};
+  }
+
+  @media ${device.mobileM} {
+    left: -12%;
   }
 `;

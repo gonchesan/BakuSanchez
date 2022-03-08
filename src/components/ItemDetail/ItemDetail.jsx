@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 
 import {
   DetailContainer,
@@ -51,6 +51,10 @@ const ItemDetail = ({ product }) => {
     removeItem(id);
   };
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <DetailContainer>
       <SliderWrapper>
@@ -61,9 +65,7 @@ const ItemDetail = ({ product }) => {
         <PriceDetail>
           <span>US</span> ${price}
         </PriceDetail>
-        <Paragraph>
-          <b>Stock available</b>
-        </Paragraph>
+        <Paragraph></Paragraph>
         {itemsAdded !== 0 ? (
           <>
             <Button isDetailView secondary onClick={returnProducts}>

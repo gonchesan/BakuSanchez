@@ -1,4 +1,5 @@
 import styled, { createGlobalStyle } from "styled-components";
+import { device } from "./device";
 
 const GlobalStyle = createGlobalStyle`
 
@@ -43,9 +44,13 @@ export const Container = styled.div`
   margin-left: auto;
   padding-right: 50px;
   padding-left: 50px;
-  @media screen and (max-width: 991px) {
+  @media ${device.tablet} {
     padding-right: 30px;
     padding-left: 30px;
+  }
+  @media ${device.mobileM} {
+    padding-right: 15px;
+    padding-left: 15px;
   }
 `;
 
@@ -57,6 +62,10 @@ export const Header = styled.p`
   border-bottom: 2px solid #595f6a70;
   position: relative;
   color: ${({ theme }) => theme.mediumBlack};
+
+  @media ${device.mobileM} {
+    font-size: 1.3rem;
+  }
 `;
 
 export const Button = styled.button`
@@ -107,6 +116,17 @@ export const Button = styled.button`
     & svg {
       opacity: 0.4;
       background-color: #d31726;
+    }
+  }
+
+  @media ${device.tablet} {
+    width: ${({ isDetailView }) => (isDetailView ? "100%" : "11rem")};
+    justify-content: ${({ isDetailView }) =>
+      isDetailView ? "center" : "start"};
+    margin: ${({ isDetailView }) =>
+      isDetailView ? "0 0 8px 0 " : "0rem 0.4rem 0rem 0.7rem"};
+    & svg {
+      margin: 0rem 0.4rem 0rem 0.7rem;
     }
   }
 `;

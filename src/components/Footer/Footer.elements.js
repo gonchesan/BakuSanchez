@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { device } from "../../device";
 
 export const WrapperFooter = styled.div`
   margin-top: 2rem;
@@ -8,6 +9,16 @@ export const WrapperFooter = styled.div`
   grid-template-columns: repeat(4, 1fr);
   grid-column-gap: 50px;
   grid-row-gap: 0px;
+
+  @media ${device.tablet} {
+    grid-column-gap: 1.5rem;
+  }
+  @media ${device.mobileM} {
+    grid-column-gap: 0.5rem;
+
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr 2rem;
+  }
 `;
 
 export const FooterItem = styled.div`
@@ -17,6 +28,7 @@ export const FooterItem = styled.div`
 
   &:nth-child(1) {
     margin: 20px 0;
+    text-align: center;
   }
 
   &:nth-child(5) {
@@ -26,6 +38,31 @@ export const FooterItem = styled.div`
     font-size: 0.8rem;
     grid-column: 1/5;
     text-align: center;
+  }
+
+  @media ${device.tablet} {
+    & svg {
+      width: 4.5rem;
+    }
+    font-size: 0.9rem;
+  }
+
+  @media ${device.mobileM} {
+    &:nth-child(1) {
+      grid-area: 1 / 1 / 2 / 2;
+    }
+    &:nth-child(2) {
+      display: none;
+    }
+    &:nth-child(3) {
+      display: none;
+    }
+    &:nth-child(4) {
+      grid-area: 1 / 2 / 2 / 3;
+    }
+    &:nth-child(5) {
+      grid-column: 1/5;
+    }
   }
 `;
 
@@ -83,6 +120,9 @@ export const ButtonSubscribe = styled.button`
     background-color: ${({ theme }) => theme.lightPink} !important;
     color: ${({ theme }) => theme.crimson} !important;
   }
+  @media ${device.tablet} {
+    width: 100%;
+  }
 `;
 
 export const LinksContainer = styled.div`
@@ -110,6 +150,12 @@ export const LinksContainer = styled.div`
     text-align: left;
     cursor: pointer;
   }
+
+  @media ${device.tablet} {
+    & button {
+      font-size: 0.8rem;
+    }
+  }
 `;
 
 export const InputSubscribe = styled.input`
@@ -120,4 +166,8 @@ export const InputSubscribe = styled.input`
   padding-left: 10px;
   width: 100%;
   font-size: 1rem;
+
+  @media ${device.tablet} {
+    margin-bottom: 4px;
+  }
 `;

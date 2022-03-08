@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { device } from "../../device";
 
 export const BannerContainer = styled.div`
   position: relative;
@@ -11,6 +12,18 @@ export const BannerContainer = styled.div`
     object-fit: cover;
     object-position: top center;
   }
+  @media ${device.tablet} {
+    height: auto;
+    & img {
+      object-fit: contain;
+    }
+  }
+  @media ${device.mobileM} {
+    height: 250px;
+    & img {
+      object-fit: cover;
+    }
+  }
 `;
 
 export const ButtonContainers = styled.div`
@@ -22,6 +35,14 @@ export const ButtonContainers = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  @media ${device.tablet} {
+    top: 40%;
+    padding: 0 1.5rem;
+  }
+  @media ${device.mobileM} {
+    padding: 0 0.5rem;
+    top: 35%;
+  }
 `;
 export const ButtonSlider = styled.button`
   background-color: #595f6a87;
@@ -43,5 +64,12 @@ export const ButtonSlider = styled.button`
     height: 100%;
     width: 100%;
     padding: 12px;
+  }
+  @media ${device.mobileM} {
+    width: 32px;
+    height: 32px;
+    & svg {
+      padding: 8px;
+    }
   }
 `;

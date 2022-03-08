@@ -76,11 +76,13 @@ const Navbar = () => {
             <WidgetContainer>
               <WidgetItemBtn>
                 <UserWidget />
+                <label>See Profile</label>
               </WidgetItemBtn>
             </WidgetContainer>
             <WidgetContainer>
-              <WidgetItemBtn>
+              <WidgetItemBtn to="/cart" name="/cart" onClick={closeMobileMenu}>
                 <CartWidget />
+                <label>View Cart</label>
               </WidgetItemBtn>
             </WidgetContainer>
           </NavMenu>
